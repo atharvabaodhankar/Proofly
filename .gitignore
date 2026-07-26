@@ -1,0 +1,31 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Node Dependencies
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+
+# Hardhat & Foundry Artifacts
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

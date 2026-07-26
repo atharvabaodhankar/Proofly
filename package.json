@@ -1,0 +1,27 @@
+{
+  "name": "proofly",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proofly — Digital credentials you can prove on Polygon",
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "dev:api": "npm --workspace=services/api run dev",
+    "compile:contracts": "npm --workspace=packages/contracts run compile",
+    "test:contracts": "npm --workspace=packages/contracts run test"
+  },
+  "keywords": [
+    "polygon",
+    "certificates",
+    "credentials",
+    "amoy",
+    "web3",
+    "supabase"
+  ],
+  "author": "",
+  "license": "ISC"
+}
