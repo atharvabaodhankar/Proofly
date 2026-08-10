@@ -54,12 +54,16 @@ export class BlockchainIndexer {
       .eq('chain_id', env.CHAIN_ID)
       .single();
 
-    let fromBlock = state ? Number(state.last_processed_block) + 1 : currentBlock - 50;
+    let fromBlock = state && Number(state.last_processed_block) > 0 
+      ? Number(state.last_processed_block) + 1 
+      : currentBlock - 5;
+      
     if (fromBlock < 0) fromBlock = 0;
     if (fromBlock > currentBlock) return;
 
-    // Process in batches of up to 500 blocks to stay within RPC limits
-    const toBlock = Math.min(fromBlock + 500, currentBlock);
+    // Alchemy Free tier restricts eth_getLogs to max 10 blocks per request
+    const MAX_BLOCK_BATCH = 9; 
+    const toBlock = Math.min(fromBlock + MAX_BLOCK_BATCH, currentBlock);
 
     console.log(`🔍 Indexer querying blocks ${fromBlock} to ${toBlock} (Latest: ${currentBlock})...`);
 
