@@ -16,12 +16,20 @@ export class VerificationController {
       const ipHash = crypto.createHash('sha256').update(String(ip)).digest('hex');
       const userAgent = req.headers['user-agent'] || '';
 
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(certificateId);
+      
       // 1. Fetch certificate from PostgreSQL
-      const { data: cert } = await supabaseAdmin
+      let certQuery = supabaseAdmin
         .from('certificates')
-        .select('*, organizations(id, name, slug, logo_url)')
-        .or(`id.eq.${certificateId},certificate_number.eq.${certificateId}`)
-        .single();
+        .select('*, organizations(id, name, slug, logo_url)');
+        
+      if (isUuid) {
+        certQuery = certQuery.eq('id', certificateId);
+      } else {
+        certQuery = certQuery.eq('certificate_number', certificateId);
+      }
+
+      const { data: cert } = await certQuery.single();
 
       if (!cert) {
         // Log NOT_FOUND attempt

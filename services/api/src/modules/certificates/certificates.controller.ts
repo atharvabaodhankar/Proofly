@@ -161,11 +161,18 @@ export class CertificateController {
     try {
       const { id } = req.params;
 
-      const { data: cert, error } = await supabaseAdmin
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+      let certQuery = supabaseAdmin
         .from('certificates')
-        .select('*, organizations(id, name, slug, logo_url)')
-        .or(`id.eq.${id},certificate_number.eq.${id}`)
-        .single();
+        .select('*, organizations(id, name, slug, logo_url)');
+
+      if (isUuid) {
+        certQuery = certQuery.eq('id', id);
+      } else {
+        certQuery = certQuery.eq('certificate_number', id);
+      }
+
+      const { data: cert, error } = await certQuery.single();
 
       if (error || !cert) {
         return res.status(404).json({ error: 'Certificate not found' });
@@ -231,11 +238,16 @@ export class CertificateController {
       const { id } = req.params;
       const { reason } = req.body;
 
-      const { data: cert, error } = await supabaseAdmin
-        .from('certificates')
-        .select('*')
-        .or(`id.eq.${id},certificate_number.eq.${id}`)
-        .single();
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+      let certQuery = supabaseAdmin.from('certificates').select('*');
+
+      if (isUuid) {
+        certQuery = certQuery.eq('id', id);
+      } else {
+        certQuery = certQuery.eq('certificate_number', id);
+      }
+
+      const { data: cert, error } = await certQuery.single();
 
       if (error || !cert) {
         return res.status(404).json({ error: 'Certificate not found' });
