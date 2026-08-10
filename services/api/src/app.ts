@@ -33,6 +33,8 @@ if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
 }
 
+app.get('/favicon.ico', (_req, res) => res.status(204).end());
+
 // Health check
 app.get('/health', (_req, res) => {
   res.json({
