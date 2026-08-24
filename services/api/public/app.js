@@ -358,12 +358,13 @@ issueForm?.addEventListener('submit', async (e) => {
   btn.disabled = true;
   btn.textContent = 'Generating PDF & Submitting Proof...';
 
-  const recipient_name = document.getElementById('issue-recipient-name').value;
-  const recipient_email = document.getElementById('issue-recipient-email').value;
-  const title = document.getElementById('issue-title').value;
-  const description = document.getElementById('issue-description').value;
+  const recipient_name = document.getElementById('issue-recipient-name').value.trim();
+  const recipient_email = document.getElementById('issue-recipient-email').value.trim();
+  const title = document.getElementById('issue-title').value.trim();
+  const description = document.getElementById('issue-description').value.trim();
   const issue_date = document.getElementById('issue-date').value || new Date().toISOString().split('T')[0];
-  const expiry_date = document.getElementById('issue-expiry').value || null;
+  const expiry_val = document.getElementById('issue-expiry').value;
+  const expiry_date = expiry_val ? expiry_val : undefined;
 
   try {
     const res = await fetch(`${API_BASE}/certificates/organizations/${currentOrg.id}/certificates`, {
@@ -376,14 +377,17 @@ issueForm?.addEventListener('submit', async (e) => {
     });
 
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Failed to issue certificate');
+    if (!res.ok) {
+      const errMsg = data.details ? data.details.map((d) => `${d.field}: ${d.message}`).join('\n') : (data.error || 'Failed to issue certificate');
+      throw new Error(errMsg);
+    }
 
-    alert(` Certificate ${data.certificate.certificate_number} created successfully!\n\nClaim Link: ${data.certificate.claimUrl}`);
+    alert(`🎉 Certificate ${data.certificate.certificate_number} created successfully!\n\nClaim Link:\n${data.certificate.claimUrl}`);
     issueModal.classList.add('hidden');
     issueForm.reset();
     loadIssuerCertificates();
   } catch (err) {
-    alert(`Error: ${err.message}`);
+    alert(`Issue Error:\n${err.message}`);
   } finally {
     btn.disabled = false;
     btn.textContent = 'Generate PDF & Anchor on Polygon';
