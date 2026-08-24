@@ -88,12 +88,22 @@ export type CreateOrganizationInput = z.infer<typeof CreateOrganizationSchema>;
 export const IssueCertificateSchema = z.object({
   recipient_name: z.string().min(2),
   recipient_email: z.string().email(),
-  recipient_external_id: z.string().optional(),
+  recipient_external_id: z.string().optional().nullable(),
   title: z.string().min(2).max(200),
   description: z.string().max(2000),
-  issue_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be YYYY-MM-DD').default(() => new Date().toISOString().split('T')[0]),
-  expiry_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be YYYY-MM-DD').optional(),
-  metadata: z.record(z.any()).optional(),
+  issue_date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be YYYY-MM-DD')
+    .optional()
+    .nullable()
+    .default(() => new Date().toISOString().split('T')[0]),
+  expiry_date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be YYYY-MM-DD')
+    .optional()
+    .nullable()
+    .or(z.literal('')),
+  metadata: z.record(z.any()).optional().nullable(),
 });
 export type IssueCertificateInput = z.infer<typeof IssueCertificateSchema>;
 
