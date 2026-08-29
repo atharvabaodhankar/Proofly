@@ -1,0 +1,1531 @@
+<!-- Settings -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script><style>@layer base { body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom); } .pt-safe { padding-top: env(safe-area-inset-top); } } .ambient-glow { shadow-[0_1px_8px_rgba(0,0,0,0.04)]; }</style></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-3"><img alt="Proofly Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX_DHszVIk_UtZyLlktgnIkV8apcaGMJpvg85kiLosZPbrO2HtvZoHFvr_CJwnwt7EoqxCir9F1EbvbdiWPtnPIRqGQFzGioObEH0cD0MFcdcdxTzpNOhOQlfy-rz3_JR4JFQGy8CbFZL-0-zdnDE6xUSqOPz81mxcPuPdsmQYiXzHNtc4ryupcAvUbb2BSVuENFe93WC4kMjvBS-s8YRL1TDsclvUCILiKpPLRxK25ylns66zBIlr7g"/><span class="font-headline-md text-headline-md text-on-surface truncate">Settings</span></div><div class="flex items-center gap-4"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 pb-32 min-h-screen bg-background"><div class="flex flex-col w-full h-full pb-8">
+<div class="flex flex-col w-full bg-surface-container-lowest px-4 py-6 gap-6 ambient-glow mb-6">
+<div class="flex items-center gap-4">
+<img alt="Profile Picture" class="w-16 h-16 rounded-full object-cover shadow-sm bg-surface-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/>
+<div class="flex flex-col flex-1 min-w-0">
+<h2 class="font-headline-md text-headline-md text-on-surface truncate">Alex Rivera</h2>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">alex.rivera@techinst.edu</p>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-surface-container-high text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">edit</span>
+</button>
+</div>
+<div class="flex flex-col w-full gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider pl-1">Active Organization</span>
+<button class="flex items-center w-full justify-between px-4 py-3 bg-surface-container rounded-lg group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md text-sm">T</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Tech Institute Global</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">unfold_more</span>
+</button>
+</div>
+</div>
+<div class="px-4 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider pl-1">Preferences</span>
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] overflow-hidden">
+<div class="flex items-center justify-between px-4 py-4 cursor-pointer hover:bg-surface-container-low transition-colors" id="theme-toggle">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-primary">dark_mode</span>
+<span class="font-body-md text-body-md">Dark Mode</span>
+</div>
+<div class="w-12 h-6 rounded-full bg-surface-container-highest relative flex items-center p-1 cursor-pointer transition-colors" id="theme-switch">
+<div class="w-4 h-4 rounded-full bg-outline absolute left-1 transition-transform" id="theme-knob"></div>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30 w-[calc(100%-2rem)] mx-auto"></div>
+<div class="flex items-center justify-between px-4 py-4 cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<span class="font-body-md text-body-md">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider pl-1">Security &amp; Access</span>
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] overflow-hidden">
+<div class="flex items-center justify-between px-4 py-4 cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-secondary">security</span>
+<span class="font-body-md text-body-md">Password &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="h-px bg-outline-variant/30 w-[calc(100%-2rem)] mx-auto"></div>
+<div class="flex items-center justify-between px-4 py-4 cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-secondary">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Wallet Connect</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline">0x4F...9A2</span>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 px-4 w-full">
+<button class="w-full py-4 flex items-center justify-center gap-2 bg-error-container/20 text-error rounded-xl font-headline-md text-body-lg hover:bg-error-container/30 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+      Sign Out
+    </button>
+</div>
+</div>
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', function() {
+    const knob = document.getElementById('theme-knob');
+    const switchBg = document.getElementById('theme-switch');
+    
+    if (knob.classList.contains('translate-x-6')) {
+      knob.classList.remove('translate-x-6', 'bg-on-primary');
+      knob.classList.add('bg-outline');
+      switchBg.classList.remove('bg-primary');
+      switchBg.classList.add('bg-surface-container-highest');
+    } else {
+      knob.classList.add('translate-x-6', 'bg-on-primary');
+      knob.classList.remove('bg-outline');
+      switchBg.classList.remove('bg-surface-container-highest');
+      switchBg.classList.add('bg-primary');
+    }
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16"><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="recipient-home" href="#"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="certs" href="#"><span class="material-symbols-outlined">card_membership</span><span class="font-label-sm text-label-sm">Certs</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="verify" href="#"><span class="material-symbols-outlined">verified_user</span><span class="font-label-sm text-label-sm">Verify</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="profile" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-label-sm text-label-sm">Profile</span></a></div></nav></body></html>
+
+<!-- Certificate Details -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-2"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant" onclick="history.back()"><span class="material-symbols-outlined">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-on-surface truncate">Certificate Detail</h1></div><div class="flex items-center gap-4"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 min-h-screen bg-background"><div class="flex flex-col w-full pb-24">
+<!-- Certificate Preview Area -->
+<div class="px-margin-mobile pt-6 pb-8 bg-surface-container-low">
+<div class="relative w-full rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] aspect-[4/3] bg-surface-container-lowest">
+<!-- Certificate Background Pattern (Simulated Paper) -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(var(--tw-colors-outline-variant) 1px, transparent 1px); background-size: 16px 16px;"></div>
+<!-- Certificate Content Mockup -->
+<div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-high mb-4 flex items-center justify-center overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A modern, minimalist university crest or logo for 'Global Tech University', using subtle indigo and slate tones on a clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANBXtROZVXZS24GHcEsZ_jwiHxC7hyPVwrL_RkQbMu0mS0JK08D45dvDYfkHKl8XMU6WOlwYSp1MZYnJRG9o_S2MwPrSxGsO6AfyFAZafuh9dfBDb98J5IZ50nlGwzsQgfN8qtJUs1XbY-o7AxKAE2j_mXq61HYbFiBYzOQWLLKOX0SwUE2ke_0DbPQEzx2qkk6XLA9tLSZ27aw-oRO9Z2dO0QD8iv2ODPhkcTzpwxPHXzPDXgplpFrw"/>
+</div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Certificate of Completion</p>
+<h2 class="font-headline-md text-on-surface mb-2 px-4">Advanced Cloud Architecture</h2>
+<p class="font-body-md text-on-surface-variant mb-6">Awarded to Alex Chen</p>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-24 h-[1px] bg-outline-variant"></div>
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div class="w-24 h-[1px] bg-outline-variant"></div>
+</div>
+</div>
+<!-- Verified Badge Overlay -->
+<div class="absolute top-4 right-4 bg-surface-container-lowest shadow-[0_2px_10px_rgba(0,0,0,0.05)] rounded-full px-3 py-1.5 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-green-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-green-700 font-semibold">Verified</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="px-margin-mobile py-6 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-body-md font-medium h-12 rounded-[20px] flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-[0_4px_14px_rgba(53,37,205,0.2)]">
+<span class="material-symbols-outlined text-[20px]">download</span>
+      Download PDF
+    </button>
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-body-md font-medium h-12 rounded-[20px] flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]">share</span>
+      Share
+    </button>
+</div>
+<!-- Detail Sections -->
+<div class="px-margin-mobile flex flex-col gap-6">
+<!-- Issuer & Dates -->
+<div class="bg-surface-container-lowest rounded-[20px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Credential Details</h3>
+<div class="flex items-start gap-4 mb-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, abstract logo representing a technology institution, minimal design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ppc8KKlRnGK9HqeEh0Y4JHo5jHYcxYmQsgIWvPUiIP1VlLSzrvCUtKgNsfmloYOPR-E5FANns2-XhL7j4L1JTfXjd7p_XyKVHbdAuRth5NOXdIRTWIVwyOCP-XqmR6KpCPh4VK3QlriyQ3xVljlew8pw__GakMKdVw7L_aZI1oVZ-5g8R-NCbTXh0l8JvM2v9YAiZAVU8By-XEhaN2VDMFfsc7EfE-nN46ITv04VYyZztGhNHKVFmQ"/>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">Global Tech University</p>
+<p class="font-body-md text-on-surface-variant text-sm">Issuer</p>
+</div>
+</div>
+<div class="flex justify-between items-center py-3 border-t border-surface-container">
+<span class="font-body-md text-on-surface-variant">Issued On</span>
+<span class="font-body-md font-medium text-on-surface">Oct 24, 2024</span>
+</div>
+<div class="flex justify-between items-center py-3 border-t border-surface-container">
+<span class="font-body-md text-on-surface-variant">Expires On</span>
+<span class="font-body-md font-medium text-on-surface">Oct 24, 2027</span>
+</div>
+</div>
+<!-- QR Code Toggle Section -->
+<div class="bg-surface-container-lowest rounded-[20px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-center cursor-pointer" id="qr-toggle-btn" onclick="toggleQR()">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary bg-primary-fixed w-10 h-10 rounded-full flex items-center justify-center">qr_code_2</span>
+<span class="font-body-md font-medium text-on-surface">Validation QR Code</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300" id="qr-icon">expand_more</span>
+</div>
+<div class="overflow-hidden transition-all duration-300 max-h-0 opacity-0" id="qr-content">
+<div class="pt-6 pb-2 flex flex-col items-center justify-center">
+<div class="w-48 h-48 bg-surface-container-low rounded-xl p-4 mb-3 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-contain mix-blend-multiply opacity-80" data-alt="A crisp, high-contrast QR code generated in black and white, suitable for scanning, placed exactly in the center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHIWnzeF8YI_9013nc7VnJ1bZpjiyKcmRsLWS5Jg9Elwl0g1NtwMFnevGH8SGMnfYZm0yFWuEV6a_mldiz2QNoPobtnRo1uwtEJTjncRlEPccefjMfadpjUHxrJMPAueFlHYHS6d3d4FbuN4oWy5imi1qO8xtBUMj9H6XwqriqY9Qb1wRWd4SyTP4n0QHR5RaUxp1Vv8e7yTV7zNalS6Ej8p6E2HXlAjkz8U5jkDoaU9KOCpKu7vWllQ"/>
+</div>
+<p class="font-body-md text-on-surface-variant text-center text-sm px-4">Scan to verify authenticity directly on the provider's portal.</p>
+</div>
+</div>
+</div>
+<!-- Blockchain Proof (Collapsible) -->
+<div class="bg-surface-container-lowest rounded-[20px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-center cursor-pointer" id="blockchain-toggle-btn" onclick="toggleBlockchain()">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed w-10 h-10 rounded-full flex items-center justify-center">link</span>
+<span class="font-body-md font-medium text-on-surface">Blockchain Proof</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300" id="blockchain-icon">expand_more</span>
+</div>
+<div class="overflow-hidden transition-all duration-300 max-h-0 opacity-0" id="blockchain-content">
+<div class="pt-5 mt-2">
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-on-surface-variant">Network</span>
+<span class="font-label-sm font-medium text-on-surface bg-surface px-2 py-1 rounded-md border border-outline-variant/20">Polygon Mainnet</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-on-surface-variant">Transaction Hash</span>
+<div class="flex items-center justify-between bg-surface p-2 rounded-md border border-outline-variant/20">
+<span class="font-label-sm text-on-surface font-mono truncate mr-2">0x8f2a9b3e7c1d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c3c91</span>
+<button aria-label="Copy Hash" class="text-primary hover:text-primary-container p-1 rounded-full active:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Tab Bar (Recipients / Context) -->
+<div class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 pb-safe z-40">
+<div class="flex justify-around items-center h-16 px-4">
+<button class="flex flex-col items-center justify-center w-16 h-full text-primary">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+<span class="text-[10px] font-medium leading-none">Details</span>
+</button>
+<button class="flex flex-col items-center justify-center w-16 h-full text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined mb-1">history</span>
+<span class="text-[10px] font-medium leading-none">History</span>
+</button>
+<button class="flex flex-col items-center justify-center w-16 h-full text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined mb-1">group</span>
+<span class="text-[10px] font-medium leading-none">Recipients</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  function toggleQR() {
+    const content = document.getElementById('qr-content');
+    const icon = document.getElementById('qr-icon');
+    
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  function toggleBlockchain() {
+    const content = document.getElementById('blockchain-content');
+    const icon = document.getElementById('blockchain-icon');
+    
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+</script></main></body></html>
+
+<!-- Claim Certificate -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-2"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant" onclick="history.back()"><span class="material-symbols-outlined">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-on-surface truncate">Claim Credential</h1></div><div class="flex items-center gap-4"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 min-h-screen bg-background"><div class="flex flex-col w-full relative overflow-hidden bg-background">
+<div class="px-margin-mobile py-8 flex flex-col items-center">
+<div class="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden mb-8 transition-transform duration-700 ease-in-out" id="cert-container">
+<div class="absolute inset-0 bg-surface-container flex items-center justify-center p-4">
+<div class="w-full h-full border-[1px] border-outline-variant/30 rounded-xl relative overflow-hidden bg-gradient-to-br from-surface to-surface-container-low" style="background-image: radial-gradient(circle at 10% 20%, rgba(53, 37, 205, 0.05) 0%, transparent 40%);">
+<div class="absolute top-4 left-4 w-12 h-12 bg-primary/10 rounded-full blur-md"></div>
+<div class="absolute bottom-6 right-6 w-16 h-16 bg-secondary/10 rounded-full blur-lg"></div>
+<div class="relative z-10 w-full h-full flex flex-col justify-center items-center p-6 text-center opacity-40 blur-[4px] transition-all duration-700" id="cert-content">
+<div class="w-16 h-16 rounded-full bg-outline-variant/20 mb-4 mx-auto"></div>
+<div class="h-4 bg-outline-variant/30 rounded w-3/4 mb-3 mx-auto"></div>
+<div class="h-3 bg-outline-variant/30 rounded w-1/2 mb-6 mx-auto"></div>
+<div class="h-2 bg-outline-variant/20 rounded w-full mb-2"></div>
+<div class="h-2 bg-outline-variant/20 rounded w-4/5 mx-auto"></div>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 bg-background/40 backdrop-blur-[6px] flex flex-col items-center justify-center transition-opacity duration-500 z-20" id="lock-overlay">
+<div class="w-16 h-16 bg-surface rounded-full shadow-[0px_8px_24px_rgba(0,0,0,0.08)] flex items-center justify-center mb-4 transform transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-primary text-[32px] animate-pulse" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Locked Credential</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Verification Required</p>
+</div>
+<div class="absolute inset-0 pointer-events-none opacity-0 flex items-center justify-center z-30 transition-opacity duration-500" id="success-overlay">
+<div class="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center scale-0 transition-transform duration-500 delay-300" id="success-icon">
+<span class="material-symbols-outlined text-emerald-600 text-[40px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<div class="w-full max-w-sm flex flex-col items-center text-center mb-8" id="header-text">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Claim your certificate</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter the email address associated with your achievement to verify ownership.</p>
+</div>
+<div class="w-full max-w-sm transition-all duration-500 ease-in-out" id="form-section">
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border-[1px] border-outline-variant/30">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm font-bold">1</div>
+<h3 class="font-headline-md text-body-lg text-on-surface">Email Verification</h3>
+</div>
+<div class="relative mb-6">
+<input class="w-full bg-surface-container-low text-on-surface rounded-xl px-4 py-4 font-body-md text-body-md outline-none border-[1px] border-transparent focus:bg-surface-container-lowest focus:border-primary transition-colors placeholder:text-on-surface-variant/50" id="email-input" placeholder="jane@example.com" type="email"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 text-emerald-600 transition-opacity" id="email-check">
+<span class="material-symbols-outlined">check</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary rounded-[20px] py-4 font-body-md text-body-md font-medium flex items-center justify-center gap-2 hover:bg-[#4338CA] transition-all transform active:scale-[0.98]" id="verify-btn">
+<span>Verify Identity</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="w-full max-w-sm hidden opacity-0 translate-y-4 transition-all duration-500 ease-in-out flex flex-col items-center" id="success-section">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 mt-4 text-center">Verified successfully</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-center mb-8">Your credential has been unlocked and is ready to be added to your digital wallet.</p>
+<button class="w-full bg-primary text-on-primary rounded-[20px] py-4 font-body-md text-body-md font-medium flex items-center justify-center gap-2 hover:bg-[#4338CA] shadow-[0px_8px_16px_rgba(53,37,205,0.2)] mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span>Add to Wallet</span>
+</button>
+<button class="w-full bg-transparent border-[1px] border-outline-variant text-on-surface rounded-[20px] py-4 font-body-md text-body-md font-medium flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+<span>View Full Details</span>
+</button>
+</div>
+</div>
+<canvas class="fixed inset-0 pointer-events-none z-50 w-full h-full opacity-0 transition-opacity duration-300" id="confetti"></canvas>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('email-input');
+    const verifyBtn = document.getElementById('verify-btn');
+    const emailCheck = document.getElementById('email-check');
+    const lockOverlay = document.getElementById('lock-overlay');
+    const certContent = document.getElementById('cert-content');
+    const formSection = document.getElementById('form-section');
+    const successSection = document.getElementById('success-section');
+    const headerText = document.getElementById('header-text');
+    const successOverlay = document.getElementById('success-overlay');
+    const successIcon = document.getElementById('success-icon');
+    const certContainer = document.getElementById('cert-container');
+    const canvas = document.getElementById('confetti');
+    
+    // Simulate valid email input
+    input.addEventListener('input', (e) => {
+        if(e.target.value.includes('@') && e.target.value.includes('.')) {
+            emailCheck.classList.remove('opacity-0');
+        } else {
+            emailCheck.classList.add('opacity-0');
+        }
+    });
+
+    verifyBtn.addEventListener('click', () => {
+        if(!input.value.includes('@')) {
+            // Simple shake animation for invalid
+            input.parentElement.animate([
+                { transform: 'translateX(0)' },
+                { transform: 'translateX(-10px)' },
+                { transform: 'translateX(10px)' },
+                { transform: 'translateX(-10px)' },
+                { transform: 'translateX(10px)' },
+                { transform: 'translateX(0)' }
+            ], { duration: 400, easing: 'ease-in-out' });
+            return;
+        }
+
+        // Button loading state
+        verifyBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span><span>Verifying...</span>';
+        verifyBtn.classList.add('opacity-80', 'pointer-events-none');
+
+        setTimeout(() => {
+            // Success Sequence
+            
+            // 1. Fade out form and header
+            formSection.classList.add('opacity-0', '-translate-y-4');
+            headerText.classList.add('opacity-0', '-translate-y-4');
+            
+            setTimeout(() => {
+                formSection.classList.add('hidden');
+                headerText.classList.add('hidden');
+                
+                // 2. Unlock animation
+                lockOverlay.classList.add('opacity-0');
+                successOverlay.classList.remove('opacity-0');
+                
+                // Small bounce for the cert
+                certContainer.animate([
+                    { transform: 'scale(1)' },
+                    { transform: 'scale(1.02)' },
+                    { transform: 'scale(1)' }
+                ], { duration: 600, easing: 'ease-out' });
+
+                setTimeout(() => {
+                    successIcon.classList.remove('scale-0');
+                    successIcon.classList.add('scale-100');
+                    
+                    // Unblur content slightly to show it's "real" now, but keep abstract
+                    certContent.classList.remove('blur-[4px]', 'opacity-40');
+                    certContent.classList.add('blur-[1px]', 'opacity-80');
+                    
+                    // 3. Show success section
+                    successSection.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before transition
+                    requestAnimationFrame(() => {
+                        successSection.classList.remove('opacity-0', 'translate-y-4');
+                    });
+                    
+                    fireConfetti();
+                    
+                }, 400);
+
+            }, 500);
+
+        }, 1500);
+    });
+
+    // Simple Confetti implementation
+    function fireConfetti() {
+        if(!canvas) return;
+        canvas.classList.remove('opacity-0');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const pieces = [];
+        const colors = ['#3525cd', '#6063ee', '#10b981', '#fbbf24', '#ffffff'];
+        
+        for(let i=0; i<60; i++) {
+            pieces.push({
+                x: canvas.width / 2,
+                y: canvas.height * 0.4,
+                vx: (Math.random() - 0.5) * 15,
+                vy: (Math.random() - 1) * 15 - 5,
+                size: Math.random() * 8 + 4,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 10
+            });
+        }
+        
+        let frame = 0;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let active = false;
+            
+            pieces.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.4; // gravity
+                p.rotation += p.rotationSpeed;
+                
+                if(p.y < canvas.height) active = true;
+                
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                ctx.restore();
+            });
+            
+            frame++;
+            if(active && frame < 200) {
+                requestAnimationFrame(animate);
+            } else {
+                canvas.classList.add('opacity-0');
+            }
+        }
+        animate();
+    }
+  });
+</script></main></body></html>
+
+<!-- Verification Result -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script><style>@layer base { body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom); } .pt-safe { padding-top: env(safe-area-inset-top); } } .ambient-glow { shadow-[0_1px_8px_rgba(0,0,0,0.04)]; }</style></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-3"><img alt="Proofly Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX_DHszVIk_UtZyLlktgnIkV8apcaGMJpvg85kiLosZPbrO2HtvZoHFvr_CJwnwt7EoqxCir9F1EbvbdiWPtnPIRqGQFzGioObEH0cD0MFcdcdxTzpNOhOQlfy-rz3_JR4JFQGy8CbFZL-0-zdnDE6xUSqOPz81mxcPuPdsmQYiXzHNtc4ryupcAvUbb2BSVuENFe93WC4kMjvBS-s8YRL1TDsclvUCILiKpPLRxK25ylns66zBIlr7g"/><span class="font-headline-md text-headline-md text-on-surface truncate">Verify Credential</span></div><div class="flex items-center gap-4"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 pb-32 min-h-screen bg-background"><div class="flex flex-col w-full relative">
+<!-- Status Banner -->
+<div class="px-margin-mobile py-6 flex flex-col items-center justify-center bg-surface-container-low text-on-surface-variant text-center border-b border-outline-variant">
+<div class="w-20 h-20 rounded-full bg-[#E6F4EA] flex items-center justify-center mb-4 relative">
+<span class="material-symbols-outlined text-[40px] text-[#137333]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<div class="absolute inset-0 rounded-full border-4 border-[#137333] opacity-20 scale-110"></div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-[#137333] mb-1">VALID</h1>
+<p class="font-body-md text-body-md">This credential has been mathematically verified.</p>
+</div>
+<!-- Credential Summary -->
+<div class="px-margin-mobile py-8 flex flex-col gap-6">
+<!-- Recipient & Issue Info -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Credential</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Certified Data Scientist (CDS)</h2>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/30">
+<span class="font-body-md text-body-md text-on-surface-variant">Issued To</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Alexei Vronsky</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/30">
+<span class="font-body-md text-body-md text-on-surface-variant">Issue Date</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2026</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/30">
+<span class="font-body-md text-body-md text-on-surface-variant">Expiration</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2029</span>
+</div>
+</div>
+<!-- Issuer Section -->
+<div class="bg-surface-container rounded-xl p-5 flex items-center gap-4 border border-outline-variant/50">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Minimalist, modern corporate logo for 'Tech Institute'. Geometric shapes, deep blue and slate colors, clean lines, professional academic vibe. White background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcowekgEZSy26jNZjb2x8WmMTI_VkoomsIVzppso1GIcb-AgMGgbfg-YAAidjiuYdZrSya-i6mnD1iIoo7S8A0l9SiIkMfcGgH7mmSykib--FIG70z-qnBMUYc9WiG0bSgCQNrkb7ciBy2Y67aMRWU1QqpjZU5RoqnjpIFEH7zgLocE4nnDfbu27Lt4-tMELQTgntqPFbS9MtTToFVyvmdAI-JqqDyJZEq6Fjd5E1MwIuevNkIDnCgfw"/>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center gap-1.5">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Global Tech Institute</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Verified Issuer Identity</span>
+</div>
+</div>
+<!-- Cryptographic Proof -->
+<div class="flex flex-col gap-4 mt-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant">fingerprint</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Cryptographic Proof</h3>
+</div>
+<!-- Hash Comparison -->
+<div class="bg-[#F8FAFC] rounded-xl p-4 border border-outline-variant/50 flex flex-col gap-4 relative overflow-hidden">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Document Hash (SHA-256)</span>
+<code class="font-label-sm text-label-sm text-on-surface break-all bg-surface px-2 py-1 rounded">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+</div>
+<div class="flex items-center justify-center my-1">
+<span class="material-symbols-outlined text-primary text-[24px]">sync_alt</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Blockchain Anchored Hash</span>
+<code class="font-label-sm text-label-sm text-on-surface break-all bg-surface px-2 py-1 rounded text-primary">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+</div>
+<!-- Match Indicator -->
+<div class="absolute top-4 right-4 bg-[#E6F4EA] text-[#137333] px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-wider">Match</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30">
+<span class="font-body-md text-body-md text-on-surface-variant">Network</span>
+<span class="font-body-md text-body-md text-on-surface">Ethereum Mainnet</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30">
+<span class="font-body-md text-body-md text-on-surface-variant">Tx ID</span>
+<a class="font-body-md text-body-md text-primary flex items-center gap-1" href="#">
+<span>0x8f...3a9b</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- View Original Button (Fixed Bottom) -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 z-50 pb-safe">
+<button class="w-full bg-primary text-on-primary font-headline-sm text-body-lg font-semibold py-4 rounded-[20px] shadow-md hover:bg-primary/90 transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+      View Original Certificate
+    </button>
+</div>
+<!-- Spacer for fixed button -->
+<div class="h-24"></div>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16"><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="recipient-home" href="#"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="certs" href="#"><span class="material-symbols-outlined">card_membership</span><span class="font-label-sm text-label-sm">Certs</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="verify" href="#"><span class="material-symbols-outlined">verified_user</span><span class="font-label-sm text-label-sm">Verify</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="profile" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-label-sm text-label-sm">Profile</span></a></div></nav></body></html>
+
+<!-- Issuer Dashboard -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script><style>@layer base { body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom); } .pt-safe { padding-top: env(safe-area-inset-top); } } .ambient-glow { shadow-[0_1px_8px_rgba(0,0,0,0.04)]; }</style></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-3"><img alt="Proofly Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX_DHszVIk_UtZyLlktgnIkV8apcaGMJpvg85kiLosZPbrO2HtvZoHFvr_CJwnwt7EoqxCir9F1EbvbdiWPtnPIRqGQFzGioObEH0cD0MFcdcdxTzpNOhOQlfy-rz3_JR4JFQGy8CbFZL-0-zdnDE6xUSqOPz81mxcPuPdsmQYiXzHNtc4ryupcAvUbb2BSVuENFe93WC4kMjvBS-s8YRL1TDsclvUCILiKpPLRxK25ylns66zBIlr7g"/><span class="font-headline-md text-headline-md text-on-surface truncate">Issuer Dashboard</span></div><div class="flex items-center gap-4"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 pb-32 min-h-screen bg-background"><div class="flex flex-col w-full h-full p-margin-mobile gap-6">
+<!-- Top Stats -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Stat Card 1 -->
+<div class="col-span-2 bg-primary rounded-2xl p-6 text-on-primary shadow-sm relative overflow-hidden">
+<div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.15) 0%, transparent 60%);"></div>
+<div class="flex flex-col gap-1 relative z-10">
+<span class="font-label-sm text-on-primary/80 uppercase tracking-wider">Total Issued</span>
+<div class="flex items-end gap-2">
+<span class="font-display text-4xl">1,240</span>
+<span class="material-symbols-outlined text-tertiary-fixed mb-1" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-high rounded-2xl p-5 flex flex-col gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-sm">schedule</span>
+<span class="font-label-sm uppercase tracking-wider">Pending</span>
+</div>
+<span class="font-headline-md text-on-surface">12</span>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-high rounded-2xl p-5 flex flex-col gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-error text-sm">block</span>
+<span class="font-label-sm uppercase tracking-wider">Revoked</span>
+</div>
+<span class="font-headline-md text-on-surface">3</span>
+</div>
+</section>
+<!-- Recent Activity Feed -->
+<section class="flex flex-col gap-4 mt-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg-mobile text-on-surface">Recent Activity</h2>
+<button class="text-primary font-label-sm uppercase tracking-wider hover:text-primary-container transition-colors">View All</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Activity Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 hover:border-primary/20 transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">Sarah Jenkins</span>
+<span class="font-label-sm text-on-surface-variant">UX Foundations Cert</span>
+</div>
+</div>
+<span class="font-label-sm text-outline">2m ago</span>
+</div>
+<!-- Activity Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 hover:border-primary/20 transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">Michael Chen</span>
+<span class="font-label-sm text-on-surface-variant">Advanced React Auth</span>
+</div>
+</div>
+<span class="font-label-sm text-outline">1hr ago</span>
+</div>
+<!-- Activity Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 hover:border-primary/20 transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">Elena Rodriguez</span>
+<span class="font-label-sm text-on-surface-variant">UX Foundations Cert</span>
+</div>
+</div>
+<span class="font-label-sm text-outline">3hr ago</span>
+</div>
+</div>
+</section>
+<!-- Empty State (Hidden, for future use) -->
+<!--
+  <div class="flex flex-col items-center justify-center py-12 px-6 text-center">
+    <div class="w-24 h-24 mb-6 rounded-full bg-surface-container-high flex items-center justify-center">
+        <span class="material-symbols-outlined text-4xl text-outline-variant">assignment</span>
+    </div>
+    <h3 class="font-headline-md text-on-surface mb-2">Ready to Issue?</h3>
+    <p class="font-body-md text-on-surface-variant">Start granting digital credentials that matter. Your issuances will appear here.</p>
+  </div>
+  -->
+<!-- FAB Spacer -->
+<div class="h-20 w-full"></div>
+<!-- Floating Action Button -->
+<button aria-label="Issue Certificate" class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-[20px] flex items-center justify-center shadow-lg hover:-translate-y-1 transition-transform z-40">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<script>
+  // Script to update nav bar active states for this specific view
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('nav');
+    if (nav) {
+      // Clear all active classes
+      nav.querySelectorAll('a').forEach(a => {
+        a.className = 'flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1';
+        // Overwrite standard nav with Issuer Nav
+      });
+      
+      nav.innerHTML = `
+        <div class="flex justify-around items-center h-16 w-full">
+            <a href="#" class="flex flex-col items-center justify-center w-full h-full text-primary font-semibold gap-1">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                <span class="font-label-sm text-label-sm">Dash</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1">
+                <span class="material-symbols-outlined">add_circle</span>
+                <span class="font-label-sm text-label-sm">Issue</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1">
+                <span class="material-symbols-outlined">history</span>
+                <span class="font-label-sm text-label-sm">History</span>
+            </a>
+            <a href="#" class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-sm text-label-sm">Settings</span>
+            </a>
+        </div>
+      `;
+    }
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16"><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="recipient-home" href="#"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="certs" href="#"><span class="material-symbols-outlined">card_membership</span><span class="font-label-sm text-label-sm">Certs</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="verify" href="#"><span class="material-symbols-outlined">verified_user</span><span class="font-label-sm text-label-sm">Verify</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="profile" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-label-sm text-label-sm">Profile</span></a></div></nav></body></html>
+
+<!-- Issue Certificate -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-2"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant" onclick="history.back()"><span class="material-symbols-outlined">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-on-surface truncate">Issuance Flow</h1></div><div class="flex items-center gap-4"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 min-h-screen bg-background"><div class="flex flex-col w-full relative pb-24">
+<!-- Progress Stepper -->
+<div class="px-margin-mobile py-6 sticky top-0 bg-background/90 backdrop-blur-md z-10">
+<div class="flex items-center justify-between relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-surface-variant z-0 rounded-full"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-0.5 bg-primary z-0 transition-all duration-500 rounded-full" id="progress-bar"></div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm shadow-[0_4px_12px_rgba(53,37,205,0.2)] transition-colors duration-300" id="step-1-indicator">
+                    1
+                </div>
+<span class="font-label-sm text-primary transition-colors duration-300" id="step-1-label">Details</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm transition-colors duration-300" id="step-2-indicator">
+                    2
+                </div>
+<span class="font-label-sm text-outline transition-colors duration-300" id="step-2-label">Certificate</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm transition-colors duration-300" id="step-3-indicator">
+                    3
+                </div>
+<span class="font-label-sm text-outline transition-colors duration-300" id="step-3-label">Review</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm transition-colors duration-300" id="step-4-indicator">
+                    4
+                </div>
+<span class="font-label-sm text-outline transition-colors duration-300" id="step-4-label">Finish</span>
+</div>
+</div>
+</div>
+<!-- Form Container -->
+<div class="px-margin-mobile flex-1 relative overflow-hidden" id="form-container">
+<!-- Step 1: Recipient Details -->
+<div class="w-full absolute inset-x-margin-mobile top-0 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] translate-x-0 opacity-100 flex flex-col gap-8" id="step-1">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile text-on-surface">Recipient Information</h2>
+<p class="font-body-md text-outline">Who is receiving this credential?</p>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Name Field -->
+<div class="flex flex-col gap-2 relative group">
+<label class="font-label-sm text-on-surface-variant" for="recipientName">Full Name</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full h-14 bg-surface-container-low text-on-surface font-body-md rounded-lg pl-12 pr-4 outline-none border border-transparent focus:bg-surface-container-lowest focus:border-primary focus:shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all placeholder:text-outline-variant" id="recipientName" placeholder="e.g. Jane Doe" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col gap-2 relative group">
+<label class="font-label-sm text-on-surface-variant" for="recipientEmail">Email Address</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full h-14 bg-surface-container-low text-on-surface font-body-md rounded-lg pl-12 pr-4 outline-none border border-transparent focus:bg-surface-container-lowest focus:border-primary focus:shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all placeholder:text-outline-variant" id="recipientEmail" placeholder="jane@example.com" type="email"/>
+</div>
+</div>
+</div>
+<!-- Decorative Illustration Step 1 -->
+<div class="mt-8 rounded-2xl overflow-hidden bg-surface-container-lowest border border-surface-variant relative aspect-[4/3] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-center justify-center p-6">
+<div class="w-full h-full relative" data-alt="A minimalist, high-key lighting 3D illustration of a blank certificate floating above a clean white pedestal. The certificate has a faint gold foil seal outline. Soft indigo and white lighting accents. Rendered in a sleek, premium tech-editorial style with generous whitespace." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAu88RRpCdWnH0i9x1EZ4YpPU8UIajAO1znXDBpKziG_9WpYSFI6yH1MfiA3MSgPEtBDMSyDo5eDkX56FaUCyqJGuUiwbbXKpAhlgXfMjhqeOp5R3wVwPjRV83cKjvn9zeV6_3fmUhmsJsABUb2xlEp7iOVsf2rCkdO5o-qSWaGNU_YZTAk6Tytwnmcr37xrRtlO9nlzYnC4eotFgbK9Aa4yc1q4pdhrw3ik3xLrdjF3fDzQMjHrPSUDw')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+</div>
+</div>
+<!-- Step 2: Certificate Details (Hidden Initially) -->
+<div class="w-full absolute inset-x-margin-mobile top-0 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] translate-x-full opacity-0 pointer-events-none flex flex-col gap-8" id="step-2">
+<div class="flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile text-on-surface">Credential Details</h2>
+<p class="font-body-md text-outline">Define the parameters of this achievement.</p>
+</div>
+<!-- Certificate Frame Preview (Abstract) -->
+<div class="w-full rounded-2xl p-1 bg-gradient-to-br from-primary/20 via-transparent to-transparent relative shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+<div class="bg-surface-container-lowest rounded-[14px] p-6 relative overflow-hidden" style="background-image: radial-gradient(circle at 100% 0%, rgba(53, 37, 205, 0.05) 0%, transparent 50%);">
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+<div class="flex flex-col gap-4 relative z-10">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-2">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div class="h-4 w-1/3 bg-surface-variant rounded animate-pulse"></div>
+<div class="h-6 w-3/4 bg-surface-dim rounded animate-pulse"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Title Field -->
+<div class="flex flex-col gap-2 relative group">
+<label class="font-label-sm text-on-surface-variant" for="certTitle">Certificate Title</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline group-focus-within:text-primary transition-colors">title</span>
+<input class="w-full h-14 bg-surface-container-low text-on-surface font-body-md rounded-lg pl-12 pr-4 outline-none border border-transparent focus:bg-surface-container-lowest focus:border-primary focus:shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all placeholder:text-outline-variant" id="certTitle" placeholder="e.g. Advanced Data Science" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Issue Date -->
+<div class="flex flex-col gap-2 relative group">
+<label class="font-label-sm text-on-surface-variant" for="issueDate">Issue Date</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline group-focus-within:text-primary transition-colors text-xl">calendar_today</span>
+<input class="w-full h-14 bg-surface-container-low text-on-surface font-body-md rounded-lg pl-10 pr-3 outline-none border border-transparent focus:bg-surface-container-lowest focus:border-primary focus:shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all" id="issueDate" type="date"/>
+</div>
+</div>
+<!-- Expiry Date -->
+<div class="flex flex-col gap-2 relative group">
+<label class="font-label-sm text-on-surface-variant" for="expiryDate">Expiry (Optional)</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline group-focus-within:text-primary transition-colors text-xl">event_busy</span>
+<input class="w-full h-14 bg-surface-container-low text-on-surface font-body-md rounded-lg pl-10 pr-3 outline-none border border-transparent focus:bg-surface-container-lowest focus:border-primary focus:shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all" id="expiryDate" type="date"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Fixed Bottom Actions -->
+<div class="fixed bottom-0 left-0 w-full bg-background/90 backdrop-blur-xl border-t border-surface-variant p-margin-mobile pb-[max(16px,env(safe-area-inset-bottom))] z-20 flex gap-4">
+<button class="hidden h-14 px-6 rounded-full border border-outline-variant text-on-surface font-body-md font-medium flex items-center justify-center transition-all active:scale-[0.98]" id="btn-back">
+            Back
+        </button>
+<button class="flex-1 h-14 rounded-full bg-primary text-on-primary font-body-md font-medium flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(53,37,205,0.2)] transition-all active:scale-[0.98] active:bg-secondary" id="btn-next">
+            Continue to Certificate
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let currentStep = 1;
+        const totalSteps = 2; // Focusing on the 2 steps built in UI
+        
+        const step1El = document.getElementById('step-1');
+        const step2El = document.getElementById('step-2');
+        const formContainer = document.getElementById('form-container');
+        
+        const btnNext = document.getElementById('btn-next');
+        const btnBack = document.getElementById('btn-back');
+        const progressBar = document.getElementById('progress-bar');
+        
+        // Step Indicators
+        const s1Ind = document.getElementById('step-1-indicator');
+        const s2Ind = document.getElementById('step-2-indicator');
+        const s1Lbl = document.getElementById('step-1-label');
+        const s2Lbl = document.getElementById('step-2-label');
+
+        // Set initial container height based on step 1
+        const updateContainerHeight = (stepEl) => {
+            // small delay to allow display block rendering if needed, though we use opacity/transform
+            setTimeout(() => {
+                formContainer.style.minHeight = `${stepEl.scrollHeight + 40}px`;
+            }, 50);
+        };
+        
+        updateContainerHeight(step1El);
+
+        const updateUI = () => {
+            if (currentStep === 1) {
+                // Show Step 1
+                step1El.classList.remove('-translate-x-full', 'opacity-0', 'pointer-events-none');
+                step1El.classList.add('translate-x-0', 'opacity-100');
+                
+                // Hide Step 2 (to right)
+                step2El.classList.remove('translate-x-0', 'opacity-100');
+                step2El.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+                
+                btnBack.classList.add('hidden');
+                btnNext.innerHTML = `Continue to Certificate <span class="material-symbols-outlined text-lg">arrow_forward</span>`;
+                
+                progressBar.style.width = '33%';
+                
+                // Active Step 1
+                s1Ind.classList.replace('bg-surface-variant', 'bg-primary');
+                s1Ind.classList.replace('text-on-surface-variant', 'text-on-primary');
+                s1Ind.classList.add('shadow-[0_4px_12px_rgba(53,37,205,0.2)]');
+                s1Lbl.classList.replace('text-outline', 'text-primary');
+                
+                // Inactive Step 2
+                s2Ind.classList.replace('bg-primary', 'bg-surface-variant');
+                s2Ind.classList.replace('text-on-primary', 'text-on-surface-variant');
+                s2Ind.classList.remove('shadow-[0_4px_12px_rgba(53,37,205,0.2)]');
+                s2Lbl.classList.replace('text-primary', 'text-outline');
+                
+                updateContainerHeight(step1El);
+                
+            } else if (currentStep === 2) {
+                // Hide Step 1 (to left)
+                step1El.classList.remove('translate-x-0', 'opacity-100');
+                step1El.classList.add('-translate-x-full', 'opacity-0', 'pointer-events-none');
+                
+                // Show Step 2
+                step2El.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+                step2El.classList.add('translate-x-0', 'opacity-100');
+                
+                btnBack.classList.remove('hidden');
+                btnNext.innerHTML = `Review <span class="material-symbols-outlined text-lg">arrow_forward</span>`;
+                
+                progressBar.style.width = '66%';
+                
+                // Completed Step 1 (Success state style - simple color change)
+                s1Ind.classList.replace('bg-primary', 'bg-surface-variant'); // Or could be a checkmark
+                s1Ind.classList.replace('text-on-primary', 'text-primary');
+                s1Ind.classList.remove('shadow-[0_4px_12px_rgba(53,37,205,0.2)]');
+                s1Ind.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
+                s1Lbl.classList.replace('text-primary', 'text-on-surface-variant');
+
+                // Active Step 2
+                s2Ind.classList.replace('bg-surface-variant', 'bg-primary');
+                s2Ind.classList.replace('text-on-surface-variant', 'text-on-primary');
+                s2Ind.classList.add('shadow-[0_4px_12px_rgba(53,37,205,0.2)]');
+                s2Ind.innerHTML = '2'; // Reset in case we go back
+                s2Lbl.classList.replace('text-outline', 'text-primary');
+                
+                updateContainerHeight(step2El);
+            }
+            
+            // Scroll to top of form
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        btnNext.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        });
+
+        btnBack.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+                
+                // Restore step 1 indicator text
+                if (currentStep === 1) {
+                    s1Ind.innerHTML = '1';
+                }
+            }
+        });
+    });
+</script></main></body></html>
+
+<!-- Anchoring Status -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script><style>@layer base { body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom); } .pt-safe { padding-top: env(safe-area-inset-top); } } .ambient-glow { shadow-[0_1px_8px_rgba(0,0,0,0.04)]; }</style></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-3"><img alt="Proofly Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX_DHszVIk_UtZyLlktgnIkV8apcaGMJpvg85kiLosZPbrO2HtvZoHFvr_CJwnwt7EoqxCir9F1EbvbdiWPtnPIRqGQFzGioObEH0cD0MFcdcdxTzpNOhOQlfy-rz3_JR4JFQGy8CbFZL-0-zdnDE6xUSqOPz81mxcPuPdsmQYiXzHNtc4ryupcAvUbb2BSVuENFe93WC4kMjvBS-s8YRL1TDsclvUCILiKpPLRxK25ylns66zBIlr7g"/><span class="font-headline-md text-headline-md text-on-surface truncate">Issuance History</span></div><div class="flex items-center gap-4"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 pb-32 min-h-screen bg-background"><div class="flex flex-col w-full h-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 gap-8">
+<div class="flex flex-col gap-6 w-full max-w-2xl mx-auto">
+<!-- Status Header Card -->
+<div class="relative w-full rounded-container p-6 bg-surface-container overflow-hidden ambient-glow group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-0"></div>
+<!-- Animated Background Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none z-0">
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="gridPattern" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect class="text-primary" fill="url(#gridPattern)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary text-xl animate-pulse">enhanced_encryption</span>
+<div class="absolute -inset-1 rounded-full border border-primary/20 animate-ping" style="animation-duration: 2s;"></div>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Securing Credential</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Anchoring to Polygon Blockchain</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<div class="flex justify-between items-center text-sm">
+<span class="font-label-sm text-on-surface-variant">Network</span>
+<span class="font-label-sm font-semibold text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                            Polygon Mainnet
+                        </span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="font-label-sm text-on-surface-variant">Est. Time Remaining</span>
+<span class="font-label-sm font-semibold text-on-surface" id="countdown-timer">00:45</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Progress Stepper -->
+<div class="flex flex-col gap-6 relative px-2">
+<!-- Vertical Connecting Line -->
+<div class="absolute left-[1.125rem] top-3 bottom-8 w-[2px] bg-outline-variant/30 rounded-full -z-10"></div>
+<!-- Active Connecting Line (Animated) -->
+<div class="absolute left-[1.125rem] top-3 h-[80px] w-[2px] bg-primary rounded-full -z-10 transition-all duration-1000 ease-in-out" id="progress-line"></div>
+<!-- Step 1: Queued -->
+<div class="flex items-start gap-4 group">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(53,37,205,0.3)] z-10">
+<span class="material-symbols-outlined text-on-primary text-sm font-bold" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div class="flex flex-col pt-0.5">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Data Queued</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Payload structured and validated.</p>
+</div>
+</div>
+<!-- Step 2: Submitted (Active) -->
+<div class="flex items-start gap-4 group relative">
+<div class="w-7 h-7 rounded-full bg-surface border-2 border-primary flex items-center justify-center shrink-0 z-10">
+<div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex flex-col pt-0.5 w-full">
+<h3 class="font-body-lg text-body-lg font-semibold text-primary">Transaction Submitted</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-3">Broadcasting to network nodes...</p>
+<!-- Transaction Hash Box -->
+<div class="w-full bg-surface-container-low rounded-lg p-3 flex flex-col gap-2 relative overflow-hidden group/hash">
+<!-- Subtle loading shimmer for the box -->
+<div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-surface-variant/30 to-transparent animate-[shimmer_2s_infinite]"></div>
+<div class="flex justify-between items-center z-10">
+<span class="font-label-sm text-on-surface-variant text-xs uppercase tracking-wider">Transaction Hash</span>
+<button aria-label="Copy Hash" class="text-primary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<div class="font-label-sm text-on-surface font-mono text-sm truncate z-10 opacity-70">
+                            0x7a8b9c...3d2e1f4a
+                        </div>
+</div>
+</div>
+</div>
+<!-- Step 3: Confirmed (Pending) -->
+<div class="flex items-start gap-4 group opacity-50 transition-opacity duration-500" id="step-confirmed">
+<div class="w-7 h-7 rounded-full bg-surface border-2 border-outline-variant flex items-center justify-center shrink-0 z-10">
+</div>
+<div class="flex flex-col pt-0.5">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Awaiting Confirmations</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Require 3 block confirmations.</p>
+</div>
+</div>
+<!-- Step 4: Issued (Pending) -->
+<div class="flex items-start gap-4 group opacity-50 transition-opacity duration-500" id="step-issued">
+<div class="w-7 h-7 rounded-full bg-surface border-2 border-outline-variant flex items-center justify-center shrink-0 z-10">
+</div>
+<div class="flex flex-col pt-0.5">
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Credential Issued</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Permanent record created.</p>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-6 flex flex-col gap-3">
+<button class="w-full bg-surface-container rounded-full py-3.5 px-6 font-body-md font-semibold text-on-surface flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors group relative overflow-hidden">
+<span class="material-symbols-outlined text-[20px] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform">open_in_new</span>
+                View on Polygonscan
+            </button>
+</div>
+</div>
+</div>
+<style>
+    @keyframes shimmer {
+        100% { transform: translateX(100%); }
+    }
+</style>
+<script>
+    // Minimal interaction script to simulate countdown and progress
+    document.addEventListener('DOMContentLoaded', () => {
+        const timerElement = document.getElementById('countdown-timer');
+        let timeLeft = 45;
+
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const seconds = timeLeft.toString().padStart(2, '0');
+            timerElement.textContent = `00:${seconds}`;
+            
+            // Very rudimentary simulation of progress movement
+            if (timeLeft === 30) {
+                // Move to step 3 visually
+                document.getElementById('progress-line').style.height = '160px';
+                document.getElementById('step-confirmed').classList.remove('opacity-50');
+            }
+        }, 1000);
+    });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16"><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="recipient-home" href="#"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="certs" href="#"><span class="material-symbols-outlined">card_membership</span><span class="font-label-sm text-label-sm">Certs</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="verify" href="#"><span class="material-symbols-outlined">verified_user</span><span class="font-label-sm text-label-sm">Verify</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="profile" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-label-sm text-label-sm">Profile</span></a></div></nav></body></html>
+
+<!-- Notifications -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-2"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant" onclick="history.back()"><span class="material-symbols-outlined">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-on-surface truncate">Notifications</h1></div><div class="flex items-center gap-4"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 min-h-screen bg-background"><div class="flex flex-col w-full bg-background min-h-[100dvh]">
+<div class="flex-1 px-margin-mobile py-6 overflow-y-auto">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background tracking-tight">Recent Activity</h2>
+<button class="text-primary font-label-sm text-label-sm uppercase tracking-widest hover:text-primary-container transition-colors">
+        Mark all read
+      </button>
+</div>
+<div class="space-y-4 relative">
+<!-- Decorative timeline line -->
+<div class="absolute left-6 top-6 bottom-6 w-[2px] bg-outline-variant/30 rounded-full"></div>
+<!-- Notification Item 1: Certificate Claimed (Success/Primary) -->
+<div class="group relative flex gap-4 p-4 rounded-container bg-surface-container-lowest shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/50 hover:border-primary/30 transition-all duration-300">
+<div class="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Certificate Claimed</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">2 min ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">
+<span class="font-medium text-on-background">Alex Mercer</span> has claimed their <span class="font-medium text-on-background">Python Certification</span>.
+          </p>
+</div>
+<!-- Unread indicator dot -->
+<div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(53,37,205,0.5)]"></div>
+</div>
+<!-- Notification Item 2: New Issuance (Secondary/Blockchain) -->
+<div class="group relative flex gap-4 p-4 rounded-container bg-surface-container-lowest shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/50 hover:border-secondary/30 transition-all duration-300">
+<div class="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-secondary-container/10 flex items-center justify-center border border-secondary/20">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">New Issuance</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">1 hour ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">
+<span class="font-medium text-on-background">25 certificates</span> successfully anchored to Polygon.
+          </p>
+</div>
+</div>
+<!-- Notification Item 3: System Update (Neutral/Info) -->
+<div class="group relative flex gap-4 p-4 rounded-container bg-surface-container-lowest shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/50 hover:border-outline/50 transition-all duration-300 opacity-80">
+<div class="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-surface-variant/50 flex items-center justify-center border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">security_update_good</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">System Update</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">
+            Enhanced security features deployed globally.
+          </p>
+</div>
+</div>
+<!-- Notification Item 4: Expiring Alert (Warning) -->
+<div class="group relative flex gap-4 p-4 rounded-container bg-tertiary-container/5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-tertiary/20 hover:border-tertiary/40 transition-all duration-300 opacity-80">
+<div class="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-tertiary-container/10 flex items-center justify-center border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-center">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-widest">Expiring Credentials</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Oct 12</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-tight">
+            3 Annual Safety Certifications are expiring in 30 days.
+          </p>
+</div>
+</div>
+</div>
+</div>
+</div></main></body></html>
+
+<!-- Welcome to Proofly -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" } } } }</script></head><body class="bg-background font-body-md text-on-surface"><main class="relative w-full min-h-screen pt-safe pb-safe"><div class="flex flex-col w-full items-center justify-center relative overflow-hidden" id="onboarding-root">
+<!-- Background Decor -->
+<div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center opacity-30">
+<div class="w-[120%] aspect-square rounded-full bg-gradient-to-tr from-primary/5 via-transparent to-transparent blur-3xl transform -translate-y-1/4"></div>
+<div class="absolute bottom-0 right-0 w-[80%] aspect-square rounded-full bg-gradient-to-tl from-secondary/5 via-transparent to-transparent blur-3xl translate-y-1/4 translate-x-1/4"></div>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col items-center justify-center text-center mt-[80px] mb-[40px] px-margin-mobile relative z-10 w-full max-w-container-max mx-auto">
+<div class="w-24 h-24 mb-gutter opacity-0 translate-y-4" id="logo-reveal">
+<img alt="Proofly Logo" class="w-full h-full object-contain drop-shadow-md rounded-2xl bg-surface-container-lowest p-2 shadow-[0px_4px_20px_rgba(0,0,0,0.03)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX_DHszVIk_UtZyLlktgnIkV8apcaGMJpvg85kiLosZPbrO2HtvZoHFvr_CJwnwt7EoqxCir9F1EbvbdiWPtnPIRqGQFzGioObEH0cD0MFcdcdxTzpNOhOQlfy-rz3_JR4JFQGy8CbFZL-0-zdnDE6xUSqOPz81mxcPuPdsmQYiXzHNtc4ryupcAvUbb2BSVuENFe93WC4kMjvBS-s8YRL1TDsclvUCILiKpPLRxK25ylns66zBIlr7g"/>
+</div>
+<h1 class="font-display text-display text-on-surface mb-unit max-w-sm mx-auto opacity-0 translate-y-4" id="tagline-reveal">
+            Digital credentials you can prove
+        </h1>
+</div>
+<!-- Swipeable Intro Cards -->
+<div class="w-full relative z-10 mb-[80px] opacity-0 translate-y-4" id="cards-reveal">
+<div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar px-margin-mobile gap-gutter pb-4" id="slider-container" style="scrollbar-width: none; -ms-overflow-style: none;">
+<!-- Card 1 -->
+<div class="flex-none w-[85%] max-w-sm snap-center">
+<div class="bg-surface-container-lowest rounded-3xl p-[32px] h-full shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-gutter text-primary">
+<span class="material-symbols-outlined text-headline-lg" style="font-variation-settings: 'FILL' 1;">assured_workload</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-unit">Issue</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Organizations anchor credentials directly to the blockchain, ensuring absolute permanence.
+                    </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex-none w-[85%] max-w-sm snap-center">
+<div class="bg-surface-container-lowest rounded-3xl p-[32px] h-full shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-gutter text-primary">
+<span class="material-symbols-outlined text-headline-lg" style="font-variation-settings: 'FILL' 1;">wallet</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-unit">Store</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Securely manage your professional achievements in one place, totally under your control.
+                    </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex-none w-[85%] max-w-sm snap-center">
+<div class="bg-surface-container-lowest rounded-3xl p-[32px] h-full shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-gutter text-primary">
+<span class="material-symbols-outlined text-headline-lg" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-unit">Verify</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Instant, tamper-proof verification for anyone, anywhere, with zero friction.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Pagination Dots -->
+<div class="flex justify-center gap-2 mt-gutter" id="pagination-dots">
+<div class="w-2 h-2 rounded-full bg-primary transition-all duration-300"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant transition-all duration-300"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant transition-all duration-300"></div>
+</div>
+</div>
+<!-- Actions -->
+<div class="w-full px-margin-mobile pb-[40px] mt-auto max-w-sm mx-auto flex flex-col gap-unit relative z-10 opacity-0 translate-y-4" id="actions-reveal">
+<button class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-4 rounded-[20px] transition-all duration-300 hover:bg-[#4338CA] hover:-translate-y-[2px] shadow-sm">
+            GET STARTED
+        </button>
+<button class="w-full bg-transparent text-primary font-label-sm text-label-sm py-4 rounded-[20px] ring-1 ring-outline-variant transition-all duration-300 hover:bg-surface-container hover:-translate-y-[2px]">
+            LOG IN
+        </button>
+</div>
+</div>
+<style>
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Entrance Animations
+        const elementsToAnimate = [
+            document.getElementById('logo-reveal'),
+            document.getElementById('tagline-reveal'),
+            document.getElementById('cards-reveal'),
+            document.getElementById('actions-reveal')
+        ];
+
+        elementsToAnimate.forEach((el, index) => {
+            if (el) {
+                setTimeout(() => {
+                    el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 + (index * 150));
+            }
+        });
+
+        // Scroll Spy for Pagination Dots
+        const slider = document.getElementById('slider-container');
+        const dotsContainer = document.getElementById('pagination-dots');
+        if (slider && dotsContainer) {
+            const dots = dotsContainer.children;
+            
+            slider.addEventListener('scroll', () => {
+                const scrollLeft = slider.scrollLeft;
+                const width = slider.clientWidth;
+                // Calculate which card is most visible
+                const activeIndex = Math.round(scrollLeft / width);
+                
+                Array.from(dots).forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.classList.remove('bg-outline-variant');
+                        dot.classList.add('bg-primary');
+                        dot.style.transform = 'scale(1.2)';
+                    } else {
+                        dot.classList.remove('bg-primary');
+                        dot.classList.add('bg-outline-variant');
+                        dot.style.transform = 'scale(1)';
+                    }
+                });
+            }, { passive: true });
+        }
+    });
+</script></main></body></html>
+
+<!-- Login -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" } } } }</script></head><body class="bg-background font-body-md text-on-surface"><main class="relative w-full min-h-screen pt-safe pb-safe"><div class="flex flex-col w-full h-full justify-center px-4 py-8 relative overflow-hidden bg-background">
+<!-- Ambient Glow / Top Right -->
+<div class="absolute top-[-20%] right-[-10%] w-[300px] h-[300px] rounded-full bg-primary opacity-[0.03] blur-[60px] pointer-events-none"></div>
+<div class="flex flex-col items-center justify-center max-w-[400px] mx-auto w-full z-10">
+<!-- App Identity / Logo Placeholder -->
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center shadow-sm mb-6 relative overflow-hidden border border-outline-variant">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+<span class="material-symbols-outlined text-primary text-[28px] relative z-10" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="text-center mb-8 w-full">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-2">Access Portal</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your credentials to continue.</p>
+</div>
+<!-- Main Auth Card -->
+<div class="w-full bg-surface-container-lowest rounded-[24px] p-6 sm:p-8 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 flex flex-col gap-6 relative">
+<!-- Email Form (Default) -->
+<form class="flex flex-col gap-4" id="auth-form">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative group">
+<input class="w-full bg-[#F3F4F6] focus:bg-surface-container-lowest text-on-surface font-body-md text-body-md px-4 py-3.5 rounded-[12px] border-2 border-transparent focus:border-primary focus:outline-none transition-all duration-200 placeholder:text-on-surface-variant/50" id="email" placeholder="name@organization.com" required="" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 group-focus-within:text-primary transition-colors">mail</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-[#4338CA] text-on-primary font-label-sm text-label-sm py-4 rounded-[20px] shadow-sm transition-all duration-200 hover:-translate-y-[2px] flex items-center justify-center gap-2 mt-2" type="submit">
+<span>Continue with Email</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-outline-variant/50"></div>
+<span class="flex-shrink-0 mx-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">or</span>
+<div class="flex-grow border-t border-outline-variant/50"></div>
+</div>
+<!-- Magic Link / OTP Action -->
+<button class="w-full bg-transparent hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm py-4 rounded-[20px] border border-outline-variant transition-all duration-200 flex items-center justify-center gap-2" id="otp-btn">
+<span class="material-symbols-outlined text-[18px]">key</span>
+<span>Send One-Time Password</span>
+</button>
+<!-- Success State Overlay (Hidden by default) -->
+<div class="absolute inset-0 bg-surface-container-lowest/95 backdrop-blur-sm rounded-[24px] flex flex-col items-center justify-center p-6 opacity-0 pointer-events-none transition-opacity duration-300 z-20" id="success-overlay">
+<div class="w-16 h-16 rounded-full bg-[#F0FDF4] flex items-center justify-center mb-4 scale-50 transition-transform duration-500 ease-out" id="success-icon-container">
+<span class="material-symbols-outlined text-[#166534] text-[32px]">check_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Check your email</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">We've sent a secure link to authenticate your session.</p>
+</div>
+</div>
+<!-- Social Proof -->
+<div class="mt-10 flex flex-col items-center gap-3 w-full">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-widest text-center">Trusted by 200+ Organizations</span>
+<div class="flex items-center justify-center gap-6 opacity-50 grayscale">
+<!-- Abstract logo shapes to represent organizations -->
+<div class="flex items-center gap-1"><div class="w-4 h-4 rounded-sm bg-on-surface-variant"></div><div class="w-2 h-4 rounded-sm bg-on-surface-variant"></div></div>
+<div class="flex items-center gap-1"><div class="w-3 h-3 rounded-full bg-on-surface-variant"></div><div class="w-4 h-3 bg-on-surface-variant"></div></div>
+<div class="flex items-center gap-1"><div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-on-surface-variant"></div></div>
+<div class="flex items-center gap-1"><div class="w-5 h-2 rounded-full bg-on-surface-variant"></div><div class="w-2 h-2 rounded-full bg-on-surface-variant"></div></div>
+</div>
+</div>
+</div>
+<!-- Ambient Glow / Bottom Left -->
+<div class="absolute bottom-[-10%] left-[-20%] w-[400px] h-[400px] rounded-full bg-secondary opacity-[0.02] blur-[80px] pointer-events-none"></div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('auth-form');
+        const otpBtn = document.getElementById('otp-btn');
+        const overlay = document.getElementById('success-overlay');
+        const iconContainer = document.getElementById('success-icon-container');
+
+        const showSuccess = (e) => {
+            e.preventDefault();
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                iconContainer.classList.remove('scale-50');
+                iconContainer.classList.add('scale-100');
+            }, 50);
+
+            // Reset after 3 seconds for demo purposes
+            setTimeout(() => {
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                overlay.classList.remove('opacity-100');
+                iconContainer.classList.add('scale-50');
+                iconContainer.classList.remove('scale-100');
+            }, 3000);
+        };
+
+        form.addEventListener('submit', showSuccess);
+        otpBtn.addEventListener('click', showSuccess);
+    });
+</script></main></body></html>
+
+<!-- My Certificates -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#3323cc", "surface-variant": "#dce2f7", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "surface": "#f9f9ff", "outline-variant": "#c7c4d8", "outline": "#777587", "surface-tint": "#4d44e3", "secondary": "#4648d4", "on-primary-fixed": "#0f0069", "on-secondary": "#ffffff", "on-background": "#141b2b", "surface-bright": "#f9f9ff", "tertiary-fixed-dim": "#ffb95f", "inverse-primary": "#c3c0ff", "on-error": "#ffffff", "secondary-fixed-dim": "#c0c1ff", "tertiary": "#684000", "surface-container-low": "#f1f3ff", "surface-dim": "#d3daef", "on-primary-container": "#dad7ff", "secondary-container": "#6063ee", "on-primary": "#ffffff", "on-secondary-fixed": "#07006c", "surface-container": "#e9edff", "on-secondary-container": "#fffbff", "tertiary-fixed": "#ffddb8", "secondary-fixed": "#e1e0ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container-high": "#e1e8fd", "primary-fixed-dim": "#c3c0ff", "background": "#f9f9ff", "tertiary-container": "#885500", "primary": "#3525cd", "on-tertiary-fixed-variant": "#653e00", "inverse-on-surface": "#edf0ff", "on-tertiary-fixed": "#2a1700", "on-surface-variant": "#464555", "error": "#ba1a1a", "primary-fixed": "#e2dfff", "on-surface": "#141b2b", "on-tertiary-container": "#ffd4a4", "primary-container": "#4f46e5", "on-tertiary": "#ffffff", "surface-container-highest": "#dce2f7", "inverse-surface": "#293040" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px", "container": "20px" }, "spacing": { "margin-desktop": "40px", "container-max": "1280px", "unit": "8px", "margin-mobile": "16px", "gutter": "24px" }, "fontFamily": { "display": ["Inter"], "headline-lg-mobile": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["JetBrains Mono"], "body-lg": ["Inter"] }, "fontSize": { "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } }</script><style>@layer base { body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom); } .pt-safe { padding-top: env(safe-area-inset-top); } } .ambient-glow { shadow-[0_1px_8px_rgba(0,0,0,0.04)]; }</style></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-3"><img alt="Proofly Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX_DHszVIk_UtZyLlktgnIkV8apcaGMJpvg85kiLosZPbrO2HtvZoHFvr_CJwnwt7EoqxCir9F1EbvbdiWPtnPIRqGQFzGioObEH0cD0MFcdcdxTzpNOhOQlfy-rz3_JR4JFQGy8CbFZL-0-zdnDE6xUSqOPz81mxcPuPdsmQYiXzHNtc4ryupcAvUbb2BSVuENFe93WC4kMjvBS-s8YRL1TDsclvUCILiKpPLRxK25ylns66zBIlr7g"/><span class="font-headline-md text-headline-md text-on-surface truncate">Recipient Home</span></div><div class="flex items-center gap-4"><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">notifications</span></button><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQsztG24bOzz0oOHSIcxMtWAsAUwK4l7HdzLcRvwC65FHmKClnzkoJ2TVql069d31rIW8j-KB94zUDSB349r04oLStRlCS_FjuA16-Xkgg5vIt4OuRGOJ33BjqfFwNJuDE2w7v0TfAGm3nXdNfBpYz3aboK7FLX-Nj5UuJe4vDNgrswXKYgXy1dxkBfTz9vZN8rUiiKKjs9loxCtOGuwhLwwTSFUr9FifOD1ZDoR3C1iTc8SmvwqupQ"/></div></div></header><main class="relative w-full pt-16 pb-32 min-h-screen bg-background"><div class="flex flex-col w-full px-margin-mobile gap-6 pt-4 pb-8">
+<!-- Search Bar -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant z-10 pointer-events-none">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container rounded-full text-body-md text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search certificates..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-margin-mobile px-margin-mobile">
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-sm whitespace-nowrap transition-transform active:scale-95 shadow-sm">All</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm whitespace-nowrap transition-transform active:scale-95 hover:bg-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.04)]">Engineering</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm whitespace-nowrap transition-transform active:scale-95 hover:bg-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.04)]">Business</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm whitespace-nowrap transition-transform active:scale-95 hover:bg-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.04)]">Design</button>
+</div>
+<!-- Empty State (Hidden initially) -->
+<div class="hidden flex-col items-center justify-center py-16 gap-4 text-center" id="empty-state">
+<div class="w-24 h-24 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-4xl">inventory_2</span>
+</div>
+<h3 class="font-headline-md text-on-surface">No certificates found</h3>
+<p class="text-body-md text-on-surface-variant max-w-[280px]">Try adjusting your search terms or filters to find what you're looking for.</p>
+</div>
+<!-- Certificate List -->
+<div class="flex flex-col gap-4" id="cert-list">
+<!-- Card 1 -->
+<div class="group relative flex flex-col p-5 bg-surface-container-lowest rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] cursor-pointer">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant/50" data-alt="A modern, minimalist logo for a tech institution featuring geometric shapes in shades of deep blue and silver, isolated on a white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANPZhMFhjL5PrdnDCAKGatpINpuA6H-fIukvu0LhiGrdzQDx5rehflZol5AGs9OpH0mBQAJ45UZZoAhr7RoymhUOoiE9x7gHarmt9_5DvrabLrNFgEI7tzzQmfpQPZ_KcpoFrRIK9RN7aKi_RduvOjpxBNChNk3lxeNINU5SCNs3ZmBzELL7sqVAiL6KEnEVDfRrXhvLojPDVyT3lMwWy6ZF6JF2DO7AuniJ8WJw7FCscWfPOAqIpwYA"/>
+<div>
+<p class="font-label-sm text-on-surface-variant">Tech Institute of Innovation</p>
+<p class="font-label-sm text-on-surface-variant mt-0.5">Oct 2023</p>
+</div>
+</div>
+<div class="px-3 py-1 rounded-full bg-primary/10 text-primary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Claimed
+                </div>
+</div>
+<h3 class="font-headline-md text-on-surface leading-tight mb-2">Advanced Blockchain Engineering</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-2">Mastery of smart contract development, consensus mechanisms, and decentralized application architecture on Ethereum.</p>
+</div>
+<!-- Card 2 -->
+<div class="group relative flex flex-col p-5 bg-surface-container-lowest rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] cursor-pointer">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant/50" data-alt="A sophisticated crest logo for a business school, featuring a stylized open book and laurel wreath in gold and navy, isolated on white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEG0vPy7ZMeoP3TwKT4C0wuKtoskdvlmYdvkZMWpSE6ldwt509HPS7x46GCAPCMuVqxJv_x6TLA2Kqrxy2znHquDiNJRhegcdO_raS57ZZXs3FLO1-jCeN820WmwpednLxxob6JdG0aT58ucm3yVz2C_HfB_uamznGSbsr_u-aE8dhQ1OdASv8gBOr9ccU9Q7zMN7L9y6yIt1hOn7CS49VG07kQN8oMf1C5QUK9OA2jujMYqcL9guxKQ"/>
+<div>
+<p class="font-label-sm text-on-surface-variant">Global School of Business</p>
+<p class="font-label-sm text-on-surface-variant mt-0.5">Aug 2023</p>
+</div>
+</div>
+<div class="px-3 py-1 rounded-full bg-[#ecfdf5] text-[#065f46] font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Issued
+                </div>
+</div>
+<h3 class="font-headline-md text-on-surface leading-tight mb-2">Executive Leadership in the Digital Age</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-2">Strategic management strategies focusing on digital transformation, organizational change, and modern leadership paradigms.</p>
+</div>
+<!-- Card 3 -->
+<div class="group relative flex flex-col p-5 bg-surface-container-lowest rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-outline-variant/30 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] cursor-pointer">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant/50" data-alt="A clean, abstract logo for a design academy featuring overlapping colorful translucent circles on a stark white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjIjiCheVtim6U09t3SPw7U645CHgP0wtqjqM_BhEPvNNxRFWVKjDjfd6xq2CO6AdjAbLKTbu1g8YrcEyBD8qF8T-IqQCQkm-h5cLF-iQxQT4Vkkn6IdzUaX498Ea65kwa29_6dndeEpVX7Q-M3Av9nko3itENIhVZNY_oKkkpFerkt3X4YuPIBvLvrUk_omhxJtWNmamGz5bxnxf6hkgIzwWgQL4hv-BeIBgNrWUPgQEQoQop5z56PQ"/>
+<div>
+<p class="font-label-sm text-on-surface-variant">Creative Arts Academy</p>
+<p class="font-label-sm text-on-surface-variant mt-0.5">May 2023</p>
+</div>
+</div>
+<div class="px-3 py-1 rounded-full bg-primary/10 text-primary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Claimed
+                </div>
+</div>
+<h3 class="font-headline-md text-on-surface leading-tight mb-2">Human-Computer Interaction UX/UI</h3>
+<p class="text-body-md text-on-surface-variant line-clamp-2">Comprehensive study of user psychology, accessibility standards, and advanced prototyping methodologies.</p>
+</div>
+</div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('input[type="text"]');
+        const certList = document.getElementById('cert-list');
+        const emptyState = document.getElementById('empty-state');
+        const cards = certList.querySelectorAll('.group');
+        const filters = document.querySelectorAll('.overflow-x-auto button');
+
+        // Simple search filter interaction
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(term)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+            } else {
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+            }
+        });
+
+        // Simple filter chip interaction
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Reset all
+                filters.forEach(f => {
+                    f.className = 'px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm whitespace-nowrap transition-transform active:scale-95 hover:bg-surface-container-high shadow-[0_1px_8px_rgba(0,0,0,0.04)]';
+                });
+                // Set active
+                filter.className = 'px-4 py-2 rounded-full bg-primary text-on-primary font-label-sm whitespace-nowrap transition-transform active:scale-95 shadow-sm';
+                
+                // Add a little pop animation to cards
+                cards.forEach((card, index) => {
+                     card.style.animation = 'none';
+                     card.offsetHeight; // trigger reflow
+                     card.style.animation = `fadeInUp 0.3s ease-out ${index * 0.05}s forwards`;
+                     card.style.opacity = '0';
+                });
+            });
+        });
+    });
+</script>
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16"><a aria-current="page" class="flex flex-col items-center justify-center w-full h-full gap-1 text-primary font-semibold" data-path="recipient-home" href="#"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="certs" href="#"><span class="material-symbols-outlined">card_membership</span><span class="font-label-sm text-label-sm">Certs</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="verify" href="#"><span class="material-symbols-outlined">verified_user</span><span class="font-label-sm text-label-sm">Verify</span></a><a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant gap-1" data-path="profile" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-label-sm text-label-sm">Profile</span></a></div></nav></body></html>
