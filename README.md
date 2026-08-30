@@ -70,7 +70,7 @@
 
 ## ✨ Key Features
 
-- **⛓️ On-Chain Proofs on Polygon**: Every issued credential is authenticated with its unique SHA-256 hash directly on the `ProoflyRegistry` smart contract.
+- **⛓️ On-Chain Proofs on Polygon**: Every issued credential is authenticated with its unique SHA-256 hash directly on the `CertificateRegistry` smart contract.
 - **⚡ Gasless Relayer Mechanism**: Backend transaction sponsor ensures non-crypto users can issue and receive credentials with **0 gas fees**.
 - **🔍 Multi-Mode Instant Verification**:
   - **Certificate ID / Hash Search**: Live query against smart contract state.
@@ -96,7 +96,7 @@ Proofly/
 │       └── assets/         # App icons, vectors & branding
 ├── packages/
 │   ├── contracts/          # Hardhat Solidity smart contracts & deployment scripts
-│   │   └── contracts/      # ProoflyRegistry.sol
+│   │   └── contracts/      # CertificateRegistry.sol
 │   └── shared/             # Shared TypeScript schemas, DTOs & Zod validators
 ├── services/
 │   └── api/                # Express.js REST API & Web UI static portal
@@ -114,7 +114,7 @@ Proofly/
 
 ## ⛓️ Smart Contract Details
 
-- **Contract Name**: `ProoflyRegistry.sol`
+- **Contract Name**: `CertificateRegistry.sol`
 - **Network**: **Polygon Amoy Testnet (Chain ID: 80002)**
 - **Contract Address**: [`0xfb960EB42729f84C48040eBe264b11473d926006`](https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006)
 - **Explorer**: [PolygonScan Amoy](https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006)
@@ -151,7 +151,7 @@ npm install
 ```
 
 ### 3. Configure Environment Variables
-Create `.env` inside `services/api/.env`:
+Copy `.env.example` to `.env` in the root directory (or in `services/api/.env`):
 ```ini
 PORT=4000
 NODE_ENV=development
