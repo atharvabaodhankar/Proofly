@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { supabaseAdmin } from '../../config/supabase';
+import { storageService } from '../../services/storage.service';
 import { UserRole, OrganizationStatus } from '@proofly/shared';
 
 export class OrganizationController {
@@ -130,6 +131,55 @@ export class OrganizationController {
       return res.status(201).json({
         message: 'Member added successfully',
         member: newMember,
+      });
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  public static async uploadLogo(req: Request, res: Response) {
+    try {
+      if (!req.user) return res.status(401).json({ error: 'Unauthorized' });
+      const { id: organizationId } = req.params;
+      const file = req.file;
+
+      if (!file) {
+        return res.status(400).json({ error: 'No logo image file provided.' });
+      }
+
+      // Verify caller is admin of this organization
+      const { data: callerMember } = await supabaseAdmin
+        .from('organization_members')
+        .select('role')
+        .eq('organization_id', organizationId)
+        .eq('user_id', req.user.id)
+        .single();
+
+      if (!callerMember || (callerMember.role !== UserRole.ORG_ADMIN && req.user.role !== UserRole.PLATFORM_ADMIN)) {
+        return res.status(403).json({ error: 'Only organization admins can upload logos.' });
+      }
+
+      // Upload to Storage Layer (AWS S3)
+      const ext = file.originalname.split('.').pop() || 'png';
+      const s3ObjectKey = `organizations/${organizationId}/logo/logo_${Date.now()}.${ext}`;
+      const { url } = await storageService.uploadFile(file.buffer, s3ObjectKey, file.mimetype);
+
+      // Update organization in database
+      const { data: updatedOrg, error: updateErr } = await supabaseAdmin
+        .from('organizations')
+        .update({ logo_url: url })
+        .eq('id', organizationId)
+        .select()
+        .single();
+
+      if (updateErr) {
+        return res.status(500).json({ error: 'Failed to update organization logo.' });
+      }
+
+      return res.json({
+        message: 'Logo uploaded successfully',
+        logo_url: url,
+        organization: updatedOrg,
       });
     } catch (error: any) {
       return res.status(500).json({ error: error.message });

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Outer Shield -->
+  <path d="M256 420C256 420 120 360 120 180V136L256 100L392 136V180C392 360 256 420 256 420Z" 
+        stroke="#1E1B4B" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Inner Shield Contour -->
+  <path d="M256 384C256 384 156 332 156 200V166L256 140L356 166V200C356 332 256 384 256 384Z" 
+        stroke="#475569" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.85"/>
+
+  <!-- Diagonal Accent Stripes (Lower Left) -->
+  <path d="M180 270L230 320" stroke="#475569" stroke-width="16" stroke-linecap="round"/>
+  <path d="M200 240L250 290" stroke="#475569" stroke-width="16" stroke-linecap="round"/>
+
+  <!-- Checkmark Slash -->
+  <path d="M120 260L190 200L256 260L360 130" 
+        stroke="#1E1B4B" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Chain Link 1 (Upper) -->
+  <rect x="270" y="220" width="70" height="40" rx="20" transform="rotate(45 270 220)" 
+        stroke="#475569" stroke-width="18" fill="none"/>
+
+  <!-- Chain Link 2 (Lower) -->
+  <rect x="230" y="260" width="70" height="40" rx="20" transform="rotate(45 230 260)" 
+        stroke="#475569" stroke-width="18" fill="none"/>
+</svg>

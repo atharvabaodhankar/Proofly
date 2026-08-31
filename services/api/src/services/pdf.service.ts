@@ -8,6 +8,7 @@ export interface CertificatePdfOptions {
   title: string;
   description: string;
   organizationName: string;
+  organizationLogoBuffer?: Buffer | null;
   issueDate: string;
   expiryDate?: string | null;
   verifyUrl: string;
@@ -83,53 +84,74 @@ export class PdfService {
         // Bottom-Right
         doc.moveTo(width - 26 - cornerSize, height - 26).lineTo(width - 26, height - 26).lineTo(width - 26, height - 26 - cornerSize).stroke('#38BDF8');
 
-        // Header / Organization Name
+        // Header / Logo & Organization Name
+        let orgY = 48;
+        if (options.organizationLogoBuffer) {
+          try {
+            const logoWidth = 42;
+            const logoHeight = 42;
+            doc.image(options.organizationLogoBuffer, (width - logoWidth) / 2, 40, {
+              fit: [logoWidth, logoHeight],
+              align: 'center',
+              valign: 'center',
+            });
+            orgY = 88;
+          } catch (logoErr) {
+            console.warn('Could not render logo in PDF:', logoErr);
+          }
+        }
+
         doc
           .font('Helvetica-Bold')
-          .fontSize(16)
+          .fontSize(15)
           .fillColor('#94A3B8')
-          .text(options.organizationName.toUpperCase(), 0, 50, {
+          .text(options.organizationName.toUpperCase(), 0, orgY, {
             align: 'center',
-            characterSpacing: 4,
+            characterSpacing: 3,
           });
+
+        const titleY = options.organizationLogoBuffer ? 112 : 82;
 
         // Main Award Title
         doc
           .font('Helvetica-Bold')
-          .fontSize(32)
+          .fontSize(30)
           .fillColor('#FFFFFF')
-          .text(options.title, 0, 85, {
+          .text(options.title, 0, titleY, {
             align: 'center',
           });
 
         // Subheading
+        const subY = titleY + 46;
         doc
           .font('Helvetica')
-          .fontSize(12)
+          .fontSize(11)
           .fillColor('#64748B')
-          .text('THIS IS TO CERTIFY THAT', 0, 140, {
+          .text('THIS IS TO CERTIFY THAT', 0, subY, {
             align: 'center',
             characterSpacing: 2,
           });
 
         // Recipient Name
+        const nameY = subY + 24;
         doc
           .font('Helvetica-Bold')
-          .fontSize(28)
+          .fontSize(27)
           .fillColor('#38BDF8')
-          .text(options.recipientName, 0, 168, {
+          .text(options.recipientName, 0, nameY, {
             align: 'center',
           });
 
         // Description
+        const descY = nameY + 38;
         doc
           .font('Helvetica')
-          .fontSize(12)
+          .fontSize(11)
           .fillColor('#CBD5E1')
-          .text(options.description, 90, 215, {
+          .text(options.description, 90, descY, {
             align: 'center',
             width: width - 180,
-            lineGap: 4,
+            lineGap: 3,
           });
 
         // ==========================================

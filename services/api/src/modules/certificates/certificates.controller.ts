@@ -21,7 +21,7 @@ export class CertificateController {
       // 1. Verify caller is an authorized issuer/admin for this organization
       const { data: member } = await supabaseAdmin
         .from('organization_members')
-        .select('role, organizations(id, name, slug)')
+        .select('role, organizations(id, name, slug, logo_url)')
         .eq('organization_id', organizationId)
         .eq('user_id', req.user.id)
         .single();
@@ -36,7 +36,27 @@ export class CertificateController {
       const randomSuffix = crypto.randomBytes(3).toString('hex').toUpperCase();
       const datePart = (issue_date || new Date().toISOString().split('T')[0]).replace(/-/g, '');
       const certificateNumber = `CERT-${datePart}-${randomSuffix}`;
-      const verifyUrl = `${env.APP_URL}/verify/${certificateNumber}`;
+      
+      const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+      const host = req.get('host') || `localhost:${env.PORT}`;
+      const baseUrl = `${protocol}://${host}`;
+      const verifyUrl = `${baseUrl}/verify/${certificateNumber}`;
+
+      // Fetch organization logo if available
+      let logoBuffer: Buffer | null = null;
+      if (org && org.logo_url) {
+        try {
+          if (org.logo_url.startsWith('http')) {
+            const resp = await fetch(org.logo_url);
+            if (resp.ok) {
+              const arrayBuf = await resp.arrayBuffer();
+              logoBuffer = Buffer.from(arrayBuf);
+            }
+          }
+        } catch (lErr) {
+          console.warn('Failed to load logo for PDF rendering:', lErr);
+        }
+      }
 
       // 3. Generate Certificate PDF & compute SHA-256 document hash
       const { pdfBuffer, documentHash } = await PdfService.generateCertificate({
@@ -45,6 +65,7 @@ export class CertificateController {
         title,
         description,
         organizationName: org.name,
+        organizationLogoBuffer: logoBuffer,
         issueDate: issue_date,
         expiryDate: expiry_date,
         verifyUrl,
@@ -70,7 +91,7 @@ export class CertificateController {
           expiry_date: expiry_date || null,
           s3_object_key: s3ObjectKey,
           document_hash: documentHash,
-          metadata_uri: `${env.API_BASE_URL}/certificates/${certificateNumber}/metadata`,
+          metadata_uri: `${baseUrl}/api/v1/certificates/${certificateNumber}/metadata`,
           status: CertificateStatus.QUEUED,
           contract_address: env.CONTRACT_ADDRESS || null,
           chain_id: env.CHAIN_ID,
@@ -94,7 +115,7 @@ export class CertificateController {
         expires_at: expiresAt,
       });
 
-      const claimUrl = `${env.APP_URL}/claim/${rawClaimToken}`;
+      const claimUrl = `${baseUrl}/claim/${rawClaimToken}`;
 
       // 7. Blockchain Anchoring (Async or Direct)
       let blockchainTx: { txHash: string; blockNumber: number } | null = null;

@@ -15,7 +15,7 @@
   <header class="navbar">
     <div class="nav-container">
       <div class="logo">
-        <div class="logo-badge">P</div>
+        <img src="/logo.svg" alt="Proofly Logo" style="width: 32px; height: 32px; filter: drop-shadow(0 0 8px rgba(56,189,248,0.4));" />
         <span class="brand-name">Proofly</span>
         <span class="badge amoy-badge">Polygon Amoy</span>
       </div>
@@ -75,12 +75,34 @@
       <div class="dashboard-header">
         <div>
           <h2>Organization Issuer Dashboard</h2>
-          <p class="text-muted">Issue tamper-proof certificates to recipients with automatic SHA-256 hashing and Polygon anchoring.</p>
+          <p class="text-muted">Issue tamper-proof certificates to recipients with automatic SHA-256 hashing, logo branding, and Polygon anchoring.</p>
         </div>
         <button class="btn btn-primary" id="btn-open-issue-modal">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Issue New Certificate
         </button>
+      </div>
+
+      <!-- Organization Profile & Logo Card -->
+      <div class="card mt-4" id="org-profile-card" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+        <div style="display:flex; align-items:center; gap:18px;">
+          <div id="org-logo-container" style="width:64px; height:64px; border-radius:12px; background:rgba(0,0,0,0.4); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+            <span id="org-logo-placeholder" style="font-size:24px; font-weight:700; color:var(--primary);">🏢</span>
+            <img id="org-logo-img" src="" alt="Org Logo" style="width:100%; height:100%; object-fit:contain; display:none;" />
+          </div>
+          <div>
+            <h3 id="org-display-name" style="margin-bottom:4px;">My Organization</h3>
+            <span class="badge" style="background:rgba(56,189,248,0.15); color:#38BDF8;" id="org-display-slug">org-slug</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px;">
+          <input type="file" id="org-logo-file-input" accept="image/png, image/jpeg, image/webp, image/svg+xml" style="display:none;" />
+          <button class="btn btn-outline" id="btn-upload-logo-trigger">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload Logo (AWS S3)
+          </button>
+        </div>
       </div>
 
       <div class="grid-stats">
@@ -90,7 +112,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-title">Storage Off-Chain</div>
-          <div class="stat-value">AWS S3 / Encrypted Local</div>
+          <div class="stat-value">AWS S3 (proofly-certificates)</div>
         </div>
         <div class="stat-card">
           <div class="stat-title">Proof Standard</div>

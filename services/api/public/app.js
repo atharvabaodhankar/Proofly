@@ -394,7 +394,87 @@ issueForm?.addEventListener('submit', async (e) => {
   }
 });
 
+// Logo Upload Handlers
+const btnUploadLogo = document.getElementById('btn-upload-logo-trigger');
+const orgLogoInput = document.getElementById('org-logo-file-input');
+
+btnUploadLogo?.addEventListener('click', () => {
+  if (!currentOrg) {
+    alert('Please sign in with an organization account first.');
+    return;
+  }
+  orgLogoInput?.click();
+});
+
+orgLogoInput?.addEventListener('change', async (e) => {
+  const target = e.target;
+  if (!currentOrg || !target.files || !target.files.length) return;
+  const file = target.files[0];
+
+  const formData = new FormData();
+  formData.append('logo', file);
+
+  if (btnUploadLogo) {
+    btnUploadLogo.disabled = true;
+    btnUploadLogo.textContent = 'Uploading to S3...';
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/organizations/${currentOrg.id}/logo`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${currentToken}`,
+      },
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to upload logo');
+
+    currentOrg.logo_url = data.logo_url;
+    renderOrgProfile();
+    alert('🎉 Organization logo uploaded to AWS S3 successfully! It will now automatically appear on all generated certificates.');
+  } catch (err) {
+    alert(`Logo Upload Failed: ${err.message}`);
+  } finally {
+    if (btnUploadLogo) {
+      btnUploadLogo.disabled = false;
+      btnUploadLogo.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Upload Logo (AWS S3)
+      `;
+    }
+  }
+});
+
+function renderOrgProfile() {
+  const profileCard = document.getElementById('org-profile-card');
+  const orgNameEl = document.getElementById('org-display-name');
+  const orgSlugEl = document.getElementById('org-display-slug');
+  const orgImg = document.getElementById('org-logo-img');
+  const orgPlaceholder = document.getElementById('org-logo-placeholder');
+
+  if (!currentUser || !currentOrg) {
+    if (profileCard) profileCard.style.display = 'none';
+    return;
+  }
+
+  if (profileCard) profileCard.style.display = 'flex';
+  if (orgNameEl) orgNameEl.textContent = currentOrg.name;
+  if (orgSlugEl) orgSlugEl.textContent = `@${currentOrg.slug}`;
+
+  if (currentOrg.logo_url && orgImg && orgPlaceholder) {
+    orgImg.src = currentOrg.logo_url;
+    orgImg.style.display = 'block';
+    orgPlaceholder.style.display = 'none';
+  } else if (orgImg && orgPlaceholder) {
+    orgImg.style.display = 'none';
+    orgPlaceholder.style.display = 'block';
+  }
+}
+
 async function loadIssuerCertificates() {
+  renderOrgProfile();
   const tbody = document.getElementById('certs-table-body');
   if (!tbody) return;
 
