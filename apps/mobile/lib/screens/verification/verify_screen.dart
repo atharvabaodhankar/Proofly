@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import 'verification_result_screen.dart';
+import 'qr_scanner_screen.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -51,39 +52,51 @@ class _VerifyScreenState extends State<VerifyScreen> {
             ),
             const SizedBox(height: 32),
 
-            // Scanner Simulation Card
-            Container(
-              width: double.infinity,
-              height: 220,
-              decoration: BoxDecoration(
-                color: isDark ? AppColors.surfaceDark : Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.03),
-                    blurRadius: 20,
-                    offset: const Offset(0, 4),
+            // Scanner Card
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const QRScannerScreen()),
+                );
+              },
+              borderRadius: BorderRadius.circular(24),
+              child: Container(
+                width: double.infinity,
+                height: 220,
+                decoration: BoxDecoration(
+                  color: isDark ? AppColors.surfaceDark : Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(
+                    color: isDark ? AppColors.cyanAccent.withValues(alpha: 0.4) : AppColors.primary.withValues(alpha: 0.3),
+                    width: 1.5,
                   ),
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 72,
-                    height: 72,
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
-                      shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primary.withValues(alpha: 0.06),
+                      blurRadius: 20,
+                      offset: const Offset(0, 4),
                     ),
-                    child: const Icon(Icons.qr_code_scanner_rounded, color: AppColors.primary, size: 36),
-                  ),
-                  const SizedBox(height: 16),
-                  Text('Scan QR Code from Certificate', style: AppTypography.bodyLg(isDark)),
-                  const SizedBox(height: 6),
-                  Text('Point your camera at the QR code', style: AppTypography.labelSm(isDark)),
-                ],
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 72,
+                      height: 72,
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.qr_code_scanner_rounded, color: AppColors.primary, size: 36),
+                    ),
+                    const SizedBox(height: 16),
+                    Text('Scan QR Code with Camera', style: AppTypography.bodyLg(isDark).copyWith(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 6),
+                    Text('Tap to open camera and scan proof live', style: AppTypography.labelSm(isDark)),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 28),
