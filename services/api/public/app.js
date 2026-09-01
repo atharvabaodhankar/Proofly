@@ -209,10 +209,21 @@ async function performVerification(certificateId) {
       ? `<span class="verify-badge-large status-valid">✅ CRYPTOGRAPHICALLY VALID & ANCHORED</span>`
       : `<span class="verify-badge-large status-pending">⏳ PENDING CONFIRMATION</span>`;
 
+    const qrUrl = `${window.location.origin}/verify/${data.certificateNumber}`;
+
     verifyResult.innerHTML = `
-      ${statusBadge}
-      <h2 style="margin: 10px 0 6px;">${data.title || 'Digital Certificate'}</h2>
-      <p style="font-size:16px; color: #38BDF8; font-weight: 600; margin-bottom: 20px;">Issued to: ${data.recipientName || 'N/A'}</p>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;">
+        <div style="flex:1; min-width:260px;">
+          ${statusBadge}
+          <h2 style="margin: 12px 0 6px;">${data.title || 'Digital Certificate'}</h2>
+          <p style="font-size:16px; color: #38BDF8; font-weight: 600; margin-bottom: 16px;">Issued to: ${data.recipientName || 'N/A'}</p>
+        </div>
+
+        <div style="background: white; padding: 10px; border-radius: 14px; display:flex; flex-direction:column; align-items:center; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+          <div id="verify-qr-container"></div>
+          <span style="color: #1E293B; font-size: 10px; font-weight: 700; margin-top: 6px;">SCAN TO VERIFY</span>
+        </div>
+      </div>
 
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0;">
         <div class="stat-card">
@@ -240,6 +251,20 @@ async function performVerification(certificateId) {
         </div>
       </div>
     `;
+
+    setTimeout(() => {
+      const qrEl = document.getElementById('verify-qr-container');
+      if (qrEl && typeof QRCode !== 'undefined') {
+        new QRCode(qrEl, {
+          text: qrUrl,
+          width: 100,
+          height: 100,
+          colorDark: '#0F172A',
+          colorLight: '#FFFFFF',
+          correctLevel: QRCode.CorrectLevel.M,
+        });
+      }
+    }, 50);
   } catch (err) {
     verifyResult.innerHTML = `<div class="status-invalid" style="padding:12px; border-radius:8px;">Error during verification: ${err.message}</div>`;
   }
@@ -509,7 +534,8 @@ async function loadIssuerCertificates() {
           <td class="mono" style="font-size:12px;">${c.document_hash.slice(0, 10)}...</td>
           <td>${c.issue_date}</td>
           <td>
-            <a href="/api/v1/certificates/${c.id}" target="_blank" class="btn btn-sm btn-outline">View</a>
+            <a href="/api/v1/certificates/${c.id}" target="_blank" class="btn btn-sm btn-outline">PDF</a>
+            <button class="btn btn-sm btn-outline" style="color:#38BDF8;" onclick="showQrModal('${c.certificate_number}', '${c.title.replace(/'/g, "\\'")}')">📱 QR</button>
             <button class="btn btn-sm btn-outline" style="color:#F87171;" onclick="revokeCert('${c.id}')">Revoke</button>
           </td>
         </tr>
@@ -609,3 +635,75 @@ window.acceptClaim = async function (token) {
     alert(err.message);
   }
 };
+
+// ============================================
+// QR CODE MODAL & HERO QR GENERATION
+// ============================================
+const qrModal = document.getElementById('qr-modal');
+const btnCloseQr = document.getElementById('btn-close-qr');
+const qrModalTitle = document.getElementById('qr-modal-title');
+const qrModalCertNum = document.getElementById('qr-modal-cert-num');
+const modalQrContainer = document.getElementById('modal-qr-container');
+const btnCopyModalQrLink = document.getElementById('btn-copy-modal-qr-link');
+let activeModalQrUrl = '';
+
+btnCloseQr?.addEventListener('click', () => qrModal.classList.add('hidden'));
+
+window.showQrModal = function (certNumber, title) {
+  if (!qrModal || !modalQrContainer) return;
+  activeModalQrUrl = `${window.location.origin}/verify/${certNumber}`;
+
+  if (qrModalTitle) qrModalTitle.textContent = title || 'Certificate QR Code';
+  if (qrModalCertNum) qrModalCertNum.textContent = certNumber;
+
+  modalQrContainer.innerHTML = '';
+  if (typeof QRCode !== 'undefined') {
+    new QRCode(modalQrContainer, {
+      text: activeModalQrUrl,
+      width: 180,
+      height: 180,
+      colorDark: '#0F172A',
+      colorLight: '#FFFFFF',
+      correctLevel: QRCode.CorrectLevel.M,
+    });
+  }
+
+  qrModal.classList.remove('hidden');
+};
+
+btnCopyModalQrLink?.addEventListener('click', () => {
+  if (!activeModalQrUrl) return;
+  navigator.clipboard.writeText(activeModalQrUrl);
+  alert('Verification URL copied to clipboard!');
+});
+
+// Copy Hero QR Link
+document.getElementById('btn-copy-hero-qr-url')?.addEventListener('click', () => {
+  const heroCertId = document.getElementById('hero-qr-cert-id')?.textContent || 'CERT-20260826-436B4A';
+  const url = `${window.location.origin}/verify/${heroCertId}`;
+  navigator.clipboard.writeText(url);
+  alert('Live verification test URL copied!');
+});
+
+// Initialize Hero QR Code on Load
+function initHeroQr() {
+  const heroContainer = document.getElementById('hero-qr-container');
+  const heroCertId = document.getElementById('hero-qr-cert-id')?.textContent || 'CERT-20260826-436B4A';
+  if (heroContainer && typeof QRCode !== 'undefined') {
+    heroContainer.innerHTML = '';
+    new QRCode(heroContainer, {
+      text: `${window.location.origin}/verify/${heroCertId}`,
+      width: 84,
+      height: 84,
+      colorDark: '#0F172A',
+      colorLight: '#FFFFFF',
+      correctLevel: QRCode.CorrectLevel.M,
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initHeroQr, 200);
+});
+initHeroQr();
+

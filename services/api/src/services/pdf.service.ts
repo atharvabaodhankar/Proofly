@@ -21,17 +21,17 @@ export interface GeneratedCertificate {
 
 export class PdfService {
   /**
-   * Generates a modern, elegant landscape certificate PDF with an embedded dynamic QR Code
+   * Generates a prestigious, light-themed landscape certificate PDF with an embedded dynamic QR Code
    * and computes its deterministic SHA-256 document hash.
    */
   public static async generateCertificate(options: CertificatePdfOptions): Promise<GeneratedCertificate> {
-    // Generate QR Code PNG buffer encoding the dynamic verification URL
+    // Generate QR Code PNG buffer encoding the dynamic verification URL (Dark navy on white)
     const qrBuffer = await QRCode.toBuffer(options.verifyUrl, {
       type: 'png',
       margin: 1,
-      width: 250,
+      width: 300,
       color: {
-        dark: '#090D16',
+        dark: '#1E1B4B',
         light: '#FFFFFF',
       },
       errorCorrectionLevel: 'M',
@@ -63,34 +63,38 @@ export class PdfService {
         const width = doc.page.width;
         const height = doc.page.height;
 
-        // Background Base (Dark Luxury Theme)
-        doc.rect(0, 0, width, height).fill('#0B0F19');
+        // 1. Background Base (Clean Ivory White)
+        doc.rect(0, 0, width, height).fill('#FCFCFD');
 
-        // Decorative Dual Outer Borders
-        doc.lineWidth(3);
-        doc.rect(20, 20, width - 40, height - 40).stroke('#2563EB');
-        doc.lineWidth(1);
-        doc.rect(26, 26, width - 52, height - 52).stroke('#475569');
+        // 2. Decorative Dual Outer Borders (Deep Navy & Rich Gold)
+        doc.lineWidth(4);
+        doc.rect(18, 18, width - 36, height - 36).stroke('#1E1B4B');
+        
+        doc.lineWidth(1.5);
+        doc.rect(26, 26, width - 52, height - 52).stroke('#D4AF37');
 
-        // Corner Accents
-        const cornerSize = 25;
-        doc.lineWidth(2);
+        doc.lineWidth(0.5);
+        doc.rect(30, 30, width - 60, height - 60).stroke('#CBD5E1');
+
+        // 3. Gold Corner Ornamental Accents
+        const cornerSize = 28;
+        doc.lineWidth(2.5);
         // Top-Left
-        doc.moveTo(26, 26 + cornerSize).lineTo(26, 26).lineTo(26 + cornerSize, 26).stroke('#38BDF8');
+        doc.moveTo(26, 26 + cornerSize).lineTo(26, 26).lineTo(26 + cornerSize, 26).stroke('#D4AF37');
         // Top-Right
-        doc.moveTo(width - 26 - cornerSize, 26).lineTo(width - 26, 26).lineTo(width - 26, 26 + cornerSize).stroke('#38BDF8');
+        doc.moveTo(width - 26 - cornerSize, 26).lineTo(width - 26, 26).lineTo(width - 26, 26 + cornerSize).stroke('#D4AF37');
         // Bottom-Left
-        doc.moveTo(26, height - 26 - cornerSize).lineTo(26, height - 26).lineTo(26 + cornerSize, height - 26).stroke('#38BDF8');
+        doc.moveTo(26, height - 26 - cornerSize).lineTo(26, height - 26).lineTo(26 + cornerSize, height - 26).stroke('#D4AF37');
         // Bottom-Right
-        doc.moveTo(width - 26 - cornerSize, height - 26).lineTo(width - 26, height - 26).lineTo(width - 26, height - 26 - cornerSize).stroke('#38BDF8');
+        doc.moveTo(width - 26 - cornerSize, height - 26).lineTo(width - 26, height - 26).lineTo(width - 26, height - 26 - cornerSize).stroke('#D4AF37');
 
-        // Header / Logo & Organization Name
-        let orgY = 48;
+        // 4. Header: Organization Logo (if uploaded) & Name
+        let orgY = 46;
         if (options.organizationLogoBuffer) {
           try {
-            const logoWidth = 42;
-            const logoHeight = 42;
-            doc.image(options.organizationLogoBuffer, (width - logoWidth) / 2, 40, {
+            const logoWidth = 44;
+            const logoHeight = 44;
+            doc.image(options.organizationLogoBuffer, (width - logoWidth) / 2, 38, {
               fit: [logoWidth, logoHeight],
               align: 'center',
               valign: 'center',
@@ -103,8 +107,8 @@ export class PdfService {
 
         doc
           .font('Helvetica-Bold')
-          .fontSize(15)
-          .fillColor('#94A3B8')
+          .fontSize(14)
+          .fillColor('#D4AF37')
           .text(options.organizationName.toUpperCase(), 0, orgY, {
             align: 'center',
             characterSpacing: 3,
@@ -112,130 +116,132 @@ export class PdfService {
 
         const titleY = options.organizationLogoBuffer ? 112 : 82;
 
-        // Main Award Title
+        // 5. Main Certificate Title
         doc
           .font('Helvetica-Bold')
-          .fontSize(30)
-          .fillColor('#FFFFFF')
+          .fontSize(28)
+          .fillColor('#1E1B4B')
           .text(options.title, 0, titleY, {
             align: 'center',
           });
 
-        // Subheading
-        const subY = titleY + 46;
+        // 6. Subheading
+        const subY = titleY + 44;
         doc
           .font('Helvetica')
-          .fontSize(11)
+          .fontSize(10)
           .fillColor('#64748B')
-          .text('THIS IS TO CERTIFY THAT', 0, subY, {
+          .text('THIS IS PROUDLY PRESENTED TO', 0, subY, {
             align: 'center',
             characterSpacing: 2,
           });
 
-        // Recipient Name
-        const nameY = subY + 24;
+        // 7. Recipient Name
+        const nameY = subY + 22;
         doc
           .font('Helvetica-Bold')
-          .fontSize(27)
-          .fillColor('#38BDF8')
+          .fontSize(26)
+          .fillColor('#2563EB')
           .text(options.recipientName, 0, nameY, {
             align: 'center',
           });
 
-        // Description
-        const descY = nameY + 38;
+        // 8. Description / Citation
+        const descY = nameY + 36;
         doc
           .font('Helvetica')
           .fontSize(11)
-          .fillColor('#CBD5E1')
+          .fillColor('#334155')
           .text(options.description, 90, descY, {
             align: 'center',
             width: width - 180,
             lineGap: 3,
           });
 
-        // ==========================================
-        // Metadata & Dynamic QR Code Section
-        // ==========================================
-        const metaY = 310;
+        // 9. Metadata & Dynamic Scannable QR Code Section
+        const metaY = 315;
 
-        // Issue Date
+        // Issue Date Column
         doc
-          .font('Helvetica')
-          .fontSize(10)
+          .font('Helvetica-Bold')
+          .fontSize(9)
           .fillColor('#64748B')
           .text('ISSUE DATE', 90, metaY)
           .font('Helvetica-Bold')
-          .fillColor('#F8FAFC')
+          .fontSize(12)
+          .fillColor('#1E1B4B')
           .text(options.issueDate, 90, metaY + 14);
 
         if (options.expiryDate) {
           doc
-            .font('Helvetica')
-            .fontSize(10)
-            .fillColor('#64748B')
-            .text('EXPIRY DATE', 90, metaY + 40)
             .font('Helvetica-Bold')
-            .fillColor('#F8FAFC')
-            .text(options.expiryDate, 90, metaY + 54);
+            .fontSize(9)
+            .fillColor('#64748B')
+            .text('EXPIRY DATE', 90, metaY + 38)
+            .font('Helvetica-Bold')
+            .fontSize(12)
+            .fillColor('#1E1B4B')
+            .text(options.expiryDate, 90, metaY + 52);
         }
 
-        // Certificate ID
+        // Certificate ID Column
         doc
-          .font('Helvetica')
-          .fontSize(10)
-          .fillColor('#64748B')
-          .text('CERTIFICATE ID', 240, metaY)
           .font('Helvetica-Bold')
-          .fillColor('#F8FAFC')
-          .text(options.certificateNumber, 240, metaY + 14);
+          .fontSize(9)
+          .fillColor('#64748B')
+          .text('CERTIFICATE ID', 250, metaY)
+          .font('Helvetica-Bold')
+          .fontSize(12)
+          .fillColor('#1E1B4B')
+          .text(options.certificateNumber, 250, metaY + 14);
 
-        // Blockchain Network Tag
+        // Blockchain Network Pill
         doc
-          .font('Helvetica')
-          .fontSize(10)
-          .fillColor('#64748B')
-          .text('TRUST PROOF', 240, metaY + 40)
           .font('Helvetica-Bold')
-          .fillColor('#34D399')
-          .text('POLYGON AMOY (CHAIN 80002)', 240, metaY + 54);
+          .fontSize(9)
+          .fillColor('#64748B')
+          .text('BLOCKCHAIN PROOF', 250, metaY + 38)
+          .font('Helvetica-Bold')
+          .fontSize(11)
+          .fillColor('#059669')
+          .text('POLYGON AMOY (CHAIN 80002) ✓', 250, metaY + 52);
 
-        // QR Code Box (Right-aligned)
-        const qrBoxSize = 95;
+        // 10. Embedded QR Code Card (Right side)
+        const qrBoxSize = 96;
         const qrBoxX = width - 90 - qrBoxSize;
-        const qrBoxY = metaY - 5;
+        const qrBoxY = metaY - 10;
 
-        // White background card for crisp QR scanning
-        doc.rect(qrBoxX, qrBoxY, qrBoxSize, qrBoxSize).fillAndStroke('#FFFFFF', '#38BDF8');
+        // White card with golden border
+        doc.rect(qrBoxX - 4, qrBoxY - 4, qrBoxSize + 8, qrBoxSize + 8).fillAndStroke('#FFFFFF', '#D4AF37');
 
-        // Embed QR Code
-        doc.image(qrBuffer, qrBoxX + 4, qrBoxY + 4, {
-          width: qrBoxSize - 8,
-          height: qrBoxSize - 8,
+        // Draw the QR Code image
+        doc.image(qrBuffer, qrBoxX, qrBoxY, {
+          width: qrBoxSize,
+          height: qrBoxSize,
           link: options.verifyUrl,
         });
 
-        // QR Code Label
+        // Bold QR Code Action Label
         doc
           .font('Helvetica-Bold')
           .fontSize(8)
-          .fillColor('#38BDF8')
-          .text('SCAN TO VERIFY PROOF', qrBoxX - 20, qrBoxY + qrBoxSize + 6, {
-            width: qrBoxSize + 40,
+          .fillColor('#1E1B4B')
+          .text('SCAN TO VERIFY PROOF', qrBoxX - 25, qrBoxY + qrBoxSize + 8, {
+            width: qrBoxSize + 50,
             align: 'center',
           });
 
-        // Verification Footer & Clickable Link
-        const footerY = height - 50;
+        // 11. Verification Footer & Interactive Link
+        const footerY = height - 48;
         doc
           .font('Helvetica')
           .fontSize(9)
           .fillColor('#64748B')
-          .text(`Anchored on Polygon Amoy Blockchain • Live verification link: `, 0, footerY, {
+          .text('Permanent Proof on Polygon Amoy Blockchain • Live verification: ', 0, footerY, {
             align: 'center',
             continued: true,
           })
-          .fillColor('#38BDF8')
+          .fillColor('#2563EB')
           .text(options.verifyUrl, {
             link: options.verifyUrl,
             underline: true,
