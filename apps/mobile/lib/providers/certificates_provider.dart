@@ -9,11 +9,13 @@ class CertificatesProvider extends ChangeNotifier {
   String _searchQuery = '';
   String _selectedCategory = 'All';
   bool _isLoading = false;
+  String? _errorMessage;
 
   List<CertificateModel> get certificates => _certificates;
   String get searchQuery => _searchQuery;
   String get selectedCategory => _selectedCategory;
   bool get isLoading => _isLoading;
+  String? get errorMessage => _errorMessage;
 
   List<CertificateModel> get filteredCertificates {
     return _certificates.where((cert) {
@@ -24,17 +26,17 @@ class CertificatesProvider extends ChangeNotifier {
     }).toList();
   }
 
-  CertificatesProvider() {
-    loadCertificates();
-  }
-
-  Future<void> loadCertificates([String? token]) async {
+  Future<void> loadCertificates(String token) async {
     _isLoading = true;
+    _errorMessage = null;
     notifyListeners();
 
     try {
-      _certificates = await _api.getMyCertificates(token ?? 'demo_token');
-    } catch (_) {}
+      _certificates = await _api.getMyCertificates(token);
+    } catch (e) {
+      _errorMessage = e.toString().replaceAll('Exception: ', '');
+      _certificates = [];
+    }
 
     _isLoading = false;
     notifyListeners();
