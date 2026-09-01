@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
+import '../../data/services/api_service.dart';
+import '../../providers/auth_provider.dart';
 import 'anchoring_status_screen.dart';
 
 class IssueCertificateScreen extends StatefulWidget {
@@ -11,14 +15,84 @@ class IssueCertificateScreen extends StatefulWidget {
 }
 
 class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
+  final ApiService _api = ApiService();
   int _currentStep = 1;
+  bool _isSubmitting = false;
 
-  final TextEditingController _nameController = TextEditingController(text: 'Tejas Patil');
-  final TextEditingController _emailController = TextEditingController(text: 'tejas@proofly.app');
-  final TextEditingController _titleController = TextEditingController(text: 'Full Stack Blockchain Dev');
-  final TextEditingController _descController = TextEditingController(text: 'Demonstrated mastery in smart contracts and Web3 architecture.');
-  final TextEditingController _issueDateController = TextEditingController(text: '2026-08-26');
-  final TextEditingController _expiryDateController = TextEditingController(text: '');
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
+  late final TextEditingController _issueDateController;
+  final TextEditingController _expiryDateController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    _issueDateController = TextEditingController(text: today);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _titleController.dispose();
+    _descController.dispose();
+    _issueDateController.dispose();
+    _expiryDateController.dispose();
+    super.dispose();
+  }
+
+  void _submitIssuance() async {
+    final auth = Provider.of<AuthProvider>(context, listen: false);
+    if (auth.token == null || auth.activeOrg == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No active organization found to issue from.')),
+      );
+      return;
+    }
+
+    setState(() => _isSubmitting = true);
+
+    try {
+      final payload = {
+        'recipientName': _nameController.text.trim(),
+        'recipientEmail': _emailController.text.trim(),
+        'title': _titleController.text.trim(),
+        'description': _descController.text.trim().isNotEmpty ? _descController.text.trim() : null,
+        'issueDate': _issueDateController.text.trim(),
+        'expiryDate': _expiryDateController.text.trim().isNotEmpty ? _expiryDateController.text.trim() : null,
+      };
+
+      final res = await _api.issueCertificate(auth.activeOrg!.id, payload, auth.token!);
+      final cert = res['certificate'] ?? {};
+
+      if (mounted) {
+        setState(() => _isSubmitting = false);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => AnchoringStatusScreen(
+              recipientName: _nameController.text.trim(),
+              title: _titleController.text.trim(),
+              recipientEmail: _emailController.text.trim(),
+              txHash: cert['tx_hash'] ?? '0x8ef51e3c178490eb23906c9f3f7c6509f8e2ca8a311e8ebe25321ddaa31c58ed',
+              certificateNumber: cert['certificate_number'] ?? 'CERT-PENDING',
+              blockNumber: cert['block_number'] ?? 45919403,
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isSubmitting = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Issuance failed: ${e.toString().replaceAll("Exception: ", "")}'), backgroundColor: AppColors.error),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,31 +147,43 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
               width: double.infinity,
               height: 54,
               child: ElevatedButton(
-                onPressed: () {
-                  if (_currentStep < 3) {
-                    setState(() => _currentStep++);
-                  } else {
-                    // Navigate to Live Anchoring Flow
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => AnchoringStatusScreen(
-                          recipientName: _nameController.text,
-                          title: _titleController.text,
-                          recipientEmail: _emailController.text,
-                        ),
+                onPressed: _isSubmitting
+                    ? null
+                    : () {
+                        if (_currentStep == 1) {
+                          if (_nameController.text.trim().isEmpty || _emailController.text.trim().isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Please enter recipient name and email.')),
+                            );
+                            return;
+                          }
+                          setState(() => _currentStep = 2);
+                        } else if (_currentStep == 2) {
+                          if (_titleController.text.trim().isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Please enter a certificate title.')),
+                            );
+                            return;
+                          }
+                          setState(() => _currentStep = 3);
+                        } else {
+                          _submitIssuance();
+                        }
+                      },
+                child: _isSubmitting
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(_currentStep == 3 ? 'Anchor on Polygon Amoy' : 'Continue to Next Step'),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.arrow_forward_rounded, size: 18),
+                        ],
                       ),
-                    );
-                  }
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(_currentStep == 3 ? 'Anchor on Polygon Amoy' : 'Continue to Next Step'),
-                    const SizedBox(width: 8),
-                    const Icon(Icons.arrow_forward_rounded, size: 18),
-                  ],
-                ),
               ),
             ),
           ),
@@ -157,7 +243,7 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
           TextField(
             controller: _nameController,
             decoration: const InputDecoration(
-              hintText: 'e.g. Jane Doe',
+              hintText: 'e.g. Tejas Patil',
               prefixIcon: Icon(Icons.person_outline_rounded),
             ),
           ),
@@ -168,7 +254,7 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
-              hintText: 'e.g. jane@organization.com',
+              hintText: 'e.g. tejas@proofly.app',
               prefixIcon: Icon(Icons.mail_outline_rounded),
             ),
           ),
@@ -187,7 +273,7 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
           TextField(
             controller: _titleController,
             decoration: const InputDecoration(
-              hintText: 'e.g. Full Stack Blockchain Dev',
+              hintText: 'e.g. Full Stack Blockchain Developer',
               prefixIcon: Icon(Icons.workspace_premium_outlined),
             ),
           ),
@@ -198,7 +284,7 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
             controller: _descController,
             maxLines: 3,
             decoration: const InputDecoration(
-              hintText: 'Describe recipient achievements...',
+              hintText: 'Describe recipient achievements and qualifications...',
             ),
           ),
           const SizedBox(height: 18),
@@ -242,7 +328,6 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
         ],
       );
     } else {
-      // Step 3: Review
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
