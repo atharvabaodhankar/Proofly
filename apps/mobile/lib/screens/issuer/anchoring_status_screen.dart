@@ -8,12 +8,18 @@ class AnchoringStatusScreen extends StatefulWidget {
   final String recipientName;
   final String title;
   final String recipientEmail;
+  final String txHash;
+  final String certificateNumber;
+  final int? blockNumber;
 
   const AnchoringStatusScreen({
     super.key,
     required this.recipientName,
     required this.title,
     required this.recipientEmail,
+    this.txHash = '0x8ef51e3c178490eb23906c9f3f7c6509f8e2ca8a311e8ebe25321ddaa31c58ed',
+    this.certificateNumber = 'CERT-AMOY',
+    this.blockNumber,
   });
 
   @override
@@ -22,7 +28,6 @@ class AnchoringStatusScreen extends StatefulWidget {
 
 class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
   int _currentProgressStep = 1;
-  final String _mockTxHash = '0x8ef51e3c178490eb23906c9f3f7c6509f8e2ca8a311e8ebe25321ddaa31c58ed';
 
   @override
   void initState() {
@@ -31,13 +36,13 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
   }
 
   void _simulateAnchoring() async {
-    await Future.delayed(const Duration(milliseconds: 1200));
+    await Future.delayed(const Duration(milliseconds: 1000));
     if (mounted) setState(() => _currentProgressStep = 2);
 
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await Future.delayed(const Duration(milliseconds: 1200));
     if (mounted) setState(() => _currentProgressStep = 3);
 
-    await Future.delayed(const Duration(milliseconds: 1200));
+    await Future.delayed(const Duration(milliseconds: 1000));
     if (mounted) setState(() => _currentProgressStep = 4);
   }
 
@@ -75,7 +80,7 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
                 border: Border.all(color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0)),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.08),
+                    color: AppColors.primary.withValues(alpha: 0.08),
                     blurRadius: 20,
                     offset: const Offset(0, 4),
                   ),
@@ -87,7 +92,7 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
                     width: 64,
                     height: 64,
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -112,8 +117,8 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('NETWORK', style: AppTypography.labelSm(isDark)),
-                      const Text('Polygon Amoy (80002)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                      Text('CERTIFICATE ID', style: AppTypography.labelSm(isDark)),
+                      Text(widget.certificateNumber, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                     ],
                   ),
                 ],
@@ -141,7 +146,7 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
             _buildStepItem(
               stepNumber: 3,
               title: 'Block Confirmation',
-              subtitle: 'Mined in block #45919403 on Polygon Amoy testnet.',
+              subtitle: 'Mined in block #${widget.blockNumber ?? "45919403"} on Polygon Amoy.',
               isCompleted: _currentProgressStep >= 3,
               isActive: _currentProgressStep == 3,
               isDark: isDark,
@@ -175,7 +180,7 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                         onPressed: () {
-                          Clipboard.setData(ClipboardData(text: _mockTxHash));
+                          Clipboard.setData(ClipboardData(text: widget.txHash));
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Transaction Hash copied to clipboard!')),
                           );
@@ -185,7 +190,7 @@ class _AnchoringStatusScreenState extends State<AnchoringStatusScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    _mockTxHash,
+                    widget.txHash,
                     style: AppTypography.hashMono(color: isDark ? AppColors.cyanAccent : AppColors.primary),
                   ),
                 ],
