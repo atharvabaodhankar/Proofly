@@ -45,15 +45,18 @@ class SettingsScreen extends StatelessWidget {
                       CircleAvatar(
                         radius: 28,
                         backgroundColor: AppColors.primaryContainer,
-                        child: const Text('AR', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                        child: Text(
+                          user?.name.isNotEmpty == true ? user!.name[0].toUpperCase() : 'U',
+                          style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(user?.name ?? 'Alex Rivera', style: AppTypography.headlineSm(isDark)),
-                            Text(user?.email ?? 'alex.rivera@techinst.edu', style: AppTypography.bodyMd(isDark)),
+                            Text(user?.name ?? 'User Profile', style: AppTypography.headlineSm(isDark)),
+                            Text(user?.email ?? 'No email linked', style: AppTypography.bodyMd(isDark)),
                           ],
                         ),
                       ),

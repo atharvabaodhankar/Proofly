@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import 'auth_screen.dart';
-import '../main_shell.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -160,12 +159,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const MainShell()),
+                          MaterialPageRoute(builder: (_) => const AuthScreen(initialIsSignUp: true)),
                         );
                       },
-                      child: const Text('GET STARTED', style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.bold)),
+                      child: const Text('GET STARTED (CREATE ACCOUNT)', style: TextStyle(letterSpacing: 0.5, fontWeight: FontWeight.bold)),
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -176,10 +175,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const AuthScreen()),
+                          MaterialPageRoute(builder: (_) => const AuthScreen(initialIsSignUp: false)),
                         );
                       },
-                      child: const Text('LOG IN', style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.bold)),
+                      child: const Text('LOG IN TO PROOFLY', style: TextStyle(letterSpacing: 0.5, fontWeight: FontWeight.bold)),
                     ),
                   ),
                 ],
