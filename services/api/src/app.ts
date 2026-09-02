@@ -14,7 +14,22 @@ import { errorHandler } from './middleware/errorHandler';
 const app = express();
 
 // Security & utility middleware
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"],
+        scriptSrcAttr: ["'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "blob:", "https://*.amazonaws.com", "https://proofly-certificates.s3.ap-south-1.amazonaws.com"],
+        connectSrc: ["'self'", "https://*.supabase.co", "https://*.alchemy.com"],
+      },
+    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,6 +66,7 @@ app.use('/api/v1/organizations', organizationRoutes);
 app.use('/api/v1/certificates', certificateRoutes);
 app.use('/api/v1/claims', claimRoutes);
 app.use('/api/v1/verify', verificationRoutes);
+app.use('/api/v1/verification', verificationRoutes);
 
 // Web App SPA Route Fallbacks
 app.get(['/verify/:id', '/claim/:token', '/'], (_req, res, next) => {

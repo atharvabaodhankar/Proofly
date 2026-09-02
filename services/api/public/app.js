@@ -232,7 +232,14 @@ async function performVerification(certificateId) {
         </div>
         <div class="stat-card">
           <div class="stat-title">Issuing Organization</div>
-          <div class="stat-value" style="font-size: 15px;">${data.organization ? data.organization.name : 'Verified Issuer'}</div>
+          <div class="stat-value" style="font-size: 15px; display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+            ${
+              data.organization?.logo_url
+                ? `<img src="${data.organization.logo_url}" style="width: 26px; height: 26px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px;" alt="Logo" />`
+                : ''
+            }
+            <span>${data.organization ? data.organization.name : 'Verified Issuer'}</span>
+          </div>
         </div>
         <div class="stat-card">
           <div class="stat-title">Issue Date</div>
