@@ -10,7 +10,7 @@ class ApiConstants {
 
   // Certificates endpoints
   static const String myCertificates = '/certificates/my';
-  static const String verifyCertificate = '/verification';
+  static const String verifyCertificate = '/verify';
   static const String issueCertificate = '/certificates/organizations';
   static const String claimCertificate = '/claims';
   static const String organizations = '/organizations';
