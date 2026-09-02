@@ -39,7 +39,7 @@ class _VerificationResultScreenState extends State<VerificationResultScreen> {
       });
     } catch (err) {
       setState(() {
-        _errorMessage = err.toString();
+        _errorMessage = err.toString().replaceAll('Exception: ', '');
         _isLoading = false;
       });
     }
@@ -200,10 +200,34 @@ class _VerificationResultScreenState extends State<VerificationResultScreen> {
             ),
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-                  child: const Icon(Icons.apartment_rounded, color: AppColors.primary, size: 22),
+                Container(
+                  width: 46,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    color: isDark ? AppColors.surfaceContainerDark : AppColors.surfaceLowLight,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0)),
+                  ),
+                  child: (org is Map && (org['logo_url'] != null || org['logoUrl'] != null))
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Image.network(
+                              (org['logo_url'] ?? org['logoUrl']) as String,
+                              width: 38,
+                              height: 38,
+                              fit: BoxFit.contain,
+                              errorBuilder: (_, __, ___) => const Icon(Icons.apartment_rounded, color: AppColors.primary, size: 22),
+                            ),
+                          ),
+                        )
+                      : Center(
+                          child: Text(
+                            orgName.isNotEmpty ? orgName[0].toUpperCase() : 'O',
+                            style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ),
                 ),
                 const SizedBox(width: 14),
                 Expanded(

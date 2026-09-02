@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../models/certificate_model.dart';
 import '../../core/constants/api_constants.dart';
@@ -15,6 +16,31 @@ class ApiService {
         if (token != null) 'Authorization': 'Bearer $token',
       };
 
+  dynamic _safeDecode(http.Response res) {
+    if (kDebugMode) {
+      print('🌐 API [${res.request?.method}] ${res.request?.url} -> Status: ${res.statusCode}');
+      print('📦 Body: ${res.body.length > 300 ? "${res.body.substring(0, 300)}..." : res.body}');
+    }
+
+    if (res.body.trim().isEmpty) return {};
+
+    try {
+      final decoded = jsonDecode(res.body);
+      if (res.statusCode >= 400) {
+        final errMsg = decoded is Map
+            ? (decoded['message'] ?? decoded['error'] ?? 'Request failed (${res.statusCode})')
+            : 'Request failed (${res.statusCode})';
+        throw Exception(errMsg);
+      }
+      return decoded;
+    } catch (e) {
+      if (e is Exception && !e.toString().contains('FormatException')) {
+        rethrow;
+      }
+      throw Exception('Server returned status ${res.statusCode} (Non-JSON response: ${res.body.length > 80 ? res.body.substring(0, 80) : res.body})');
+    }
+  }
+
   // Auth: Login
   Future<Map<String, dynamic>> login(String email, String password) async {
     final res = await http.post(
@@ -22,11 +48,7 @@ class ApiService {
       headers: _headers(),
       body: jsonEncode({'email': email, 'password': password}),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Login failed');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 
   // Auth: Register
@@ -42,11 +64,7 @@ class ApiService {
         'role': role,
       }),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Registration failed');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 
   // Auth: Get Current User Profile & Organization
@@ -55,11 +73,7 @@ class ApiService {
       Uri.parse('$baseUrl${ApiConstants.me}'),
       headers: _headers(token),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Failed to get profile');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 
   // Recipient: Get My Certificates
@@ -68,10 +82,7 @@ class ApiService {
       Uri.parse('$baseUrl${ApiConstants.myCertificates}'),
       headers: _headers(token),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Failed to fetch certificates');
-    }
+    final data = _safeDecode(res) as Map<String, dynamic>;
     final list = data['certificates'] as List? ?? [];
     return list.map((c) => CertificateModel.fromJson(c)).toList();
   }
@@ -82,25 +93,24 @@ class ApiService {
       Uri.parse('$baseUrl/certificates/organizations/$orgId/certificates'),
       headers: _headers(token),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Failed to fetch issued certificates');
-    }
+    final data = _safeDecode(res) as Map<String, dynamic>;
     final list = data['certificates'] as List? ?? [];
     return list.map((c) => CertificateModel.fromJson(c)).toList();
   }
 
   // Public: Live Blockchain Verification
   Future<Map<String, dynamic>> verifyCertificate(String query) async {
+    // Sanitize query in case full URL was passed in
+    String cleanQuery = query.trim();
+    if (cleanQuery.contains('/verify/')) {
+      cleanQuery = cleanQuery.split('/verify/').last.split('?').first;
+    }
+
     final res = await http.get(
-      Uri.parse('$baseUrl${ApiConstants.verifyCertificate}/$query'),
+      Uri.parse('$baseUrl${ApiConstants.verifyCertificate}/$cleanQuery'),
       headers: _headers(),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['message'] ?? data['error'] ?? 'Certificate verification failed');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 
   // Issuer: Issue New Certificate (PDF generation + AWS S3 + Polygon Amoy)
@@ -111,11 +121,7 @@ class ApiService {
       headers: _headers(token),
       body: jsonEncode(payload),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Failed to issue certificate');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 
   // Claim: Claim Certificate with Token
@@ -125,11 +131,7 @@ class ApiService {
       headers: _headers(token),
       body: jsonEncode({}),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Failed to claim certificate');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 
   // Create Organization
@@ -139,10 +141,6 @@ class ApiService {
       headers: _headers(token),
       body: jsonEncode({'name': name, 'slug': slug}),
     );
-    final data = jsonDecode(res.body);
-    if (res.statusCode >= 400) {
-      throw Exception(data['error'] ?? 'Failed to create organization');
-    }
-    return data;
+    return _safeDecode(res) as Map<String, dynamic>;
   }
 }
