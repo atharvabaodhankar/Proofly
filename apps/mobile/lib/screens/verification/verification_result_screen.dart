@@ -63,9 +63,9 @@ class _VerificationResultScreenState extends State<VerificationResultScreen> {
   }
 
   void _showIssuerDetailsSheet(Map<String, dynamic>? org, bool isDark) {
-    final orgName = (org is Map ? org['name'] : null) ?? 'Verified Institution';
-    final orgSlug = (org is Map ? org['slug'] : null) ?? 'proofly-institution';
-    final orgLogo = (org is Map ? (org['logo_url'] ?? org['logoUrl']) : null) as String?;
+    final orgName = (org?['name'] as String?) ?? 'Verified Institution';
+    final orgSlug = (org?['slug'] as String?) ?? 'proofly-institution';
+    final orgLogo = (org?['logo_url'] ?? org?['logoUrl']) as String?;
 
     showModalBottomSheet(
       context: context,

@@ -1,6 +1,8 @@
 import PDFDocument from 'pdfkit';
 import crypto from 'crypto';
 import QRCode from 'qrcode';
+import path from 'path';
+import fs from 'fs';
 
 export interface CertificatePdfOptions {
   certificateNumber: string;
@@ -21,8 +23,8 @@ export interface GeneratedCertificate {
 
 export class PdfService {
   /**
-   * Generates a prestigious, light-themed landscape certificate PDF with an embedded dynamic QR Code
-   * and computes its deterministic SHA-256 document hash.
+   * Generates a prestigious, light-themed landscape certificate PDF with an embedded dynamic QR Code,
+   * official Proofly Trust Seal, and computes its deterministic SHA-256 document hash.
    */
   public static async generateCertificate(options: CertificatePdfOptions): Promise<GeneratedCertificate> {
     // Generate QR Code PNG buffer encoding the dynamic verification URL (Dark navy on white)
@@ -36,6 +38,15 @@ export class PdfService {
       },
       errorCorrectionLevel: 'M',
     });
+
+    // Try reading Proofly brand logo
+    let prooflyLogoBuffer: Buffer | null = null;
+    try {
+      const logoPath = path.resolve(__dirname, '../../public/logo.png');
+      if (fs.existsSync(logoPath)) {
+        prooflyLogoBuffer = fs.readFileSync(logoPath);
+      }
+    } catch (_) {}
 
     return new Promise((resolve, reject) => {
       try {
@@ -88,7 +99,14 @@ export class PdfService {
         // Bottom-Right
         doc.moveTo(width - 26 - cornerSize, height - 26).lineTo(width - 26, height - 26).lineTo(width - 26, height - 26 - cornerSize).stroke('#D4AF37');
 
-        // 4. Header: Organization Logo (if uploaded) & Name
+        // 4. Header: Proofly Protocol Watermark / Brand Badge (Top-Right)
+        if (prooflyLogoBuffer) {
+          try {
+            doc.image(prooflyLogoBuffer, width - 78, 38, { width: 32, height: 32 });
+          } catch (_) {}
+        }
+
+        // Header: Organization Logo (if uploaded) & Name
         let orgY = 46;
         if (options.organizationLogoBuffer) {
           try {
@@ -200,7 +218,7 @@ export class PdfService {
           .font('Helvetica-Bold')
           .fontSize(9)
           .fillColor('#64748B')
-          .text('BLOCKCHAIN PROOF', 250, metaY + 38)
+          .text('BLOCKCHAIN TRUST PROOF', 250, metaY + 38)
           .font('Helvetica-Bold')
           .fontSize(11)
           .fillColor('#059669')
@@ -237,7 +255,7 @@ export class PdfService {
           .font('Helvetica')
           .fontSize(9)
           .fillColor('#64748B')
-          .text('Permanent Proof on Polygon Amoy Blockchain • Live verification: ', 0, footerY, {
+          .text('Verified by Proofly Protocol • Permanent Polygon Amoy Anchor • Live link: ', 0, footerY, {
             align: 'center',
             continued: true,
           })
