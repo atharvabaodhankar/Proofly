@@ -212,6 +212,27 @@ export class CertificateController {
     }
   }
 
+  public static async downloadPdf(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+      let certQuery = supabaseAdmin.from('certificates').select('*');
+      if (isUuid) {
+        certQuery = certQuery.eq('id', id);
+      } else {
+        certQuery = certQuery.eq('certificate_number', id);
+      }
+      const { data: cert, error } = await certQuery.single();
+      if (error || !cert) {
+        return res.status(404).json({ error: 'Certificate not found' });
+      }
+      const downloadUrl = await storageService.getDownloadUrl(cert.s3_object_key, 3600);
+      return res.redirect(downloadUrl);
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
   public static async getByOrganization(req: Request, res: Response) {
     try {
       const { organizationId } = req.params;
