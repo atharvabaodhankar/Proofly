@@ -149,4 +149,9 @@ class AuthProvider extends ChangeNotifier {
     _activeOrg = org;
     notifyListeners();
   }
+
+  void setUser(UserModel user) {
+    _user = user;
+    notifyListeners();
+  }
 }
