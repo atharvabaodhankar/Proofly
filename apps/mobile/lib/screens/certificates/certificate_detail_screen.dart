@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
+import '../../core/utils/pdf_downloader.dart';
 import '../../data/models/certificate_model.dart';
 
 class CertificateDetailScreen extends StatefulWidget {
@@ -158,8 +159,10 @@ class _CertificateDetailScreenState extends State<CertificateDetailScreen> {
                     icon: const Icon(Icons.download_rounded, size: 20),
                     label: const Text('Download PDF'),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Downloading high-res certificate PDF from AWS S3...')),
+                      PdfDownloader.downloadAndOpenPdf(
+                        context: context,
+                        url: 'http://localhost:4000/api/v1/certificates/${cert.certificateNumber}/pdf',
+                        certificateNumber: cert.certificateNumber,
                       );
                     },
                   ),

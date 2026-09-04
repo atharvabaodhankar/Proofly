@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
+import '../../core/utils/pdf_downloader.dart';
 import '../../data/services/api_service.dart';
 
 class VerificationResultScreen extends StatefulWidget {
@@ -332,7 +333,13 @@ class _VerificationResultScreenState extends State<VerificationResultScreen> {
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.picture_as_pdf_rounded, size: 18),
                   label: const Text('Download PDF'),
-                  onPressed: () => _launchUrl(pdfDownloadUrl),
+                  onPressed: () {
+                    PdfDownloader.downloadAndOpenPdf(
+                      context: context,
+                      url: pdfDownloadUrl,
+                      certificateNumber: certNumber,
+                    );
+                  },
                 ),
               ),
               if (polygonscanUrl != null) ...[

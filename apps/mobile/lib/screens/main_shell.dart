@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../core/theme/app_colors.dart';
+import '../providers/auth_provider.dart';
 import 'home/recipient_home_screen.dart';
 import 'issuer/issuer_dashboard_screen.dart';
+import 'claim/claim_certificate_screen.dart';
 import 'verification/verify_screen.dart';
 import 'settings/settings_screen.dart';
 import 'notifications/notifications_screen.dart';
@@ -17,13 +20,6 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   late int _currentIndex;
 
-  final List<Widget> _screens = [
-    const RecipientHomeScreen(),
-    const IssuerDashboardScreen(),
-    const VerifyScreen(),
-    const SettingsScreen(),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -33,10 +29,36 @@ class _MainShellState extends State<MainShell> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final auth = Provider.of<AuthProvider>(context);
+    final user = auth.user;
+    final bool isIssuer = user?.role == 'org_admin' || user?.role == 'org_issuer';
+
+    // Role-specific screens
+    final List<Widget> screens = isIssuer
+        ? const [
+            IssuerDashboardScreen(),
+            VerifyScreen(),
+            SettingsScreen(),
+          ]
+        : const [
+            RecipientHomeScreen(),
+            ClaimCertificateScreen(),
+            VerifyScreen(),
+            SettingsScreen(),
+          ];
+
+    // Ensure _currentIndex is within bounds
+    if (_currentIndex >= screens.length) {
+      _currentIndex = 0;
+    }
+
+    final String initials = user?.name.isNotEmpty == true
+        ? user!.name.trim().split(' ').map((e) => e.isNotEmpty ? e[0].toUpperCase() : '').take(2).join()
+        : 'U';
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: (isDark ? AppColors.surfaceDark : Colors.white).withOpacity(0.85),
+        backgroundColor: (isDark ? AppColors.surfaceDark : Colors.white).withValues(alpha: 0.85),
         elevation: 0,
         titleSpacing: 20,
         title: Row(
@@ -60,6 +82,20 @@ class _MainShellState extends State<MainShell> {
                 color: isDark ? Colors.white : AppColors.textMainLight,
               ),
             ),
+            if (isIssuer) ...[
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Text(
+                  'ISSUER',
+                  style: TextStyle(color: AppColors.primary, fontSize: 10, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
           ],
         ),
         actions: [
@@ -77,21 +113,32 @@ class _MainShellState extends State<MainShell> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundColor: AppColors.primaryContainer,
-              child: const Text('AR', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  _currentIndex = screens.length - 1; // Go to Profile
+                });
+              },
+              borderRadius: BorderRadius.circular(20),
+              child: CircleAvatar(
+                radius: 16,
+                backgroundColor: AppColors.primaryContainer,
+                child: Text(
+                  initials,
+                  style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ),
         ],
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: _screens,
+        children: screens,
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: (isDark ? AppColors.surfaceDark : Colors.white).withOpacity(0.95),
+          color: (isDark ? AppColors.surfaceDark : Colors.white).withValues(alpha: 0.95),
           border: Border(
             top: BorderSide(
               color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0),
@@ -99,7 +146,7 @@ class _MainShellState extends State<MainShell> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, -2),
             ),
@@ -110,12 +157,18 @@ class _MainShellState extends State<MainShell> {
             height: 64,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildNavItem(0, Icons.home_rounded, 'Home', isDark),
-                _buildNavItem(1, Icons.dashboard_customize_rounded, 'Issuer', isDark),
-                _buildNavItem(2, Icons.verified_user_rounded, 'Verify', isDark),
-                _buildNavItem(3, Icons.account_circle_rounded, 'Profile', isDark),
-              ],
+              children: isIssuer
+                  ? [
+                      _buildNavItem(0, Icons.dashboard_customize_rounded, 'Dashboard', isDark),
+                      _buildNavItem(1, Icons.verified_user_rounded, 'Verify', isDark),
+                      _buildNavItem(2, Icons.account_circle_rounded, 'Profile', isDark),
+                    ]
+                  : [
+                      _buildNavItem(0, Icons.wallet_rounded, 'Credentials', isDark),
+                      _buildNavItem(1, Icons.add_circle_outline_rounded, 'Claim', isDark),
+                      _buildNavItem(2, Icons.verified_user_rounded, 'Verify', isDark),
+                      _buildNavItem(3, Icons.account_circle_rounded, 'Profile', isDark),
+                    ],
             ),
           ),
         ),
