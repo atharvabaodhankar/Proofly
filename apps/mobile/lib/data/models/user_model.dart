@@ -30,4 +30,20 @@ class UserModel {
         'role': role,
         'wallet_address': walletAddress,
       };
+
+  UserModel copyWith({
+    String? id,
+    String? email,
+    String? name,
+    String? role,
+    String? walletAddress,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      name: name ?? this.name,
+      role: role ?? this.role,
+      walletAddress: walletAddress ?? this.walletAddress,
+    );
+  }
 }
