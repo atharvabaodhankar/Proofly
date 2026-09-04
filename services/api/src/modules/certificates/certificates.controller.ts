@@ -5,6 +5,7 @@ import { env } from '../../config/env';
 import { storageService } from '../../services/storage.service';
 import { PdfService } from '../../services/pdf.service';
 import { blockchainService } from '../../services/blockchain.service';
+import { emailService } from '../../services/email.service';
 import { CertificateStatus, UserRole } from '@proofly/shared';
 
 export class CertificateController {
@@ -116,6 +117,18 @@ export class CertificateController {
       });
 
       const claimUrl = `${baseUrl}/claim/${rawClaimToken}`;
+
+      // Dispatch Claim Invitation Email via AWS SES
+      emailService.sendClaimInvitation({
+        toEmail: recipient_email,
+        recipientName: recipient_name,
+        certificateTitle: title,
+        organizationName: org.name,
+        certificateNumber,
+        claimUrl,
+      }).catch((emailErr) => {
+        console.warn('⚠️ Note on background SES email dispatch:', emailErr.message);
+      });
 
       // 7. Blockchain Anchoring (Async or Direct)
       let blockchainTx: { txHash: string; blockNumber: number } | null = null;
