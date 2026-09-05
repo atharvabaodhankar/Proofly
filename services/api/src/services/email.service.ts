@@ -1,5 +1,6 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { env } from '../config/env';
+import { storageService } from './storage.service';
 
 export interface SendClaimInvitationOptions {
   toEmail: string;
@@ -8,11 +9,11 @@ export interface SendClaimInvitationOptions {
   organizationName: string;
   certificateNumber: string;
   claimUrl: string;
+  organizationLogoUrl?: string | null;
 }
 
 export class EmailService {
   private sesClient: SESClient | null = null;
-  private logoUrl = 'https://proofly-certificates.s3.ap-south-1.amazonaws.com/brand/proofly_logo.png';
 
   constructor() {
     if (env.AWS_ACCESS_KEY_ID && env.AWS_SECRET_ACCESS_KEY) {
@@ -27,7 +28,8 @@ export class EmailService {
   }
 
   /**
-   * Dispatches a prestigious, light-themed HTML email via AWS SES inviting the recipient to claim their certificate.
+   * Dispatches a prestigious, light-themed HTML email via AWS SES inviting the recipient to claim their certificate,
+   * using a live signed S3 URL for the Proofly logo.
    */
   public async sendClaimInvitation(options: SendClaimInvitationOptions): Promise<{ success: boolean; messageId?: string; error?: string }> {
     if (!this.sesClient) {
@@ -36,6 +38,12 @@ export class EmailService {
     }
 
     const claimToken = options.claimUrl.split('/claim/').pop() || '';
+
+    // Generate authenticated signed S3 URL for the Proofly brand logo (valid for 7 days)
+    let s3LogoUrl = 'https://proofly-certificates.s3.ap-south-1.amazonaws.com/brand/proofly_logo.png';
+    try {
+      s3LogoUrl = await storageService.getDownloadUrl('brand/proofly_logo.png', 7 * 86400);
+    } catch (_) {}
 
     const htmlBody = `
       <!DOCTYPE html>
@@ -67,9 +75,11 @@ export class EmailService {
             margin-bottom: 28px;
           }
           .logo-img {
-            width: 52px;
-            height: 52px;
-            margin-bottom: 8px;
+            width: 56px;
+            height: 56px;
+            display: block;
+            margin: 0 auto 10px;
+            border-radius: 12px;
           }
           .brand-name {
             font-size: 22px;
@@ -199,17 +209,8 @@ export class EmailService {
       <body>
         <div class="container">
           <div class="header">
-            <!-- Proofly Official Shield Vector Badge -->
-            <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0 auto 12px;">
-              <tr>
-                <td align="center" style="width: 58px; height: 58px; background: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%); border-radius: 16px; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3); text-align: center; vertical-align: middle;">
-                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: auto;">
-                    <path d="M12 2L20 6V12C20 17.5 16.5 21.5 12 23C7.5 21.5 4 17.5 4 12V6L12 2Z" fill="#38BDF8" fill-opacity="0.25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M8.5 12.5L11 15L15.5 9.5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </td>
-              </tr>
-            </table>
+            <!-- Real Proofly Logo from S3 -->
+            <img src="${s3LogoUrl}" alt="Proofly Logo" class="logo-img" />
             <div class="brand-name">Proofly</div>
             <div><span class="badge">✓ ON-CHAIN VERIFIED CREDENTIAL</span></div>
           </div>
