@@ -57,12 +57,12 @@ class _IssueCertificateScreenState extends State<IssueCertificateScreen> {
 
     try {
       final payload = {
-        'recipientName': _nameController.text.trim(),
-        'recipientEmail': _emailController.text.trim(),
+        'recipient_name': _nameController.text.trim(),
+        'recipient_email': _emailController.text.trim(),
         'title': _titleController.text.trim(),
-        'description': _descController.text.trim().isNotEmpty ? _descController.text.trim() : null,
-        'issueDate': _issueDateController.text.trim(),
-        'expiryDate': _expiryDateController.text.trim().isNotEmpty ? _expiryDateController.text.trim() : null,
+        'description': _descController.text.trim().isNotEmpty ? _descController.text.trim() : _titleController.text.trim(),
+        'issue_date': _issueDateController.text.trim(),
+        'expiry_date': _expiryDateController.text.trim().isNotEmpty ? _expiryDateController.text.trim() : null,
       };
 
       final res = await _api.issueCertificate(auth.activeOrg!.id, payload, auth.token!);

@@ -78,7 +78,11 @@ class PdfDownloader {
       );
 
       // Automatically open the downloaded PDF
-      await OpenFilex.open(filePath);
+      try {
+        await OpenFilex.open(filePath);
+      } catch (openErr) {
+        debugPrint('OpenFilex note: $openErr');
+      }
     } catch (e) {
       scaffoldMessenger.hideCurrentSnackBar();
       scaffoldMessenger.showSnackBar(
