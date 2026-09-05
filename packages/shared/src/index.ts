@@ -85,7 +85,19 @@ export const CreateOrganizationSchema = z.object({
 });
 export type CreateOrganizationInput = z.infer<typeof CreateOrganizationSchema>;
 
-export const IssueCertificateSchema = z.object({
+export const IssueCertificateSchema = z.preprocess((data: any) => {
+  if (data && typeof data === 'object') {
+    return {
+      ...data,
+      recipient_name: data.recipient_name ?? data.recipientName,
+      recipient_email: data.recipient_email ?? data.recipientEmail,
+      recipient_external_id: data.recipient_external_id ?? data.recipientExternalId,
+      issue_date: data.issue_date ?? data.issueDate,
+      expiry_date: data.expiry_date ?? data.expiryDate,
+    };
+  }
+  return data;
+}, z.object({
   recipient_name: z.string().min(2),
   recipient_email: z.string().email(),
   recipient_external_id: z.string().optional().nullable(),
@@ -104,7 +116,7 @@ export const IssueCertificateSchema = z.object({
     .nullable()
     .or(z.literal('')),
   metadata: z.record(z.any()).optional().nullable(),
-});
+}));
 export type IssueCertificateInput = z.infer<typeof IssueCertificateSchema>;
 
 export const RevokeCertificateSchema = z.object({
