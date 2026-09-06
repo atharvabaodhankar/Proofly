@@ -271,8 +271,7 @@ class _VerificationResultScreenState extends State<VerificationResultScreen> {
     final String orgName = (org is Map ? org['name'] : org) ?? 'Proofly Verified Organization';
     final String issueDate = cert?['issue_date'] ?? cert?['issueDate'] ?? '2026-08-26';
     final String? txHash = blockchain['txHash'] ?? cert?['tx_hash'];
-    final String contractAddr = blockchain['contractAddress'] ?? '0xfb960EB42729f84C48040eBe264b11473d926006';
-    final String pdfDownloadUrl = 'http://localhost:4000/api/v1/certificates/$certNumber/pdf';
+    final String pdfDownloadUrl = '${ApiConstants.baseUrl}/certificates/$certNumber/pdf';
     final String? polygonscanUrl = txHash != null ? 'https://amoy.polygonscan.com/tx/$txHash' : null;
 
     return SingleChildScrollView(
