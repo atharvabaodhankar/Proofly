@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/pdf_downloader.dart';
@@ -19,6 +20,27 @@ class CertificateDetailScreen extends StatefulWidget {
 class _CertificateDetailScreenState extends State<CertificateDetailScreen> {
   bool _isQrExpanded = false;
   bool _isBlockchainExpanded = false;
+
+  Future<void> _launchUrl(String url) async {
+    try {
+      final uri = Uri.parse(url);
+      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+        await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
+      }
+    } catch (_) {
+      try {
+        final uri = Uri.parse(url);
+        await launchUrl(uri, mode: LaunchMode.platformDefault);
+      } catch (e) {
+        if (mounted) {
+          Clipboard.setData(ClipboardData(text: url));
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Copied Polygonscan link to clipboard!')),
+          );
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -240,6 +262,22 @@ class _CertificateDetailScreenState extends State<CertificateDetailScreen> {
                   if (cert.blockNumber != null) ...[
                     const SizedBox(height: 12),
                     _buildProofRow('Block Number', '#${cert.blockNumber}', isDark),
+                  ],
+                  if (cert.txHash != null) ...[
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.open_in_new_rounded, size: 16, color: AppColors.cyanAccent),
+                        label: const Text('View on Polygonscan (Amoy)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(color: isDark ? AppColors.cyanAccent.withValues(alpha: 0.5) : AppColors.primary),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        onPressed: () => _launchUrl('https://amoy.polygonscan.com/tx/${cert.txHash}'),
+                      ),
+                    ),
                   ],
                 ],
               ),
