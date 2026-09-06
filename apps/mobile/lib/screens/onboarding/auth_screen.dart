@@ -27,10 +27,6 @@ class _AuthScreenState extends State<AuthScreen> {
   void initState() {
     super.initState();
     _isSignUp = widget.initialIsSignUp;
-    if (!_isSignUp) {
-      _emailController.text = 'alex.rivera@techinst.edu';
-      _passwordController.text = 'Password@123';
-    }
   }
 
   @override
