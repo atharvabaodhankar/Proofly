@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/pdf_downloader.dart';
+import '../../core/constants/api_constants.dart';
 import '../../data/services/api_service.dart';
 
 class VerificationResultScreen extends StatefulWidget {
@@ -271,6 +272,7 @@ class _VerificationResultScreenState extends State<VerificationResultScreen> {
     final String orgName = (org is Map ? org['name'] : org) ?? 'Proofly Verified Organization';
     final String issueDate = cert?['issue_date'] ?? cert?['issueDate'] ?? '2026-08-26';
     final String? txHash = blockchain['txHash'] ?? cert?['tx_hash'];
+    final String contractAddr = blockchain['contractAddress'] ?? '0xfb960EB42729f84C48040eBe264b11473d926006';
     final String pdfDownloadUrl = '${ApiConstants.baseUrl}/certificates/$certNumber/pdf';
     final String? polygonscanUrl = txHash != null ? 'https://amoy.polygonscan.com/tx/$txHash' : null;
 

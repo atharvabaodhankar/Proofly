@@ -4,6 +4,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/pdf_downloader.dart';
+import '../../core/constants/api_constants.dart';
 import '../../data/models/certificate_model.dart';
 
 class CertificateDetailScreen extends StatefulWidget {
@@ -161,7 +162,7 @@ class _CertificateDetailScreenState extends State<CertificateDetailScreen> {
                     onPressed: () {
                       PdfDownloader.downloadAndOpenPdf(
                         context: context,
-                        url: 'http://localhost:4000/api/v1/certificates/${cert.certificateNumber}/pdf',
+                        url: '${ApiConstants.baseUrl}/certificates/${cert.certificateNumber}/pdf',
                         certificateNumber: cert.certificateNumber,
                       );
                     },
@@ -171,23 +172,23 @@ class _CertificateDetailScreenState extends State<CertificateDetailScreen> {
                 Expanded(
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.share_rounded, size: 20),
-                    label: const Text('Share Link'),
+                    label: const Text('Share Credential'),
                     onPressed: () {
-                      Clipboard.setData(ClipboardData(text: 'http://localhost:4000/verify/${cert.certificateNumber}'));
+                      Clipboard.setData(ClipboardData(text: '${ApiConstants.webAppUrl}/verify/${cert.certificateNumber}'));
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Verification link copied to clipboard!')),
+                        const SnackBar(content: Text('Verification URL copied to clipboard!')),
                       );
                     },
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
-            // Collapsible Validation QR Code Card
+            // Collapsible QR Code Card
             _buildCollapsibleCard(
               isDark: isDark,
-              title: 'Validation QR Code',
+              title: 'Verification QR Code',
               icon: Icons.qr_code_2_rounded,
               iconColor: AppColors.primary,
               isExpanded: _isQrExpanded,
@@ -203,7 +204,7 @@ class _CertificateDetailScreenState extends State<CertificateDetailScreen> {
                       border: Border.all(color: const Color(0xFFE2E8F0)),
                     ),
                     child: QrImageView(
-                      data: 'http://localhost:4000/verify/${cert.certificateNumber}',
+                      data: '${ApiConstants.webAppUrl}/verify/${cert.certificateNumber}',
                       version: QrVersions.auto,
                       size: 160.0,
                     ),

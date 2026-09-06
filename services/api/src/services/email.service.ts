@@ -240,14 +240,19 @@ export class EmailService {
           </div>
 
           <div class="btn-container">
-            <a href="${options.claimUrl}" class="btn" target="_blank">
-              🚀 Accept & Claim Credential
+            <a href="${options.claimUrl}" class="btn" style="background: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%); margin-bottom: 12px;">
+              🚀 Claim Your Credential
             </a>
+            <div style="margin-top: 8px;">
+              <a href="${env.APP_URL}/proofly.apk" style="color: #64748B; font-weight: 600; font-size: 13px; text-decoration: underline;">
+                📥 Download Proofly Android App (APK)
+              </a>
+            </div>
           </div>
 
           <div class="token-box">
-            <div class="token-label">Or Claim in the Proofly Mobile App</div>
-            <div style="font-size: 12px; color: #475569; margin-bottom: 6px;">Open the <strong>Claim</strong> tab and enter your claim token:</div>
+            <div class="token-label">Claim Token for Proofly App</div>
+            <div style="font-size: 12px; color: #475569; margin-bottom: 6px;">Open the <strong>Claim</strong> tab in your app and paste:</div>
             <div class="token-val mono">${claimToken}</div>
           </div>
 

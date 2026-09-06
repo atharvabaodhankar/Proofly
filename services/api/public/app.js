@@ -26,11 +26,11 @@ tabs.forEach((btn) => {
   });
 });
 
-// Check URL params for direct actions (e.g. ?verify=CERT-... or ?claim=...)
+// Check URL path or query params for direct actions (e.g. /verify/CERT-... or /claim/<token>)
 window.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const verifyParam = urlParams.get('verify');
-  const claimParam = urlParams.get('claim');
+  const verifyParam = urlParams.get('verify') || (window.location.pathname.startsWith('/verify/') ? window.location.pathname.replace('/verify/', '') : null);
+  const claimParam = urlParams.get('claim') || (window.location.pathname.startsWith('/claim/') ? window.location.pathname.replace('/claim/', '') : null);
 
   if (currentToken) {
     await fetchCurrentUser();
@@ -46,6 +46,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('[data-tab="claim-tab"]').click();
     document.getElementById('claim-token-input').value = claimParam;
     performClaimInspect(claimParam);
+
+    // Auto-attempt launching mobile app on mobile browsers
+    if (/Android/i.test(navigator.userAgent)) {
+      setTimeout(() => {
+        window.location.href = `proofly://claim/${claimParam}`;
+      }, 500);
+    }
   }
 });
 
@@ -589,6 +596,11 @@ btnCheckClaim?.addEventListener('click', () => {
 async function performClaimInspect(token) {
   claimPreview.classList.remove('hidden');
   claimPreview.innerHTML = `<div class="text-center py-4">Checking invitation token...</div>`;
+
+  const btnOpenAppClaim = document.getElementById('btn-open-app-claim');
+  if (btnOpenAppClaim) {
+    btnOpenAppClaim.href = `proofly://claim/${token}`;
+  }
 
   try {
     const res = await fetch(`${API_BASE}/claims/${token}`);

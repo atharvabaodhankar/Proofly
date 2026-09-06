@@ -6,5 +6,6 @@ const router = Router();
 
 router.get('/:token', ClaimsController.inspectClaimToken);
 router.post('/:token/accept', authenticate, ClaimsController.acceptClaim);
+router.post('/:token/claim', authenticate, ClaimsController.acceptClaim);
 
 export const claimRoutes = router;
