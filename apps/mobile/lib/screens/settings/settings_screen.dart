@@ -122,18 +122,24 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // User Profile Header Card
+            // Top Hero Profile Header Card
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(22),
               decoration: BoxDecoration(
-                color: isDark ? AppColors.surfaceDark : Colors.white,
+                gradient: LinearGradient(
+                  colors: isDark
+                      ? [const Color(0xFF1E293B), const Color(0xFF0F172A)]
+                      : [Colors.white, const Color(0xFFF8FAFC)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.02),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
+                    color: Colors.black.withValues(alpha: 0.04),
+                    blurRadius: 16,
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
@@ -142,12 +148,25 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundColor: AppColors.primaryContainer,
-                        child: Text(
-                          initials,
-                          style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: const LinearGradient(
+                            colors: [AppColors.cyanAccent, AppColors.primary],
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius: 28,
+                          backgroundColor: isDark ? const Color(0xFF0B0F19) : Colors.white,
+                          child: Text(
+                            initials,
+                            style: TextStyle(
+                              color: isDark ? AppColors.cyanAccent : AppColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -160,17 +179,21 @@ class SettingsScreen extends StatelessWidget {
                             Text(user?.email ?? 'No email linked', style: AppTypography.bodyMd(isDark).copyWith(fontSize: 13)),
                             const SizedBox(height: 6),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                               decoration: BoxDecoration(
                                 color: isIssuer ? AppColors.primary.withValues(alpha: 0.15) : AppColors.verifiedGreenBg,
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: isIssuer ? AppColors.primary.withValues(alpha: 0.3) : AppColors.verifiedGreen.withValues(alpha: 0.3),
+                                ),
                               ),
                               child: Text(
                                 isIssuer ? 'ORGANIZATION ADMIN' : 'RECIPIENT LEARNER',
                                 style: TextStyle(
                                   color: isIssuer ? AppColors.primary : AppColors.verifiedGreen,
                                   fontSize: 10,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                             ),
@@ -178,7 +201,7 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.edit_rounded, size: 20),
+                        icon: const Icon(Icons.edit_outlined, size: 20),
                         onPressed: () => _showEditProfileDialog(context, authProvider, isDark),
                       ),
                     ],
@@ -186,53 +209,62 @@ class SettingsScreen extends StatelessWidget {
 
                   if (isIssuer && activeOrg != null) ...[
                     const SizedBox(height: 20),
-                    Text('ACTIVE ISSUING ORGANIZATION', style: AppTypography.labelSm(isDark).copyWith(fontSize: 10)),
-                    const SizedBox(height: 8),
+                    const Divider(),
+                    const SizedBox(height: 12),
+                    Text('ACTIVE ISSUING INSTITUTION', style: AppTypography.labelSm(isDark).copyWith(fontSize: 10, letterSpacing: 1.5)),
+                    const SizedBox(height: 10),
                     Container(
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.surfaceContainerDark : AppColors.surfaceLowLight,
-                        borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0)),
                       ),
                       child: Row(
                         children: [
                           Container(
-                            width: 38,
-                            height: 38,
+                            width: 44,
+                            height: 44,
                             decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.primary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
                             ),
-                            child: (activeOrg.logoUrl != null && activeOrg.logoUrl!.isNotEmpty)
-                                ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(activeOrg.logoUrl!, fit: BoxFit.contain),
-                                  )
-                                : Center(
-                                    child: Text(
-                                      activeOrg.name.isNotEmpty ? activeOrg.name[0].toUpperCase() : 'O',
-                                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
-                                    ),
-                                  ),
+                            child: const Center(
+                              child: Text('🏢', style: TextStyle(fontSize: 20)),
+                            ),
                           ),
-                          const SizedBox(width: 12),
+                          const SizedBox(width: 14),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   activeOrg.name,
-                                  style: AppTypography.bodyLg(isDark).copyWith(fontSize: 14, fontWeight: FontWeight.bold),
+                                  style: AppTypography.bodyLg(isDark).copyWith(fontWeight: FontWeight.bold, fontSize: 15),
                                 ),
                                 Text(
                                   '@${activeOrg.slug}',
-                                  style: TextStyle(fontSize: 11, color: isDark ? AppColors.outlineDark : AppColors.outlineLight),
+                                  style: TextStyle(color: isDark ? AppColors.cyanAccent : AppColors.primary, fontSize: 12, fontWeight: FontWeight.w600),
                                 ),
                               ],
                             ),
                           ),
-                          const Icon(Icons.verified_rounded, color: AppColors.verifiedGreen, size: 20),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: AppColors.verifiedGreenBg,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.verified_rounded, size: 12, color: AppColors.verifiedGreen),
+                                SizedBox(width: 4),
+                                Text('Verified', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.verifiedGreen)),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -242,8 +274,8 @@ class SettingsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Preferences
-            Text('PREFERENCES', style: AppTypography.labelSm(isDark)),
+            // Theme & Preferences Section
+            Text('APP PREFERENCES', style: AppTypography.labelSm(isDark).copyWith(letterSpacing: 1.5)),
             const SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
@@ -251,25 +283,25 @@ class SettingsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: isDark ? AppColors.outlineVariantDark : const Color(0xFFE2E8F0)),
               ),
-              child: Column(
-                children: [
-                  SwitchListTile(
-                    secondary: const Icon(Icons.dark_mode_rounded, color: AppColors.primary),
-                    title: Text('Dark Mode', style: AppTypography.bodyLg(isDark).copyWith(fontSize: 14)),
-                    subtitle: Text(themeProvider.isDarkMode ? 'Dark luxury theme active' : 'Clean light theme active', style: const TextStyle(fontSize: 12)),
-                    value: themeProvider.isDarkMode,
-                    activeColor: AppColors.primary,
-                    onChanged: (_) => themeProvider.toggleTheme(),
-                  ),
-                ],
+              child: SwitchListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                title: Text('Dark Mode', style: AppTypography.bodyLg(isDark).copyWith(fontWeight: FontWeight.w600)),
+                subtitle: Text('Switch between light and dark themes', style: AppTypography.bodyMd(isDark).copyWith(fontSize: 12)),
+                secondary: Icon(
+                  isDark ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+                  color: isDark ? AppColors.cyanAccent : Colors.amber.shade700,
+                ),
+                value: isDark,
+                onChanged: (_) => themeProvider.toggleTheme(),
               ),
             ),
             const SizedBox(height: 24),
 
-            // Security & Blockchain
-            Text('BLOCKCHAIN & NETWORK', style: AppTypography.labelSm(isDark)),
+            // Blockchain Diagnostics Section
+            Text('BLOCKCHAIN DIAGNOSTICS', style: AppTypography.labelSm(isDark).copyWith(letterSpacing: 1.5)),
             const SizedBox(height: 10),
             Container(
+              padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
                 color: isDark ? AppColors.surfaceDark : Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -277,86 +309,114 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  ListTile(
-                    leading: const Icon(Icons.hub_rounded, color: AppColors.secondary),
-                    title: Text('Network Status', style: AppTypography.bodyLg(isDark).copyWith(fontSize: 14)),
-                    subtitle: const Text('Polygon Amoy (Chain 80002)', style: TextStyle(fontSize: 12)),
-                    trailing: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.verifiedGreenBg,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Text('ONLINE ✓', style: TextStyle(color: AppColors.verifiedGreen, fontWeight: FontWeight.bold, fontSize: 11)),
+                  _buildDiagnosticRow(
+                    context: context,
+                    isDark: isDark,
+                    label: 'Network',
+                    value: 'Polygon Amoy (Chain 80002)',
+                    statusColor: AppColors.verifiedGreen,
+                  ),
+                  const Divider(height: 20),
+                  _buildDiagnosticRow(
+                    context: context,
+                    isDark: isDark,
+                    label: 'Smart Contract',
+                    value: '0xfb960EB42729f84C48040eBe264b11473d926006',
+                    copyable: true,
+                    actionButton: IconButton(
+                      icon: const Icon(Icons.open_in_new_rounded, size: 16, color: AppColors.cyanAccent),
+                      onPressed: () => _launchUrl('https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006'),
                     ),
                   ),
-                  const Divider(height: 1),
-                  ListTile(
-                    leading: const Icon(Icons.code_rounded, color: AppColors.secondary),
-                    title: Text('Registry Contract', style: AppTypography.bodyLg(isDark).copyWith(fontSize: 14)),
-                    subtitle: const Text('0xfb96...6006', style: TextStyle(fontFamily: 'JetBrains Mono', fontSize: 12)),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.copy_rounded, size: 16),
-                          onPressed: () {
-                            Clipboard.setData(const ClipboardData(text: '0xfb960EB42729f84C48040eBe264b11473d926006'));
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Smart Contract address copied!')),
-                            );
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                          onPressed: () {
-                            _launchUrl('https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006');
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(height: 1),
-                  ListTile(
-                    leading: const Icon(Icons.account_balance_wallet_rounded, color: AppColors.secondary),
-                    title: Text('Relayer Issuer Address', style: AppTypography.bodyLg(isDark).copyWith(fontSize: 14)),
-                    subtitle: const Text('0x808d...fd45', style: TextStyle(fontFamily: 'JetBrains Mono', fontSize: 12)),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.copy_rounded, size: 16),
-                      onPressed: () {
-                        Clipboard.setData(const ClipboardData(text: '0x808dB6D304af634b19DFB5285F39bbcDE48Cfd45'));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Relayer address copied!')),
-                        );
-                      },
-                    ),
+                  const Divider(height: 20),
+                  _buildDiagnosticRow(
+                    context: context,
+                    isDark: isDark,
+                    label: 'Issuer Relayer',
+                    value: '0x808d98d286ad5ec173d12d4cfcc66a3d6cb4fd45',
+                    copyable: true,
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 28),
+            const SizedBox(height: 32),
 
             // Sign Out Button
             SizedBox(
               width: double.infinity,
-              height: 52,
               child: OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: AppColors.error, width: 1.5),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                ),
                 icon: const Icon(Icons.logout_rounded, color: AppColors.error),
-                label: const Text(
-                  'Sign Out',
-                  style: TextStyle(color: AppColors.error, fontWeight: FontWeight.bold, fontSize: 15),
+                label: const Text('Sign Out', style: TextStyle(color: AppColors.error, fontWeight: FontWeight.bold, fontSize: 15)),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: AppColors.error),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 onPressed: () => _showLogoutDialog(context, authProvider, isDark),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
+
+            // App Version Footer
+            Center(
+              child: Text(
+                'Proofly Protocol v1.0.0 • Polygon Amoy',
+                style: AppTypography.labelSm(isDark).copyWith(fontSize: 11),
+              ),
+            ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDiagnosticRow({
+    required BuildContext context,
+    required bool isDark,
+    required String label,
+    required String value,
+    Color? statusColor,
+    bool copyable = false,
+    Widget? actionButton,
+  }) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(label, style: AppTypography.labelSm(isDark).copyWith(fontSize: 11)),
+              const SizedBox(height: 4),
+              Text(
+                value,
+                style: AppTypography.bodyMd(isDark).copyWith(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: statusColor ?? (isDark ? AppColors.textMainDark : AppColors.textMainLight),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+        if (copyable)
+          IconButton(
+            icon: const Icon(Icons.copy_rounded, size: 16),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: value));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('$label copied to clipboard!')),
+              );
+            },
+          ),
+        if (actionButton != null) ...[
+          const SizedBox(width: 8),
+          actionButton,
+        ],
+      ],
     );
   }
 }
