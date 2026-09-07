@@ -222,27 +222,27 @@ async function performVerification(certificateId) {
       <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;">
         <div style="flex:1; min-width:260px;">
           ${statusBadge}
-          <h2 style="margin: 12px 0 6px;">${data.title || 'Digital Certificate'}</h2>
-          <p style="font-size:16px; color: #38BDF8; font-weight: 600; margin-bottom: 16px;">Issued to: ${data.recipientName || 'N/A'}</p>
+          <h2 style="margin: 14px 0 6px; font-size: 22px; font-weight: 800; color: var(--text-main);">${data.title || 'Digital Certificate'}</h2>
+          <p style="font-size:16px; color: var(--primary); font-weight: 700; margin-bottom: 16px;">Issued to: ${data.recipientName || 'N/A'}</p>
         </div>
 
-        <div style="background: white; padding: 10px; border-radius: 14px; display:flex; flex-direction:column; align-items:center; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+        <div style="background: white; padding: 10px; border-radius: 14px; border: 1px solid var(--border-color); display:flex; flex-direction:column; align-items:center; box-shadow: var(--shadow-sm);">
           <div id="verify-qr-container"></div>
-          <span style="color: #1E293B; font-size: 10px; font-weight: 700; margin-top: 6px;">SCAN TO VERIFY</span>
+          <span style="color: var(--text-dim); font-size: 10px; font-weight: 800; margin-top: 6px; letter-spacing: 0.5px;">SCAN TO VERIFY</span>
         </div>
       </div>
 
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0;">
         <div class="stat-card">
           <div class="stat-title">Certificate Number</div>
-          <div class="stat-value mono" style="font-size: 15px;">${data.certificateNumber}</div>
+          <div class="stat-value mono" style="font-size: 14px; color: var(--primary);">${data.certificateNumber}</div>
         </div>
         <div class="stat-card">
           <div class="stat-title">Issuing Organization</div>
-          <div class="stat-value" style="font-size: 15px; display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+          <div class="stat-value" style="font-size: 14px; display: flex; align-items: center; gap: 8px; margin-top: 6px;">
             ${
               data.organization?.logo_url
-                ? `<img src="${data.organization.logo_url}" style="width: 26px; height: 26px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.08); padding: 2px;" alt="Logo" />`
+                ? `<img src="${data.organization.logo_url}" style="width: 24px; height: 24px; object-fit: contain; border-radius: 6px; background: #EEF2FF; padding: 2px;" alt="Logo" />`
                 : ''
             }
             <span>${data.organization ? data.organization.name : 'Verified Issuer'}</span>
@@ -250,19 +250,33 @@ async function performVerification(certificateId) {
         </div>
         <div class="stat-card">
           <div class="stat-title">Issue Date</div>
-          <div class="stat-value" style="font-size: 15px;">${data.issueDate}</div>
+          <div class="stat-value" style="font-size: 14px;">${data.issueDate}</div>
         </div>
       </div>
 
-      <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 10px; margin-top: 16px; font-size: 13px;">
-        <div style="margin-bottom: 6px;"><strong>SHA-256 Document Hash:</strong> <span class="mono" style="color: #94A3B8; word-break: break-all;">${data.documentHash || 'Anchored on-chain'}</span></div>
-        <div><strong>Polygon Amoy Tx:</strong> 
+      <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 18px; border-radius: 14px; margin-top: 16px; font-size: 13px;">
+        <div style="margin-bottom: 8px;"><strong>SHA-256 Document Hash:</strong> <span class="mono" style="color: var(--text-muted); word-break: break-all;">${data.documentHash || 'Anchored on-chain'}</span></div>
+        <div style="margin-bottom: 8px;"><strong>Polygon Amoy Smart Contract:</strong> 
+          <a href="https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">0xfb960EB4...6006 (Amoy)</a>
+        </div>
+        <div><strong>Blockchain Proof:</strong> 
           ${
             data.blockchain?.txHash
-              ? `<a href="${data.blockchain.polygonscanUrl}" target="_blank" style="color: #38BDF8; text-decoration: underline;">${data.blockchain.txHash.slice(0, 16)}... (View on Polygonscan)</a>`
-              : '<span class="text-muted">Direct Registry Record</span>'
+              ? `<a href="${data.blockchain.polygonscanUrl}" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">${data.blockchain.txHash.slice(0, 20)}... (View on Polygonscan)</a>`
+              : '<span class="text-muted">Anchored On-Chain</span>'
           }
         </div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="/api/v1/certificates/${data.id || data.certificateNumber}/download" class="btn btn-primary" target="_blank">
+          📄 Download Certificate PDF
+        </a>
+        ${
+          data.blockchain?.polygonscanUrl
+            ? `<a href="${data.blockchain.polygonscanUrl}" target="_blank" class="btn btn-outline">🔗 View on Polygonscan</a>`
+            : ''
+        }
       </div>
     `;
 
@@ -721,8 +735,29 @@ function initHeroQr() {
   }
 }
 
+// Initialize APK Download QR Code on Load
+function initDownloadQr() {
+  const downloadContainer = document.getElementById('download-qr-container');
+  if (downloadContainer && typeof QRCode !== 'undefined') {
+    downloadContainer.innerHTML = '';
+    new QRCode(downloadContainer, {
+      text: `${window.location.origin}/proofly.apk`,
+      width: 130,
+      height: 130,
+      colorDark: '#0F172A',
+      colorLight: '#FFFFFF',
+      correctLevel: QRCode.CorrectLevel.M,
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initHeroQr, 200);
+  setTimeout(() => {
+    initHeroQr();
+    initDownloadQr();
+  }, 200);
 });
 initHeroQr();
+initDownloadQr();
+
 
