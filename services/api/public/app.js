@@ -201,8 +201,11 @@ async function performVerification(certificateId) {
 
     if (!res.ok && data.status === 'NOT_FOUND') {
       verifyResult.innerHTML = `
-        <div class="verify-badge-large status-invalid">❌ Certificate Not Found</div>
-        <p class="text-muted">No credential matching ID <strong>${certificateId}</strong> was found on Proofly or Polygon Amoy.</p>
+        <div class="status-invalid" style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:20px; font-weight:700; font-size:12px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          CERTIFICATE NOT FOUND
+        </div>
+        <p class="text-muted" style="margin-top:10px;">No credential matching ID <strong>${certificateId}</strong> was found on Proofly or Polygon Amoy.</p>
       `;
       return;
     }
@@ -211,10 +214,10 @@ async function performVerification(certificateId) {
     const isValid = data.isValid && !isRevoked;
 
     const statusBadge = isRevoked
-      ? `<span class="verify-badge-large status-invalid">⚠️ CERTIFICATE REVOKED</span>`
+      ? `<span class="status-pill status-invalid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> CERTIFICATE REVOKED</span>`
       : isValid
-      ? `<span class="verify-badge-large status-valid">✅ CRYPTOGRAPHICALLY VALID & ANCHORED</span>`
-      : `<span class="verify-badge-large status-pending">⏳ PENDING CONFIRMATION</span>`;
+      ? `<span class="status-pill status-valid"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> CRYPTOGRAPHICALLY VALID & ANCHORED</span>`
+      : `<span class="status-pill amoy-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> PENDING CONFIRMATION</span>`;
 
     const qrUrl = `${window.location.origin}/verify/${data.certificateNumber}`;
 
@@ -353,10 +356,13 @@ async function handlePdfFile(file) {
     }
 
     verifyResult.innerHTML = `
-      <div class="verify-badge-large status-valid">✅ FILE INTEGRITY VERIFIED (MATCHES BLOCKCHAIN PROOF)</div>
-      <h3>${data.title}</h3>
-      <p style="color:#38BDF8; font-weight:600;">Recipient: ${data.recipientName}</p>
-      <div class="mono" style="background:rgba(0,0,0,0.3); padding:12px; border-radius:8px; margin-top:12px; font-size:12px; word-break:break-all;">
+      <div class="status-valid" style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:20px; font-weight:700; font-size:12px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        FILE INTEGRITY VERIFIED (MATCHES BLOCKCHAIN PROOF)
+      </div>
+      <h3 style="margin-top:12px;">${data.title}</h3>
+      <p style="color:var(--primary); font-weight:600;">Recipient: ${data.recipientName}</p>
+      <div class="mono" style="background:#F8FAFC; border:1px solid var(--border-color); padding:12px; border-radius:8px; margin-top:12px; font-size:12px; word-break:break-all;">
         Computed SHA-256: ${hashHex}
       </div>
     `;
@@ -435,7 +441,7 @@ issueForm?.addEventListener('submit', async (e) => {
       throw new Error(errMsg);
     }
 
-    alert(`🎉 Certificate ${data.certificate.certificate_number} created successfully!\n\nClaim Link:\n${data.certificate.claimUrl}`);
+    alert(`Certificate ${data.certificate.certificate_number} created successfully!\n\nClaim Link:\n${data.certificate.claimUrl}`);
     issueModal.classList.add('hidden');
     issueForm.reset();
     loadIssuerCertificates();
@@ -486,7 +492,7 @@ orgLogoInput?.addEventListener('change', async (e) => {
 
     currentOrg.logo_url = data.logo_url;
     renderOrgProfile();
-    alert('🎉 Organization logo uploaded to AWS S3 successfully! It will now automatically appear on all generated certificates.');
+    alert('Organization logo uploaded to AWS S3 successfully. It will now appear on all issued certificates.');
   } catch (err) {
     alert(`Logo Upload Failed: ${err.message}`);
   } finally {
