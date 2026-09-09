@@ -4,12 +4,31 @@
 .env.*.local
 *.env
 
-# Node Dependencies
+# Scripts & Rewriters
+git_date_rewriter.py
+*.pyc
+__pycache__/
+
+# Node Dependencies & Build Output
 node_modules/
 dist/
 build/
 coverage/
 .turbo/
+
+# Large Binaries & Mobile Builds
+*.apk
+*.aab
+services/api/public/*.apk
+apps/mobile/build/
+apps/mobile/.dart_tool/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+# Local Uploads & Storage
+storage_uploads/
 
 # Hardhat & Foundry Artifacts
 artifacts/
@@ -29,4 +48,4 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
-DEPLOYMENT_GUIDE.md
+.impeccable/
