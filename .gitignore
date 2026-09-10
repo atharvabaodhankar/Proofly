@@ -1,7 +1,6 @@
 # Environment Variables
 .env
-.env.local
-.env.*.local
+.env.*
 *.env
 
 # Scripts & Rewriters
@@ -16,7 +15,7 @@ build/
 coverage/
 .turbo/
 
-# Large Binaries & Mobile Builds
+# Flutter & Mobile Build Artifacts
 *.apk
 *.aab
 services/api/public/*.apk
@@ -26,6 +25,26 @@ apps/mobile/.dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+
+# Android / Gradle / Kotlin Build Caches
+.gradle/
+**/.gradle/
+.kotlin/
+**/.kotlin/
+**/local.properties
+**/GeneratedPluginRegistrant.*
+**/generated_plugin*
+**/generated_plugins*
+apps/mobile/android/app/build/
+apps/mobile/android/.gradle/
+apps/mobile/android/.kotlin/
+
+# iOS / macOS / Linux / Windows Generated Files
+**/Pods/
+**/.symlinks/
+**/Generated.xcconfig
+**/flutter_export_environment.sh
+**/DerivedData/
 
 # Local Uploads & Storage
 storage_uploads/
