@@ -1,6 +1,6 @@
 class ApiConstants {
-  // Configured base URL for API (can be overridden with --dart-define=API_URL=https://...)
-  static const String baseUrl = String.fromEnvironment('API_URL', defaultValue: 'http://localhost:4000/api/v1');
+  // Configured base URL for API (defaults to live production, can be overridden with --dart-define=API_URL=https://...)
+  static const String baseUrl = String.fromEnvironment('API_URL', defaultValue: 'https://proofly-api.vercel.app/api/v1');
   static String get webAppUrl => baseUrl.replaceAll('/api/v1', '');
 
   // Auth endpoints

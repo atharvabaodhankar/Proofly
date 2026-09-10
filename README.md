@@ -5,7 +5,7 @@
 
 ---
 
-[![Live Web Application](https://img.shields.io/badge/Live_Demo-proofly--liard.vercel.app-6366F1?style=for-the-badge&logo=vercel)](https://proofly-liard.vercel.app)
+[![Live Web Application](https://img.shields.io/badge/Live_Demo-proofly--api.vercel.app-6366F1?style=for-the-badge&logo=vercel)](https://proofly-api.vercel.app)
 [![Network](https://img.shields.io/badge/Polygon_Amoy-Chain_ID:_80002-8B5CF6?style=for-the-badge&logo=polygon)](https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006)
 [![Flutter](https://img.shields.io/badge/Flutter-Mobile_App-02569B?style=for-the-badge&logo=flutter)](https://flutter.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Backend_&_Shared-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
@@ -203,7 +203,7 @@ flutter pub get
 flutter run --dart-define=API_URL=http://localhost:4000/api/v1
 
 # Build release APK
-flutter build apk --release --dart-define=API_URL=https://proofly-liard.vercel.app/api/v1
+flutter build apk --release --dart-define=API_URL=https://proofly-api.vercel.app/api/v1
 ```
 
 ---
