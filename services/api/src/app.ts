@@ -35,12 +35,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-// Local storage static file serving
-const storageDir = path.resolve(process.cwd(), 'storage_uploads');
-if (!fs.existsSync(storageDir)) {
-  fs.mkdirSync(storageDir, { recursive: true });
+// Local storage static file serving (safe for read-only serverless environments)
+try {
+  const storageDir = path.resolve(process.cwd(), 'storage_uploads');
+  if (!fs.existsSync(storageDir)) {
+    fs.mkdirSync(storageDir, { recursive: true });
+  }
+  app.use('/api/v1/storage', express.static(storageDir));
+} catch {
+  // Read-only serverless environment fallback
 }
-app.use('/api/v1/storage', express.static(storageDir));
 
 // Serve Web UI
 const publicDir = path.resolve(__dirname, '../public');

@@ -25,10 +25,10 @@ const envSchema = z.object({
   APP_URL: z.string().default('http://localhost:3000'),
   JWT_SECRET: z.string().default('proofly_jwt_secret_development_secure_key_2026'),
 
-  // Supabase
-  SUPABASE_URL: z.string().url(),
-  SUPABASE_ANON_KEY: z.string().min(1),
-  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
+  // Supabase (Provided via environment variables)
+  SUPABASE_URL: z.string().default(''),
+  SUPABASE_ANON_KEY: z.string().default(''),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().default(''),
 
   // Blockchain (Polygon Amoy V1)
   CHAIN_ID: z.string().default('80002').transform(Number),
