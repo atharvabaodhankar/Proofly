@@ -15,6 +15,7 @@ router.get('/organizations/:organizationId/certificates', authenticate, Certific
 
 // Single certificate retrieval & revocation
 router.get('/:id/pdf', CertificateController.downloadPdf);
+router.get('/:id/download', CertificateController.downloadPdf);
 router.get('/:id', CertificateController.getById);
 router.post('/:id/revoke', authenticate, validateBody(RevokeCertificateSchema), CertificateController.revoke);
 

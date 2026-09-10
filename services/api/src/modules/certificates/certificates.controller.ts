@@ -229,7 +229,7 @@ export class CertificateController {
     try {
       const { id } = req.params;
       const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-      let certQuery = supabaseAdmin.from('certificates').select('*');
+      let certQuery = supabaseAdmin.from('certificates').select('*, organizations(id, name, slug, logo_url)');
       if (isUuid) {
         certQuery = certQuery.eq('id', id);
       } else {
@@ -239,8 +239,34 @@ export class CertificateController {
       if (error || !cert) {
         return res.status(404).json({ error: 'Certificate not found' });
       }
-      const downloadUrl = await storageService.getDownloadUrl(cert.s3_object_key, 3600);
-      return res.redirect(downloadUrl);
+
+      // If stored in S3, attempt redirect
+      if (cert.s3_object_key && env.STORAGE_PROVIDER === 's3' && env.AWS_ACCESS_KEY_ID) {
+        try {
+          const downloadUrl = await storageService.getDownloadUrl(cert.s3_object_key, 3600);
+          if (downloadUrl && downloadUrl.startsWith('http')) {
+            return res.redirect(downloadUrl);
+          }
+        } catch (s3Err) {
+          console.warn('S3 redirect error, falling back to dynamic PDF generation:', s3Err);
+        }
+      }
+
+      // Generate dynamic vector PDF on-the-fly
+      const orgName = (cert.organizations && cert.organizations.name) || 'Proofly Verified Organization';
+      const { pdfBuffer } = await PdfService.generateCertificate({
+        certificateNumber: cert.certificate_number,
+        recipientName: cert.recipient_name,
+        title: cert.title,
+        description: cert.description || '',
+        issueDate: cert.issue_date,
+        organizationName: orgName,
+        verifyUrl: `${env.APP_URL}/verify/${cert.certificate_number}`,
+      });
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename="${cert.certificate_number}.pdf"`);
+      return res.send(pdfBuffer);
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }

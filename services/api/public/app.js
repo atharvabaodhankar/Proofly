@@ -272,12 +272,16 @@ async function performVerification(certificateId) {
       </div>
 
       <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
-        <a href="/api/v1/certificates/${data.id || data.certificateNumber}/download" class="btn btn-primary" target="_blank">
-          📄 Download Certificate PDF
+        <a href="/api/v1/certificates/${encodeURIComponent(data.certificateNumber || data.id)}/download" class="btn btn-primary" target="_blank" style="display:inline-flex; align-items:center; gap:8px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Certificate PDF
         </a>
         ${
           data.blockchain?.polygonscanUrl
-            ? `<a href="${data.blockchain.polygonscanUrl}" target="_blank" class="btn btn-outline">🔗 View on Polygonscan</a>`
+            ? `<a href="${data.blockchain.polygonscanUrl}" target="_blank" class="btn btn-outline" style="display:inline-flex; align-items:center; gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                View on Polygonscan
+              </a>`
             : ''
         }
       </div>
