@@ -48,6 +48,16 @@ if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
 }
 
+// Direct APK distribution route (serves local file if present, otherwise redirects to GitHub Releases CDN)
+app.get('/proofly.apk', (_req, res) => {
+  const localApkPath = path.resolve(__dirname, '../public/proofly.apk');
+  if (fs.existsSync(localApkPath)) {
+    return res.sendFile(localApkPath);
+  }
+  const apkReleaseUrl = process.env.APK_DOWNLOAD_URL || 'https://github.com/atharvabaodhankar/Proofly/releases/download/v1.0.0/proofly.apk';
+  return res.redirect(apkReleaseUrl);
+});
+
 app.get('/favicon.ico', (_req, res) => res.status(204).end());
 
 // Health check
