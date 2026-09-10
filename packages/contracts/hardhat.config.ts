@@ -7,7 +7,17 @@ import * as path from "path";
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY || process.env.RELAYER_PRIVATE_KEY || "0x0000000000000000000000000000000000000000000000000000000000000001";
+const isValidPrivateKey = (key?: string): boolean => {
+  if (!key) return false;
+  const clean = key.startsWith("0x") ? key.slice(2) : key;
+  return /^[0-9a-fA-F]{64}$/.test(clean);
+};
+
+const rawKey = process.env.PRIVATE_KEY || process.env.RELAYER_PRIVATE_KEY;
+const PRIVATE_KEY = isValidPrivateKey(rawKey)
+  ? (rawKey!.startsWith("0x") ? rawKey! : `0x${rawKey}`)
+  : "0x0000000000000000000000000000000000000000000000000000000000000001";
+
 const POLYGON_AMOY_RPC_URL = process.env.POLYGON_AMOY_RPC_URL || "https://rpc-amoy.polygon.technology";
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "";
 
