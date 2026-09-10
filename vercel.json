@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "outputDirectory": "services/api/public",
   "rewrites": [
     {
       "source": "/api/v1/:path*",
@@ -12,10 +13,6 @@
     {
       "source": "/proofly.apk",
       "destination": "/api/index.ts"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/services/api/public/$1"
     }
   ]
 }
