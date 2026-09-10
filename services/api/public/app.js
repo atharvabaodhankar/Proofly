@@ -23,7 +23,17 @@ tabs.forEach((btn) => {
     if (tabId === 'issuer-tab') {
       loadIssuerCertificates();
     }
+
+    // Close mobile menu on tab selection
+    document.getElementById('nav-collapse')?.classList.remove('open');
   });
+});
+
+// Mobile menu toggle
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const navCollapse = document.getElementById('nav-collapse');
+mobileMenuToggle?.addEventListener('click', () => {
+  navCollapse?.classList.toggle('open');
 });
 
 // Check URL path or query params for direct actions (e.g. /verify/CERT-... or /claim/<token>)

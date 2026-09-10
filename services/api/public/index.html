@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Proofly — Decentralized Credential Verification</title>
   <meta name="description" content="Decentralized digital credential registry and verification protocol anchored on Polygon Amoy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script src="/qrcode.min.js"></script>
 </head>
@@ -16,40 +16,52 @@
   <header class="navbar">
     <div class="nav-container">
       <a href="/" class="logo">
-        <img src="/logo.svg" alt="Proofly Logo" style="width: 28px; height: 28px;" />
+        <img src="/logo.svg" alt="Proofly Logo" class="logo-icon" />
         <span class="brand-name">Proofly</span>
         <span class="badge amoy-badge">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--primary);"></span>
+          <span class="pulse-dot"></span>
           Polygon Amoy
         </span>
       </a>
 
-      <nav class="nav-links">
-        <button class="nav-btn active" data-tab="verify-tab">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Verify
-        </button>
-        <button class="nav-btn" data-tab="issuer-tab">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Issuer Portal
-        </button>
-        <button class="nav-btn" data-tab="claim-tab">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-          Claim
-        </button>
-        <button class="nav-btn" data-tab="download-tab">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          Mobile App
-        </button>
-      </nav>
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
 
-      <div class="nav-auth" id="nav-auth-section">
-        <a href="/proofly.apk" download="proofly.apk" class="btn btn-outline btn-sm" style="color: var(--primary); font-weight: 700;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download APK
-        </a>
-        <button class="btn btn-outline btn-sm" id="btn-login-modal">Sign In</button>
-        <button class="btn btn-primary btn-sm" id="btn-register-modal">Create Account</button>
+      <!-- Navigation & Auth Links -->
+      <div class="nav-collapse" id="nav-collapse">
+        <nav class="nav-links">
+          <button class="nav-btn active" data-tab="verify-tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Verify
+          </button>
+          <button class="nav-btn" data-tab="issuer-tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Issuer Portal
+          </button>
+          <button class="nav-btn" data-tab="claim-tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            Claim
+          </button>
+          <button class="nav-btn" data-tab="download-tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Mobile App
+          </button>
+        </nav>
+
+        <div class="nav-auth" id="nav-auth-section">
+          <a href="/proofly.apk" download="proofly.apk" class="btn btn-outline btn-sm nav-download-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download APK
+          </a>
+          <button class="btn btn-outline btn-sm" id="btn-login-modal">Sign In</button>
+          <button class="btn btn-primary btn-sm" id="btn-register-modal">Create Account</button>
+        </div>
       </div>
     </div>
   </header>
@@ -59,39 +71,49 @@
     <section id="verify-tab" class="tab-content active">
       <div class="hero-section">
         <span class="hero-tag">Cryptographic Trust Layer</span>
-        <h1 class="hero-title">Verify Digital Credentials <br><span class="gradient-text">Anchored on Polygon</span></h1>
+        <h1 class="hero-title">Verify Digital Credentials <br><span class="highlight-text">Anchored on Polygon</span></h1>
         <p class="hero-subtitle">Tamper-evident verification with SHA-256 document hashing and smart contract cryptographic proofs.</p>
 
         <div class="verification-box">
           <div class="search-bar">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="verify-input" placeholder="Enter Certificate ID (e.g. CERT-20260826-XXXXXX) or Document Hash" />
-            <button class="btn btn-primary" id="btn-verify">Verify Proof</button>
+            <div class="search-input-wrapper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="verify-input" placeholder="Enter Certificate ID or Document Hash..." />
+            </div>
+            <button class="btn btn-primary btn-search" id="btn-verify">Verify Proof</button>
           </div>
 
           <div class="drop-zone" id="pdf-drop-zone">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3525CD" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            <p><strong>Drag & drop a Certificate PDF</strong> to calculate & verify its SHA-256 checksum live</p>
+            <div class="drop-zone-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="drop-zone-text">
+              <strong>Drag & drop a Certificate PDF</strong>
+              <span>Instant client-side SHA-256 checksum verification</span>
+            </div>
             <input type="file" id="pdf-file-input" accept="application/pdf" style="display: none;" />
           </div>
 
           <!-- Live QR Code Card for Mobile Testing -->
-          <div class="card mt-4" style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 18px; border-radius: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-            <div style="display: flex; align-items: center; gap: 16px;">
-              <div id="hero-qr-container" style="background: white; padding: 6px; border-radius: 10px; border: 1px solid var(--border-color); width: 88px; height: 88px; display: flex; align-items: center; justify-content: center;">
+          <div class="live-target-card">
+            <div class="live-target-left">
+              <div id="hero-qr-container" class="live-target-qr">
                 <!-- QR generated by JS -->
               </div>
-              <div style="text-align: left;">
-                <span class="badge verified-badge" style="margin-bottom: 2px;">
-                  <span style="width: 5px; height: 5px; border-radius: 50%; background: var(--success);"></span>
+              <div class="live-target-info">
+                <span class="badge verified-badge">
+                  <span class="pulse-dot-success"></span>
                   LIVE TEST TARGET
                 </span>
-                <h4 style="margin: 3px 0; color: var(--text-main); font-size: 14px; font-weight: 700;">Live Certificate Proof</h4>
-                <p class="text-muted" style="font-size: 12.5px; margin: 0;">Scan with Proofly Mobile App to verify on-chain registry in milliseconds.</p>
-                <div class="mono" style="font-size: 11px; color: var(--primary); font-weight: 700; margin-top: 3px;" id="hero-qr-cert-id">CERT-20260826-436B4A</div>
+                <h4>Live Certificate Proof</h4>
+                <p>Scan with Proofly Mobile App to verify on-chain registry in milliseconds.</p>
+                <div class="mono cert-id-tag" id="hero-qr-cert-id">CERT-20260826-436B4A</div>
               </div>
             </div>
-            <button class="btn btn-outline btn-sm" id="btn-copy-hero-qr-url">Copy Link</button>
+            <button class="btn btn-outline btn-sm btn-copy-target" id="btn-copy-hero-qr-url">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Link
+            </button>
           </div>
         </div>
 
@@ -103,36 +125,36 @@
 
     <!-- TAB 2: ISSUER PORTAL -->
     <section id="issuer-tab" class="tab-content">
-      <div class="card mb-4" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div class="portal-header-card">
         <div>
-          <h2 style="font-size: 20px; font-weight: 800;">Organization Issuer Portal</h2>
-          <p class="text-muted" style="margin-top: 2px; font-size: 13.5px;">Issue tamper-proof credentials with automatic SHA-256 hashing, brand logo, and Polygon Amoy anchoring.</p>
+          <h2>Organization Issuer Portal</h2>
+          <p>Issue tamper-proof credentials with automatic SHA-256 hashing, brand logo, and Polygon Amoy anchoring.</p>
         </div>
         <button class="btn btn-primary" id="btn-open-issue-modal">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Issue Certificate
         </button>
       </div>
 
       <!-- Organization Profile & Logo Card -->
-      <div class="card mb-4" id="org-profile-card" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
-        <div style="display:flex; align-items:center; gap:16px;">
-          <div id="org-logo-container" style="width:54px; height:54px; border-radius:12px; background:#EEF2FF; border:1px solid #C7D2FE; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+      <div class="org-profile-card" id="org-profile-card">
+        <div class="org-profile-info">
+          <div id="org-logo-container" class="org-logo-box">
             <span id="org-logo-placeholder">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M3 21h18"/><path d="M9 8h1"/><path d="M9 12h1"/><path d="M9 16h1"/><path d="M14 8h1"/><path d="M14 12h1"/><path d="M14 16h1"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M9 8h1"/><path d="M9 12h1"/><path d="M9 16h1"/><path d="M14 8h1"/><path d="M14 12h1"/><path d="M14 16h1"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>
             </span>
-            <img id="org-logo-img" src="" alt="Org Logo" style="width:100%; height:100%; object-fit:contain; display:none;" />
+            <img id="org-logo-img" src="" alt="Org Logo" style="display:none;" />
           </div>
           <div>
-            <h3 id="org-display-name" style="margin-bottom:2px; font-size:17px; font-weight: 700;">My Organization</h3>
-            <span class="badge" style="background:#EEF2FF; color:var(--primary);" id="org-display-slug">@org-slug</span>
+            <h3 id="org-display-name">My Organization</h3>
+            <span class="badge amoy-badge" id="org-display-slug">@org-slug</span>
           </div>
         </div>
 
-        <div style="display:flex; align-items:center; gap:10px;">
+        <div class="org-profile-actions">
           <input type="file" id="org-logo-file-input" accept="image/png, image/jpeg, image/webp, image/svg+xml" style="display:none;" />
           <button class="btn btn-outline btn-sm" id="btn-upload-logo-trigger">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             Upload Logo (AWS S3)
           </button>
         </div>
@@ -141,22 +163,25 @@
       <div class="grid-stats">
         <div class="stat-card">
           <div class="stat-title">Network</div>
-          <div class="stat-value" style="color: var(--primary);">Polygon Amoy (80002)</div>
+          <div class="stat-value">Polygon Amoy (80002)</div>
         </div>
         <div class="stat-card">
           <div class="stat-title">Storage Layer</div>
-          <div class="stat-value">AWS S3 Signed Storage</div>
+          <div class="stat-value">AWS S3 Signed Vault</div>
         </div>
         <div class="stat-card">
           <div class="stat-title">Smart Contract</div>
-          <div class="stat-value mono" style="font-size: 14px; margin-top: 6px;">0xfb96...6006</div>
+          <div class="stat-value mono">0xfb96...6006</div>
         </div>
       </div>
 
-      <div class="card table-card">
+      <div class="table-card">
         <div class="table-header">
-          <h3 style="font-size: 15px; font-weight: 700;">Issued Credentials</h3>
-          <button class="btn btn-sm btn-outline" id="btn-refresh-certs">Refresh List</button>
+          <h3>Issued Credentials</h3>
+          <button class="btn btn-sm btn-outline" id="btn-refresh-certs">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            Refresh
+          </button>
         </div>
         <div class="table-responsive">
           <table class="data-table" id="certs-table">
@@ -173,7 +198,7 @@
             </thead>
             <tbody id="certs-table-body">
               <tr>
-                <td colspan="7" class="text-center py-4 text-muted">Please log in to view and issue certificates for your organization.</td>
+                <td colspan="7" class="empty-table-row">Please log in to view and issue certificates for your organization.</td>
               </tr>
             </tbody>
           </table>
@@ -183,19 +208,19 @@
 
     <!-- TAB 3: CLAIM PORTAL -->
     <section id="claim-tab" class="tab-content">
-      <div style="max-width: 640px; margin: 0 auto;">
+      <div class="claim-container">
         <!-- Mobile App Bridging Card -->
-        <div class="card mb-4" style="background: #F8FAFC; border: 1.5px solid #C7D2FE; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-          <div style="display: flex; align-items: center; gap: 14px;">
-            <div style="background: var(--primary); color: white; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="app-bridge-card">
+          <div class="app-bridge-left">
+            <div class="app-bridge-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <h4 style="margin: 0; font-size: 15px; color: var(--text-main); font-weight: 700;">Proofly Mobile App</h4>
-              <p class="text-muted" style="margin: 2px 0 0; font-size: 12.5px;">Claim credentials directly into your personal on-chain wallet.</p>
+              <h4>Proofly Mobile App</h4>
+              <p>Claim credentials directly into your personal on-chain wallet.</p>
             </div>
           </div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <div class="app-bridge-actions">
             <a id="btn-open-app-claim" href="proofly://claim" class="btn btn-primary btn-sm">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
               Open in App
@@ -207,20 +232,20 @@
           </div>
         </div>
 
-        <div class="card">
-          <span class="badge verified-badge" style="margin-bottom: 8px;">Claim Invitation</span>
-          <h2 style="font-size: 20px; font-weight: 800; margin-top: 4px;">Claim Credential</h2>
-          <p class="text-muted" style="font-size: 13.5px;">Enter the 64-character token from your invitation email to view, download, and permanently link your credential to your account.</p>
+        <div class="card claim-card">
+          <span class="badge verified-badge">Claim Invitation</span>
+          <h2>Claim Credential</h2>
+          <p class="claim-subtitle">Enter the 64-character token from your invitation email to view, download, and permanently link your credential to your account.</p>
 
           <div class="form-group mt-4">
             <label>Claim Token</label>
-            <div style="display: flex; gap: 8px;">
-              <input type="text" id="claim-token-input" placeholder="Paste 64-character token..." style="flex: 1;" />
+            <div class="claim-input-group">
+              <input type="text" id="claim-token-input" placeholder="Paste 64-character token..." />
               <button class="btn btn-primary" id="btn-check-claim">Inspect Token</button>
             </div>
           </div>
 
-          <div id="claim-preview" class="claim-preview-box hidden" style="margin-top: 18px;">
+          <div id="claim-preview" class="claim-preview-box hidden">
             <!-- Populated dynamically -->
           </div>
         </div>
@@ -230,31 +255,31 @@
     <!-- TAB 4: GET MOBILE APP (SHOWCASE & DIRECT APK DOWNLOAD) -->
     <section id="download-tab" class="tab-content">
       <div class="download-hero">
-        <div style="max-width: 520px;">
+        <div class="download-hero-content">
           <span class="hero-tag">Mobile Application</span>
-          <h1 style="font-family: var(--font-heading); font-size: 34px; font-weight: 800; line-height: 1.2; color: var(--text-main); margin-bottom: 12px;">
-            Proofly for Mobile <br><span class="gradient-text">Android & iOS</span>
+          <h1 class="download-hero-title">
+            Proofly for Mobile <br><span class="highlight-text">Android & iOS</span>
           </h1>
-          <p class="text-muted" style="font-size: 14.5px; line-height: 1.6; margin-bottom: 22px;">
+          <p class="download-hero-desc">
             Scan dynamic QR certificates on-chain in milliseconds, manage your digital credential wallet, and download verified PDFs offline.
           </p>
 
-          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-            <a href="/proofly.apk" download="proofly.apk" class="btn btn-primary" style="padding: 12px 24px; font-size: 14px;">
+          <div class="download-actions">
+            <a href="/proofly.apk" download="proofly.apk" class="btn btn-primary btn-download-lg">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Download Proofly APK (Direct)
             </a>
-            <span style="font-size: 12px; color: var(--text-dim); font-weight: 600;">v1.0.0 • 123 MB • Android 8.0+</span>
+            <span class="version-tag">v1.0.0 • 70 MB • Android 8.0+</span>
           </div>
         </div>
 
         <!-- Phone Scanner QR Box -->
-        <div class="card" style="background: #F8FAFC; border: 1.5px solid #C7D2FE; padding: 22px; text-align: center; border-radius: 20px; max-width: 220px; box-shadow: var(--shadow-sm);">
-          <div id="download-qr-container" style="background: white; padding: 8px; border-radius: 12px; border: 1px solid var(--border-color); width: 140px; height: 140px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+        <div class="download-qr-card">
+          <div id="download-qr-container" class="download-qr-box">
             <!-- Generated dynamically -->
           </div>
-          <div style="font-size: 12.5px; font-weight: 800; color: var(--text-main);">Scan with Phone</div>
-          <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Instant APK download</div>
+          <div class="qr-label">Scan with Phone</div>
+          <div class="qr-sublabel">Instant APK download</div>
         </div>
       </div>
 
@@ -262,49 +287,49 @@
       <div class="app-features-grid">
         <div class="app-feature-card">
           <div class="app-feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           </div>
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">Camera QR Scanner</h4>
-          <p class="text-muted" style="font-size: 12.5px;">Point your camera at any Proofly certificate to instantly fetch live cryptographic smart contract proofs.</p>
+          <h4>Camera QR Scanner</h4>
+          <p>Point your camera at any Proofly certificate to instantly fetch live cryptographic smart contract proofs.</p>
         </div>
 
         <div class="app-feature-card">
           <div class="app-feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><circle cx="18" cy="14" r="1"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><circle cx="18" cy="14" r="1"/></svg>
           </div>
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">Personal Wallet</h4>
-          <p class="text-muted" style="font-size: 12.5px;">Store and categorize academic degrees, corporate certifications, and licenses in one secure place.</p>
+          <h4>Personal Wallet</h4>
+          <p>Store and categorize academic degrees, corporate certifications, and licenses in one secure place.</p>
         </div>
 
         <div class="app-feature-card">
           <div class="app-feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="18"/><line x1="15" y1="15" x2="12" y2="18"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="18"/><line x1="15" y1="15" x2="12" y2="18"/></svg>
           </div>
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">In-App PDF Downloader</h4>
-          <p class="text-muted" style="font-size: 12.5px;">Export high-resolution Ivory White certificates with embedded Proofly seal and scannable QR verification code.</p>
+          <h4>In-App PDF Downloader</h4>
+          <p>Export high-resolution Ivory White certificates with embedded Proofly seal and scannable QR verification code.</p>
         </div>
 
         <div class="app-feature-card">
           <div class="app-feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="2" y="2" width="8" height="8" rx="2"/><rect x="14" y="2" width="8" height="8" rx="2"/><rect x="14" y="14" width="8" height="8" rx="2"/><rect x="2" y="14" width="8" height="8" rx="2"/><path d="M6 10v4"/><path d="M10 6h4"/><path d="M18 10v4"/><path d="M10 18h4"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="8" height="8" rx="2"/><rect x="14" y="2" width="8" height="8" rx="2"/><rect x="14" y="14" width="8" height="8" rx="2"/><rect x="2" y="14" width="8" height="8" rx="2"/><path d="M6 10v4"/><path d="M10 6h4"/><path d="M18 10v4"/><path d="M10 18h4"/></svg>
           </div>
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">Polygon Amoy Blockchain</h4>
-          <p class="text-muted" style="font-size: 12.5px;">100% decentralized. Validates against the permanent smart contract without relying on centralized databases.</p>
+          <h4>Polygon Amoy Blockchain</h4>
+          <p>100% decentralized. Validates against the permanent smart contract without relying on centralized databases.</p>
         </div>
       </div>
     </section>
 
     <!-- Global Footer -->
     <footer class="site-footer">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; display: inline-block;"></span>
+      <div class="footer-item">
+        <span class="status-indicator"></span>
         <span>Polygon Amoy Network: <strong>100% Operational</strong></span>
       </div>
-      <div>
+      <div class="footer-item">
         <span>Smart Contract: </span>
-        <a href="https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006" target="_blank" class="mono" style="color: var(--primary); text-decoration: underline;">0xfb96...6006</a>
+        <a href="https://amoy.polygonscan.com/address/0xfb960EB42729f84C48040eBe264b11473d926006" target="_blank" class="mono footer-link">0xfb96...6006</a>
       </div>
-      <div>
+      <div class="footer-item">
         <span>© 2026 Proofly Protocol</span>
       </div>
     </footer>
@@ -313,9 +338,9 @@
   <!-- ISSUE MODAL -->
   <div class="modal-overlay hidden" id="issue-modal">
     <div class="modal-card">
-      <button class="modal-close" id="btn-close-issue">&times;</button>
-      <h3 style="font-size: 18px; font-weight: 800;">Issue New Certificate</h3>
-      <p class="text-muted" style="font-size: 13px;">Mint and anchor a tamper-evident credential to Polygon Amoy.</p>
+      <button class="modal-close" id="btn-close-issue" aria-label="Close modal">&times;</button>
+      <h3>Issue New Certificate</h3>
+      <p class="modal-subtitle">Mint and anchor a tamper-evident credential to Polygon Amoy.</p>
 
       <form id="issue-form" class="mt-4">
         <div class="form-group">
@@ -339,7 +364,7 @@
           <input type="date" id="issue-date" />
         </div>
         <button type="submit" class="btn btn-primary btn-block mt-4" id="btn-submit-issue">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
           Issue & Anchor on Polygon
         </button>
       </form>
@@ -349,9 +374,9 @@
   <!-- AUTH MODAL -->
   <div class="modal-overlay hidden" id="auth-modal">
     <div class="modal-card">
-      <button class="modal-close" id="btn-close-auth">&times;</button>
-      <h3 id="auth-modal-title" style="font-size: 18px; font-weight: 800;">Sign In to Proofly</h3>
-      <p class="text-muted" id="auth-modal-subtitle" style="font-size: 13px;">Access your organization and certificates</p>
+      <button class="modal-close" id="btn-close-auth" aria-label="Close modal">&times;</button>
+      <h3 id="auth-modal-title">Sign In to Proofly</h3>
+      <p class="modal-subtitle" id="auth-modal-subtitle">Access your organization and certificates</p>
 
       <form id="auth-form" class="mt-4">
         <div class="form-group hidden" id="group-name">
@@ -381,9 +406,9 @@
         <button type="submit" class="btn btn-primary btn-block mt-4" id="btn-submit-auth">Sign In</button>
       </form>
 
-      <div class="text-center mt-4" style="font-size: 13px; color: var(--text-muted);">
+      <div class="auth-switch-footer">
         <span id="auth-switch-text">Don't have an account?</span>
-        <button class="btn btn-sm btn-outline" id="btn-switch-auth" style="margin-left: 8px;">Register</button>
+        <button class="btn btn-sm btn-outline" id="btn-switch-auth">Register</button>
       </div>
     </div>
   </div>
